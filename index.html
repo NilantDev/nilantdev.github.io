@@ -56,7 +56,6 @@
 </div>
         `,
                         });
-        
                         myPopup.show();
 
                     });
@@ -67,17 +66,20 @@
                 <img width="200px" id="cover" src="">
                 <br>
                 <div class="title">
-                    <span id="artist"></span> - 
-                    <span id="song"></span>
-                    <a id="link" target="_blank"> Link</a>
+                    <span id="artist"></span>
+                    <a id="link" target="_blank">
+                        <span id="song"></span>
+                    </a>
                 </div>
             </div>
             <div id="score-wrapper"><span>Your score: </span><span id="score"></span></div>
-            <div>
+            <div class="input-actions">
                 <input id="word">
-                <button onclick="checkWord()" id="checkWord">Try the word!</button>
-                <button onclick="GiveUp.giveUp(words, lyrics)" id="giveUp">Give up!</button>
-                <button onclick="showHint()" id="getHint" disabled>Get hint!</button>
+                <div class="actions">
+                    <button onclick="checkWord()" id="checkWord">Try the word!</button>
+                    <button onclick="GiveUp.giveUp(words, lyrics)" id="giveUp">Give up!</button>
+                    <button onclick="showHint()" id="getHint" disabled>Get hint!</button>
+                </div>
             </div>
             <div id="letters" class="letter-wrapper"></div>
             <div id="attempts"></div>

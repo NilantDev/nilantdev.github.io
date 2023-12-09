@@ -36,3 +36,54 @@ div {
 .attempt.failed {
     background-color: red;
 }
+
+/*
+ Desktop
+*/
+@media screen and (min-device-width: 481px) {
+    #song::before {
+        content: ' - ';
+    }
+}
+
+/* 
+ Mobile
+*/
+
+@media only screen and (max-device-width: 480px) {
+    .main-wrapper {
+        font-size: 50px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .letter-wrapper {
+        width: 65%;
+        margin: auto;
+    }
+
+    .input-actions {
+        margin: 40px auto;
+    }
+
+    #word {
+        width: 90%;
+        height: 60px;
+        font-size: 50px;
+        border: solid;
+    }
+
+    .actions button {
+        font-size: 40px;
+    }
+
+    .info {
+        display: flex;
+        justify-content: center;
+    }
+    .title {
+        display: grid;
+    }
+}

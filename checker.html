@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="js/vendor/jQuery.js"></script>
+        <script src="js/custom/letter.js"></script>
+        <script src="js/custom/word.js"></script>
+        <!-- <script src="songs/lyrics_ru.js"></script>
+        <script src="songs/songs_ru.js"></script> -->
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <style>
+            div {
+                display: block;
+                margin: 0 20px;
+            }
+            div.main-wrapper {
+                display: flex;
+                text-align: left;
+            }
+            textarea {
+                width: 500px;
+                height: 1000px;
+            }
+            button {
+                position: sticky;
+                top: 20px;
+                height: fit-content;
+            }
+        </style>
+        <div class="main-wrapper">
+            <div>
+                <textarea id="lyrics"></textarea>     
+            </div>
+            <button onclick="foo()">Click!</button>
+            <div id="formatted_lyrics"></div>
+            <div id="words"></div>
+            <div id="letters"></div>
+        </div>
+        <script>
+            function foo() {
+                const lyrics = $('#lyrics').val();
+                let lyricsArray = lyrics.split('\n');
+
+                lyricsArray = getUniqueLinesOfLyrics(lyricsArray);
+                
+                $('#formatted_lyrics').empty();
+                $('#words').empty();
+                $('#letters').empty();
+
+                lyricsArray.forEach(line => {
+                    $('#formatted_lyrics').append('<span class="line">' + line + '</span><br>'); 
+                });
+
+                let words = Word.getUniqueWords(lyricsArray).sort();
+
+                words.forEach(word => {
+                    $('#words').append('<span class="word">' + word + '</span><br>');
+                });
+
+                let letters = Letter.getUniqueLetters(words);
+
+                letters.forEach(letter => {
+                    $('#letters').append('<span class="letter">' + letter + '</span><br>'); 
+                });
+
+            }
+
+            function getUniqueLinesOfLyrics(lyrics) {
+                let result = [];
+
+                lyrics.forEach(line => {
+                    tmp = line.trim();
+
+                    if (tmp == '') {
+                        return;
+                    }
+                    if (!result.includes(tmp)) {
+                        result.push(tmp)
+                    }
+                });
+
+                return result;
+            }
+
+            // let task = getTodayTask(
+            //     getWeekSongs(),
+            //     getWeekLyrics()
+            // );
+
+            // $('#cover').attr('src', task.cover)
+            // $('#artist').text( task.artist)
+            // $('#song').text( task.song)
+
+            // const lyrics = task.lyrics;
+
+            // let words = getUniqueWords(lyrics);
+            // console.log(words);
+            // let letters = getUniqueLetters(words);
+
+            // letters.forEach(letter => {
+            //     $('#letters').append('<span class="letter" data-letter="' + letter + '">' + letter + '</span>');
+            // });            
+        </script>
+    </body>
+</html>

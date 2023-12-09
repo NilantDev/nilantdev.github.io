@@ -1,0 +1,38 @@
+.letter {
+    margin: 5px;
+    border: solid black 1px;
+    padding: 5px;
+    display: inline-block;
+}
+
+.letter-wrapper {
+    width: 26%;
+    margin-left: 37%;
+}
+
+.letter.guessed {
+    background-color: grey;
+}
+
+div {
+    margin-bottom: 20px;
+}
+
+.lywole {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.main-wrapper {
+    display: inline;
+    text-align: center;
+}
+
+.attempt.succes {
+    background-color: green;
+}
+.attempt.failed {
+    background-color: red;
+}

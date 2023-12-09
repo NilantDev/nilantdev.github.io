@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="js/custom/giveup.js"></script>
+        <script src="js/custom/hint.js"></script>
+        <script src="js/custom/letter.js"></script>
+        <script src="js/custom/lywole.js"></script>
+        <script src="js/custom/score.js"></script>
+        <script src="js/custom/task.js"></script>
+        <script src="js/custom/word.js"></script>
+
+        <script src="js/vendor/basil.js"></script>
+        <script src="js/vendor/popup.min.js"></script>
+        <script src="js/vendor/jQuery.js"></script>
+
+        <script src="songs/lyrics_en.js"></script>
+        <script src="songs/songs_en.js"></script>
+
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        
+
+
+        <div class="main-wrapper">
+            <div class="menu">
+                <!-- <span id="statistic">Statistic</span> -->
+                <!-- <span id="settings">Settings</span> -->
+                <!-- <span id="follow">Follow</span> -->
+                <span id="about">About</span>
+                <script>
+                    $('#about').on('click', function() {
+                        let myPopup = new Popup({
+                            id: "my-popup",
+                            title: "",
+                            content: `
+<div class="about-wrapper">
+    <span>
+        Lywole is a game on knowledge of song lyrics.
+        Every day we take one song and take all unique letters from its lyrics.
+        Your task is to type one word at time to mention all letters.
+        
+        <h5>Example.</h5>
+
+        There is all unique letters from The Beatles song "Yesterday". (Note taht the letters J and Q are absent because there are no words with such letters in lyrics).
+        <div class="example-letter-wrapper"><span class="letter" data-letter="a">a</span><span class="letter" data-letter="b">b</span><span class="letter" data-letter="c">c</span><span class="letter" data-letter="d">d</span><span class="letter" data-letter="e">e</span><span class="letter" data-letter="f">f</span><span class="letter" data-letter="g">g</span><span class="letter" data-letter="h">h</span><span class="letter" data-letter="i">i</span><span class="letter" data-letter="k">k</span><span class="letter" data-letter="l">l</span><span class="letter" data-letter="m">m</span><span class="letter" data-letter="n">n</span><span class="letter" data-letter="o">o</span><span class="letter" data-letter="p">p</span><span class="letter" data-letter="r">r</span><span class="letter" data-letter="s">s</span><span class="letter" data-letter="t">t</span><span class="letter" data-letter="u">u</span><span class="letter" data-letter="v">v</span><span class="letter" data-letter="w">w</span><span class="letter" data-letter="y">y</span></div>
+
+        You input word 'yesterday' and then the letters A, D, E, R, S, T, Y became grey.
+        <div class="example-letter-wrapper"><span class="letter guessed" data-letter="a">a</span><span class="letter" data-letter="b">b</span><span class="letter" data-letter="c">c</span><span class="letter guessed" data-letter="d">d</span><span class="letter guessed" data-letter="e">e</span><span class="letter" data-letter="f">f</span><span class="letter" data-letter="g">g</span><span class="letter" data-letter="h">h</span><span class="letter" data-letter="i">i</span><span class="letter" data-letter="k">k</span><span class="letter" data-letter="l">l</span><span class="letter" data-letter="m">m</span><span class="letter" data-letter="n">n</span><span class="letter" data-letter="o">o</span><span class="letter" data-letter="p">p</span><span class="letter guessed" data-letter="r">r</span><span class="letter guessed" data-letter="s">s</span><span class="letter guessed" data-letter="t">t</span><span class="letter" data-letter="u">u</span><span class="letter" data-letter="v">v</span><span class="letter" data-letter="w">w</span><span class="letter guessed" data-letter="y">y</span></div>
+
+        Your task to make grey all letters.
+
+        You can give up and see words and lines with left letters.
+    </span>
+</div>
+        `,
+                        });
+        
+                        myPopup.show();
+
+                    });
+                </script>
+            </div>
+            <div class="lywole"><span></span></div>
+            <div class="info">
+                <img width="200px" id="cover" src="">
+                <br>
+                <div class="title">
+                    <span id="artist"></span> - 
+                    <span id="song"></span>
+                    <a id="link" target="_blank"> Link</a>
+                </div>
+            </div>
+            <div id="score-wrapper"><span>Your score: </span><span id="score"></span></div>
+            <div>
+                <input id="word">
+                <button onclick="checkWord()" id="checkWord">Try the word!</button>
+                <button onclick="GiveUp.giveUp(words, lyrics)" id="giveUp">Give up!</button>
+                <button onclick="showHint()" id="getHint" disabled>Get hint!</button>
+            </div>
+            <div id="letters" class="letter-wrapper"></div>
+            <div id="attempts"></div>
+            <div id="leftLetters"></div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $('#word').keypress(function(e){
+                    if (e.keyCode == 13) {
+                        $('#checkWord').click();
+                        $('#word').val('');
+                    }
+                });
+            });
+        </script>
+        <script>
+            let task = Task.getTodayTask(
+                getWeekSongs(),
+                getWeekLyrics()
+            );
+            let score = 0;
+
+            $('#cover').attr('src', task.cover);
+            $('#artist').text( task.artist);
+            $('#song').text( task.song);
+            $('#link').attr('href', task.youtube);
+
+            const lyrics = task.lyrics;
+            let words = Word.getUniqueWords(lyrics);
+            let letters = Letter.getUniqueLetters(words);
+
+            letters.forEach(letter => {
+                $('#letters').append('<span class="letter" data-letter="' + letter + '">' + letter + '</span>');
+            });
+
+            //////////////////_INIT_////////////////////////////////////
+
+            let options = {
+                namespace: 'lywoly',
+                storage: 'local'
+            };
+            let basil = new window.Basil(options);
+            let lywoly = Lywole.init(basil);
+        </script>
+
+        <script>
+            function showHint() {
+                let hint = Hint.getHint(lyrics);
+                let myPopup = new Popup({
+                    id: "my-popup",
+                    title: "",
+                    content: hint,
+                });
+
+                myPopup.show();
+
+                $('#getHint').attr('disabled', true);
+            }
+        </script>
+
+        <script>
+            function checkWord() {
+                let word = $('#word').val().toLowerCase().trim();
+                let guessedLetters = Letter.getGuessedLetters(word);
+                isWordIncluded = Word.isWordIncluded(word, words);
+
+                let points = Score.getPoints(
+                    word,
+                    Word.isWordInTitle(word, task.song),
+                    isWordIncluded,
+                    guessedLetters
+                );
+
+                if (isWordIncluded) {
+                    Letter.setGuessedLetters(word);
+
+                    let hint = Hint.getHint(lyrics);
+
+                    if (hint) {
+                        $('#getHint').attr('disabled', false);
+                    }
+                }
+
+                Lywole.addAttemptToDom(word, isWordIncluded, points);
+
+                score += points;
+
+                $('#score').text(score);
+                lywoly.saveToLocalStorage(
+                    score, 
+                    {
+                        word: word, 
+                        isWordIncluded: isWordIncluded, 
+                        points: points, 
+                    },
+                    isWordIncluded ? guessedLetters : [],
+                    basil
+                )
+            }
+        </script>
+    </body>
+</html>

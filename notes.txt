@@ -1,0 +1,16 @@
+RULES
+interjections
+readin' => reading
+real-life - one word
+devil's he's
+
+FIX
+rock'n'roll
+
+FEATURES
+diff versions
+local storage
+statistic
+без аншлийских слов для россии
+без мата
+score

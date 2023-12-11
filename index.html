@@ -11,7 +11,6 @@
         <script src="js/custom/word.js"></script>
 
         <script src="js/vendor/basil.js"></script>
-        <script src="js/vendor/popup.min.js"></script>
         <script src="js/vendor/jQuery.js"></script>
 
         <script src="songs/lyrics_en.js"></script>
@@ -28,17 +27,6 @@
                 <!-- <span id="settings">Settings</span> -->
                 <!-- <span id="follow">Follow</span> -->
                 <span id="about">About</span>
-                <script>
-                    $('#about').on('click', function() {
-                        let myPopup = new Popup({
-                            id: "my-popup",
-                            title: "",
-                            content: PopupContent.about,
-                        });
-                        myPopup.show();
-
-                    });
-                </script>
             </div>
             <div class="lywole"><span></span></div>
             <div class="info">
@@ -105,18 +93,18 @@
         </script>
 
         <script>
-            function showHint() {
-                let hint = Hint.getHint(lyrics);
-                let myPopup = new Popup({
-                    id: "my-popup",
-                    title: "",
-                    content: hint,
-                });
+            // function showHint() {
+            //     let hint = Hint.getHint(lyrics);
+            //     let myPopup = new Popup({
+            //         id: "my-popup",
+            //         title: "",
+            //         content: hint,
+            //     });
 
-                myPopup.show();
+            //     myPopup.show();
 
-                $('#getHint').attr('disabled', true);
-            }
+            //     $('#getHint').attr('disabled', true);
+            // }
         </script>
 
         <script>

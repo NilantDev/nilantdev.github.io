@@ -76,6 +76,10 @@ div {
     text-align: center;
 }
 
+.actions {
+    margin-top: 10px;
+}
+
 
 /*
 Attempts
@@ -130,7 +134,7 @@ Attempts
     }
 
     .actions button {
-        font-size: 40px;
+        font-size: 45px;
     }
 
     .info {

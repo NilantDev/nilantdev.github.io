@@ -1,3 +1,48 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url(fonts/icomoon.woff);
+}
+
+.menu .left-menu,
+.menu .title,
+.menu .right-menu {
+    width: 33%;
+}
+
+.menu .left-menu {
+    text-align: left;
+}
+
+.menu .right-menu {
+    text-align: right;
+}
+
+.menu {
+    font-family: 'icomoon';
+    display: flex;
+}
+
+.menu,
+.menu div {
+    margin: 0;
+}
+
+.menu #info::before,
+.menu #settings::before,
+.menu #faq::before {
+    color: grey;
+}
+
+.menu #info::before {
+    content: '\e901';
+}
+.menu #settings::before {
+    content: '\e900';
+}
+.menu #faq::before {
+    content: '\e902';
+}
+
 .letter {
     margin: 5px;
     border: solid black 1px;
@@ -6,8 +51,8 @@
 }
 
 .letter-wrapper {
-    width: 26%;
-    margin-left: 37%;
+    width: 75%;
+    margin: auto;
 }
 
 .letter.guessed {
@@ -26,7 +71,8 @@ div {
 }
 
 .main-wrapper {
-    display: inline;
+    width: 30%;
+    margin: auto;
     text-align: center;
 }
 
@@ -52,11 +98,8 @@ div {
 
 @media only screen and (max-device-width: 480px) {
     .main-wrapper {
+        width: 100%;
         font-size: 50px;
-    }
-
-    .menu {
-        display: none;
     }
 
     .letter-wrapper {

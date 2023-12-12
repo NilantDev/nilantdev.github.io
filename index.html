@@ -25,12 +25,18 @@
     <body>
         <div class="main-wrapper">
             <div class="menu">
-                <!-- <span id="statistic">Statistic</span> -->
-                <!-- <span id="settings">Settings</span> -->
-                <!-- <span id="follow">Follow</span> -->
-                <span id="about">About</span>
+                <div class="left-menu">
+                    <span id="info"></span>
+                    <span id="settings"></span>
+                </div>
+                <div class="title">
+                    <span>Lywole</span>
+                </div>
+                <dev class="right-menu">
+                    <span id="faq"></span>
+                </dev>
             </div>
-            <div class="lywole"><span></span></div>
+            <hr>
             <div class="info">
                 <img width="200px" id="cover" src="">
                 <br>
@@ -92,6 +98,7 @@
             };
             let basil = new window.Basil(options);
             let lywoly = Lywole.init(basil);
+            score = lywoly.score;
         </script>
 
         <script>
@@ -112,6 +119,11 @@
         <script>
             function checkWord() {
                 let word = $('#word').val().toLowerCase().trim();
+                let isWordInAttempts = lywoly.attempts.find(obj => obj.word === word);
+
+                if (word == '' && isWordInAttempts != 'undefined') {
+                    return;
+                }
                 let guessedLetters = Letter.getGuessedLetters(word);
                 isWordIncluded = Word.isWordIncluded(word, words);
 

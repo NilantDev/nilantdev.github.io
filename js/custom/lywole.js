@@ -59,7 +59,7 @@ var Lywole = {
 
     addAttemptToDom: function(word, isWordIncluded, points) {
         const classVal = isWordIncluded ? 'succes' : 'failed';
-        $('#attempts').append('<span class="attempt ' + classVal + '">' + word + '</span> <span class="points">' + points + '</span><br>');
+        $('#attempts').append('<div class="attempt-wrapper"><span class="attempt ' + classVal + '">' + word + '</span> <span class="points">' + points + '</span></div>');
     },
 
     getDayOfWeek: function() {

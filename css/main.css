@@ -76,18 +76,29 @@ div {
     text-align: center;
 }
 
+
+/*
+Attempts
+*/
+
+.attempt-wrapper {
+    width: 20%;
+    text-align: left;
+    float: left;
+}
+
 .attempt.succes {
-    background-color: green;
+    background-color: rgb(145, 230, 145);
 }
 .attempt.failed {
-    background-color: red;
+    background-color: rgb(207, 110, 110);
 }
 
 /*
  Desktop
 */
 @media screen and (min-device-width: 481px) {
-    #song::before {
+    #artist::after {
         content: ' - ';
     }
 }
@@ -128,5 +139,9 @@ div {
     }
     .title {
         display: grid;
+    }
+
+    .attempt-wrapper {
+        width: 33%;
     }
 }

@@ -4,10 +4,12 @@ var GiveUp = {
         const allWordsWithLetter = this.getAllWordsWithLetter(words, letters);
         const wordsWithLetter = this.getWordWithLetter(allWordsWithLetter, letters);
         const linesWithWords = this.getLinesWithWords(lines, wordsWithLetter, letters);
-    
+        
+        $(`#leftLetters`).after('<hr>');
         for (const [key, value] of Object.entries(linesWithWords)) {
             $(`#leftLetters`).append(`<span class="leftLetter">${key} - </span><span class="leftWord" title="${value.line}">${value.word}</span><br>`);
         }
+        $(`#leftLetters`).show('slow');
     },
     
     getLinesWithWords: function(lines, words, letters) {

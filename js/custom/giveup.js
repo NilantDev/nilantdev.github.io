@@ -7,7 +7,9 @@ var GiveUp = {
         
         $(`#leftLetters`).after('<hr>');
         for (const [key, value] of Object.entries(linesWithWords)) {
-            $(`#leftLetters`).append(`<span class="leftLetter">${key} - </span><span class="leftWord" title="${value.line}">${value.word}</span><br>`);
+            let newLine = value.line.replace(value.word, `<span class="bold">${value.word}</span>`)
+            // $(`#leftLetters`).append(`<span class="leftLetter">${key} - </span><span class="leftWord" title="${value.line}">${value.word}</span><br>`);
+            $(`#leftLetters`).append(`<span class="leftLetter">${key} - </span><span class="leftWord">${newLine}</span><br>`);
         }
         $(`#leftLetters`).show('slow');
         $('#giveUp').prop('disabled', true);

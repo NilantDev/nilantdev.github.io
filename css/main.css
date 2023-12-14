@@ -81,6 +81,12 @@ div {
 }
 
 
+#leftLetters {
+    text-align: left;
+    margin-left: 27%;
+}
+
+
 /*
 Attempts
 */
@@ -151,5 +157,9 @@ Attempts
 
     .attempt-wrapper {
         width: 33%;
+    }
+
+    #leftLetters {
+        margin-left: 5%;
     }
 }

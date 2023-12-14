@@ -126,7 +126,7 @@
                 let word = $('#word').val().toLowerCase().trim();
                 let isWordInAttempts = lywoly.attempts.find(obj => obj.word === word);
 
-                if (word == '' && isWordInAttempts != 'undefined') {
+                if (word == '' || isWordInAttempts != undefined) {
                     return;
                 }
                 let guessedLetters = Letter.getGuessedLetters(word);

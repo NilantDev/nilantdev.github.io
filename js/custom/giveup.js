@@ -10,6 +10,8 @@ var GiveUp = {
             $(`#leftLetters`).append(`<span class="leftLetter">${key} - </span><span class="leftWord" title="${value.line}">${value.word}</span><br>`);
         }
         $(`#leftLetters`).show('slow');
+        $('#giveUp').prop('disabled', true);
+        $('#word').prop('disabled', true);
     },
     
     getLinesWithWords: function(lines, words, letters) {

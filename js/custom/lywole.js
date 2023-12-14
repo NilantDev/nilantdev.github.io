@@ -1,6 +1,7 @@
 var Lywole = {
     day: 0,
     score: 0,
+    status: 0,
     attempts: [],
     letters: [],
     totalScore: 0,

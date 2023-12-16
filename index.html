@@ -24,6 +24,7 @@
     </head>
     <body>
         <div class="main-wrapper">
+            <div class="message-wrapper"><span class="message">HDHDHDHDH</span></div>
             <div class="menu">
                 <div class="left-menu">
                     <span id="info"></span>
@@ -64,6 +65,8 @@
         <script>
             $(document).ready(function(){
                 $('#word').keypress(function(e){
+                    $('.message-wrapper').hide();
+
                     if (e.keyCode == 13) {
                         $('#checkWord').click();
                         $('#word').val('');
@@ -107,18 +110,12 @@
         </script>
 
         <script>
-            // function showHint() {
-            //     let hint = Hint.getHint(lyrics);
-            //     let myPopup = new Popup({
-            //         id: "my-popup",
-            //         title: "",
-            //         content: hint,
-            //     });
-
-            //     myPopup.show();
-
-            //     $('#getHint').attr('disabled', true);
-            // }
+            function showHint() {
+                let hint = Hint.getHint(lyrics);
+                
+                $('.message-wrapper .message').text(`Hint: ${hint}`);
+                $('.message-wrapper').show();
+            }
         </script>
 
         <script>
@@ -127,6 +124,9 @@
                 let isWordInAttempts = lywoly.attempts.find(obj => obj.word === word);
 
                 if (word == '' || isWordInAttempts != undefined) {
+                    let message = word == '' ? 'You cannot input empty line' : "This word was already input";
+                    $('.message-wrapper .message').text(message);
+                    $('.message-wrapper').show();
                     return;
                 }
                 let guessedLetters = Letter.getGuessedLetters(word);

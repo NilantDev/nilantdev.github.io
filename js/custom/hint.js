@@ -28,7 +28,8 @@ var Hint = {
                         let hint = '';
                         let fff = lines[j].split(' ');
                         for (let k = 0; k < fff.length; k++) {
-                            hint += k == wordIndexes[0] ? ' ***' : ' ' + fff[k];
+                            let hintWord = fff[k].replace(/./g, '_');
+                            hint += k == wordIndexes[0] ? ` ${hintWord}` : ' ' + fff[k];
                         }
                         result = hint;
                     }

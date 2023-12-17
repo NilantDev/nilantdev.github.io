@@ -17,6 +17,11 @@
     width: 33%;
 }
 
+.menu .left-menu a,
+.menu .right-menu a{
+    text-decoration: none;
+}
+
 .menu .left-menu {
     text-align: left;
 }
@@ -117,11 +122,38 @@ Attempts
 }
 
 /*
+ Info
+*/
+.info-wrapper {
+    text-align: justify;
+}
+
+.info-wrapper h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.info-hint {
+    background: beige;
+    border: solid 1px;
+    position: absolute;
+    margin-left: 14px;
+}
+
+.info-hint::before {
+    content: '< ';
+}
+
+/*
  Desktop
 */
 @media screen and (min-device-width: 481px) {
     #artist::after {
         content: ' - ';
+    }
+
+    .mobile {
+        display: none;
     }
 }
 
@@ -130,6 +162,10 @@ Attempts
 */
 
 @media only screen and (max-device-width: 480px) {
+    .desktop {
+        display: none;
+    }
+
     .main-wrapper {
         width: 100%;
         font-size: 50px;

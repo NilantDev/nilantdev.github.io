@@ -1,7 +1,11 @@
 var Lywole = {
+    playing: 'playing',
+    won: 'won',
+    start: 'start',
+    
     day: 0,
     score: 0,
-    status: 0,
+    status: this.start,
     attempts: [],
     letters: [],
     totalScore: 0,

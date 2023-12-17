@@ -12,9 +12,10 @@
 
         <script src="js/vendor/basil.js"></script>
         <script src="js/vendor/jQuery.js"></script>
+        <script src="js/vendor/confetti.min.js"></script>
 
-        <script src="songs/lyrics_en.js"></script>
-        <script src="songs/songs_en.js"></script>
+        <script src="songs/lyrics_ru.js"></script>
+        <script src="songs/songs_ru.js"></script>
 
         <script src="popup/content.js"></script>
 
@@ -27,7 +28,9 @@
             <div class="message-wrapper"><span class="message">HDHDHDHDH</span></div>
             <div class="menu">
                 <div class="left-menu">
-                    <span id="info"></span>
+                    <a href="info.html">
+                        <span id="info"></span>
+                    </a>
                     <span id="settings"></span>
                 </div>
                 <div class="title">
@@ -107,6 +110,20 @@
             let basil = new window.Basil(options);
             let lywoly = Lywole.init(basil);
             score = lywoly.score;
+
+            if (lywoly.status === lywoly.won) {
+                $('#checkWord').prop('disabled', 'true');
+                $('#giveUp').prop('disabled', 'true');
+                $('#getHint').prop('disabled', 'true');
+            }
+
+            let confetti = new Confetti('confetti');
+
+            confetti.setCount(75);
+            confetti.setSize(1);
+            confetti.setPower(25);
+            confetti.setFade(false);
+            confetti.destroyTarget(true);
         </script>
 
         <script>
@@ -129,6 +146,7 @@
                     $('.message-wrapper').show();
                     return;
                 }
+
                 let guessedLetters = Letter.getGuessedLetters(word);
                 isWordIncluded = Word.isWordIncluded(word, words);
 
@@ -163,7 +181,19 @@
                     },
                     isWordIncluded ? guessedLetters : [],
                     basil
-                )
+                );
+                
+                let allGuessedLetters = [];
+                $('#letters .letter.guessed').each(function(index) {
+                    allGuessedLetters.push($(this).data('letter'));
+                });
+
+                // You won
+                if(allGuessedLetters.sort().join(',')=== letters.sort().join(',')){
+                    lywoly.status = lywoly.won;
+                    $('.message-wrapper .message').text(`You won! Congratulations!`);
+                    // $('#confetti').trigger('click');
+                }
             }
         </script>
     </body>

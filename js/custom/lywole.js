@@ -1,11 +1,7 @@
 var Lywole = {
-    playing: 'playing',
-    won: 'won',
-    start: 'start',
-    
     day: 0,
     score: 0,
-    status: this.start,
+    status: 'start',
     attempts: [],
     letters: [],
     totalScore: 0,
@@ -45,6 +41,8 @@ var Lywole = {
         });
 
         this.totalScore = lywoly.totalScore;
+
+        this.status = lywoly.status;
 
         return this;
     },

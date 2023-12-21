@@ -79,7 +79,7 @@ var Word = {
     },
 
     isWordInTitle: function(word, title) {
-        let titles = title.toLowerCase().split(' ');
+        let titles = this.removeSpecChars(title).toLowerCase().split(' ');
     
         return titles.includes(word);
     },

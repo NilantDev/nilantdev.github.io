@@ -12,7 +12,7 @@ var Lywole = {
             return this;
         }
 
-        const dayOfWeek = this.getDayOfWeek();
+        const dayOfWeek = this.getDayOfYear();
 
         if (lywoly.day !== dayOfWeek) {
             this.day = dayOfWeek;
@@ -48,7 +48,7 @@ var Lywole = {
     },
 
     saveToLocalStorage: function(score, attempt, letters, basil) {
-        this.day = this.getDayOfWeek();
+        this.day = this.getDayOfYear();
         this.score = score;
         this.attempts.push(attempt);
         this.letters = this.letters.concat(letters);
@@ -65,9 +65,13 @@ var Lywole = {
         $('#attempts').append('<div class="attempt-wrapper"><span class="attempt ' + classVal + '">' + word + '</span> <span class="points">' + points + '</span></div>');
     },
 
-    getDayOfWeek: function() {
-        const date = new Date();
+    getDayOfYear: function() {
+        var now = new Date();
+        var start = new Date(now.getFullYear(), 0, 0);
+        var diff = now - start;
+        var oneDay = 1000 * 60 * 60 * 24;
+        var day = Math.floor(diff / oneDay);
 
-        return date.getDay();
+        return day;
     }
 }

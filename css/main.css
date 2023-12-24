@@ -23,10 +23,12 @@
 }
 
 .menu .left-menu {
+    padding-left: 20px;
     text-align: left;
 }
 
 .menu .right-menu {
+    padding-right: 20px;
     text-align: right;
 }
 
@@ -164,6 +166,10 @@ Attempts
 @media only screen and (max-device-width: 480px) {
     .desktop {
         display: none;
+    }
+
+    .menu {
+        margin-top: 30px;
     }
 
     .main-wrapper {

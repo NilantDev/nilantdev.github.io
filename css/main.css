@@ -43,9 +43,9 @@
 }
 
 .menu #info::before,
-.menu #settings::before,
+/* .menu #settings::before, */
 .menu #faq::before {
-    color: grey;
+    color: black;
 }
 
 .menu #info::before {
@@ -53,6 +53,7 @@
 }
 .menu #settings::before {
     content: '\e900';
+    color: grey;
 }
 .menu #faq::before {
     content: '\e902';

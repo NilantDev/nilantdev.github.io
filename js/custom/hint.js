@@ -33,8 +33,7 @@ var Hint = {
                         }
                         result = hint;
                     }
-    
-    
+
                     break;
                 }
             }

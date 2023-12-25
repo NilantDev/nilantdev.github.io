@@ -8,7 +8,7 @@ var Word = {
             'oh', 'ooh', 
             'uh',
             'whoo',
-            'yeah',
+            // 'yeah',
             'е-а', 'оу-о-о-о',
             'oh-i-oh-i-oh-i-oh-i', // Ed Sheeran - Shap of you
             'i-i-i-i-i-i', 'ah-ah', 'ah-ah-ah', 'whoa-oh', // DNCE - Cake by the Ocean 

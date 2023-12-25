@@ -75,7 +75,6 @@
 
                     if (e.keyCode == 13) {
                         $('#checkWord').click();
-                        $('#word').val('');
                     }
                     // checking of space
                     if (e.keyCode == 13) {
@@ -191,6 +190,8 @@
                     isWordIncluded ? guessedLetters : [],
                     basil
                 );
+
+                $('#word').val('');
             }
         </script>
     </body>

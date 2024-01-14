@@ -3,237 +3,231 @@ function getWeekLyrics() {
     {
         dayOfWeek: 1,
         lyrics: `
-Моря синяя равнина, волны катят не спеша
-Я скажу тебе, Марина: "До чего ж ты хороша"
-Желтый пляж уходит в море, горизонта рвется нить
-Ты меня полюбишь вскоре, а иначе мне не жить
-Я люблю тебя, Марина, все сильней день ото дня
-Без твоей любви, Марина, этот мир не для меня
-Наши встречи так недолги, расставания впереди
-Разлетимся, как осколки, ты попробуй-ка найди
-Ты сказала мне, Марина, гордость девичью храня
-Я уйду, как субмарина, если тронешь ты меня
-Что ты милая, не трону, кто я есть в твоей судьбе?
-Лишь прическу, как корону, дай поправлю на тебе
-Призадумалась Марина, вот и кончилась гроза
-И как два аквамарина, смотрят вдаль ее глаза
-Разлетимся как осколки ты попробуй-ка найди
+Снегом белым метель замела
+Длинную дорогу к тебе
+Но в Москву опять пришла весна
+И тепло забрала всё себе
+Ты уедешь туда, где туман
+Прячет от меня твой ласковый взгляд
+Просто знай, я буду ждать тебя
+Поскорее возвращайся назад
+А где-то лондонский дождь
+До боли, до крика, поздравляет тебя
+И на каждой открытке
+Я с любовью пишу
+С Днём Рождения, Вика
+Звёзды смотрят с небес на меня
+Но не понять мою им печаль
+Не зная то, что потерял я тебя
+И им меня совсем не жаль
+Уезжаешь - и несколько слов
+Я хочу на прощанье сказать
+Просто знай: я буду ждать тебя
     `
     },
     {
         dayOfWeek: 2,
         lyrics: `
-Cut my life into pieces
-This is my last resort
-Suffocation, no breathing
-Don't give a fuck if I cut my arm bleeding
-I've reached my last resort
-Do you even care if I die bleeding?
-Would it be wrong, would it be right
-If I took my life tonight?
-Chances are that I might
-Mutilation out of sight
-And I'm contemplating suicide
-'Cause I'm losing my sight, losing my mind
-Wish somebody would tell me I'm fine
-Losing my sight, losing my mind
-I never realized I was spread too thin
-'Til it was too late, and I was empty within
-Hungry, feeding on chaos and living in sin
-Downward spiral, where do I begin?
-It all started when I lost my mother
-No love for myself and no love for another
-Searching to find a love upon a higher level
-Finding nothing but questions and devils
-Nothing's alright, nothing is fine
-I'm running and I'm crying
-I'm crying, I'm crying
-I can't go on living this way
-Can't go on
-Living this way
-Nothing's alright
+Hahahahahahahahahahahahahahahahaha
+Feel good
+Sha, sha-ba-da, sha-ba-da-ca; feel good
+(Change, change, change, change)
+City's breaking down on a camel's back
+They just have to go, 'cause they don't know wack
+So while you fill the streets, it's appealing to see
+And you won't get out the county 'cause you're damned and free
+You got a new horizon, its ephemeral style
+A melancholy town where we never smile
+And all I wanna hear is the message beep
+My dreams, they've got to kiss me 'cause I don't get to sleep, no
+(Beep)
+Windmill, windmill for the land
+Turn forever, hand in hand
+Take it all in on your stride
+It is ticking, falling down
+Love forever, love is free
+Let's turn forever, you and me
+Is everybody in?
+Laughin' gas, these hazmats, fast cats
+Linin' 'em up like ass cracks
+Play these ponies at the track
+It's my chocolate attack
+Shit, I'm steppin' in the heart of this here (Yeah)
+Care Bear repping in harder this year (Yeah)
+Watch me as I gravitate, ha-ha-ha-ha-ha!
+Yo, we gon' ghost town this Motown
+With yo' sound, you in the blink
+Gon' bite the dust, can't fight with us
+With yo' sound, you kill the Inc
+So don't stop, get it, get it (Get it)
+Until you're cheddar headed
+And watch the way I navigate, hahahahaha
+(Ha! Haha! Haha! Haha! Ha!)
+Don't stop, get it, get it, peep how your captain's in it
+(Sha, sha-ba-da, sha-ba-da-ca; feel good)
+Steady, watch me navigate, ha-ha-ha-ha-ha!
+Sha, sha-ba-da, sha-ba-da-ca; feel good (Hahaha!)
+Sha, sha-ba-da, sha-ba-da-ca; feel good (Hahahahahaha!)
 `
     },
     {
         dayOfWeek: 3,
         lyrics: `
-Вот море молодых колышат супербасы,
-Мне триста лет, я выполз из тьмы.
-Они торчат под рейв и чем-то пудрят носы -
-Они не такие, как мы.
-И я не горю желаньем лезть в чужой монастырь,
-Я видел эту жизнь без прикрас.
-Не стоит прогибаться под изменчивый мир,
-Пусть лучше он прогнется под нас.
-Однажды он прогнется под нас.
-Один мой друг - он стоил двух. Он ждать не привык.
-Был каждый день последним из дней.
-Он пробовал на прочность этот мир каждый миг
-Мир оказался прочней.
-Ну что же, спи спокойно, позабытый кумир,
-Ты брал свои вершины не раз.
-Другой держался русла и теченье ловил
-Подальше от крутых берегов.
-Он был, как все и плыл, как все, и вот он приплыл -
-Ни дома, ни друзей, ни врагов.
-И жизнь его похожа на фруктовый кефир,
-Видал я и такое не раз.
-Пусть старая джинса давно затерта до дыр,
-Пускай хрипит раздолбанный бас.
+Когда я на почте служил ямщиком
+Ко мне постучался косматый геолог
+И, глядя на карту на белой стене
+Он усмехнулся мне
+Он рассказал, как плачет тайга
+Без мужика она одинока
+Нету на почте у них ямщика
+Значит, нам туда дорога
+Облака в небо спрятались
+Звезды пьяные смотрят вниз
+И в дебри сказочной тайги
+Падают они
+Черные сказки белой зимы
+На ночь поют нам большие деревья
+Черные сказки про розовый снег
+Розовый снег, даже во сне
+А ночью по лесу идет Сатана
+И собирает свежие души
+Новую кровь получила зима
+И тебя она получит        
        `
     },
     {
         dayOfWeek: 4,
         lyrics: `
-This ain't a song for the broken-hearted
-No silent prayer for the faith-departed
-I ain't gonna be just a face in the crowd
-You're gonna hear my voice when I shout it out loud
-It's my life, it's now or never
-I ain't gonna live forever
-I just want to live while I'm alive
-It's my life
-My heart is like the open highway
-Like Frankie said I did it my way
-I just wanna live while I'm alive
-This is for the ones who stood their ground
-It's for Tommy and Gina who never backed down
-Tomorrow's getting harder, make no mistake
-Luck, it ain't enough, you've got to make your own breaks
-Better stand tall when they're calling you out
-Don't bend, don't break, baby, don't back down
-It's now or never
+I stay out too late
+Got nothin' in my brain
+That's what people say, mm-mm
+I go on too many dates (Haha)
+But I can't make them stay
+At least, that's what people say, mm-mm
+But I keep cruisin'
+Can't stop, won't stop movin'
+It's like I got this music in my mind
+Sayin', "It's gonna be alright"
+'Cause the players gonna play, play, play, play, play
+And the haters gonna hate, hate, hate, hate, hate
+Baby, I'm just gonna shake, shake, shake, shake, shake
+I shake it off, I shake it off
+Heartbreakers gonna break, break, break, break, break
+And the fakers gonna fake, fake, fake, fake, fake
+I never miss a beat
+I'm lightnin' on my feet
+And that's what they don't see, mm-mm
+That's what they don't see, mm-mm
+I'm dancin' on my own (Dancin' on my own)
+I make the moves up as I go (Moves up as I go)
+And that's what they don't know, mm-mm
+That's what they don't know, mm-mm
+Can't stop, won't stop groovin'
+I, I, I shake it off, I shake it off
+Hey, hey, hey
+Just think, while you've been gettin' down and out about the liars
+And the dirty, dirty cheats of the world
+You could've been gettin' down
+To this sick beat
+My ex-man brought his new girlfriend
+She's like, "Oh my God," but I'm just gonna shake
+And to the fella over there with the hella good hair
+Won't you come on over, baby?
+We can shake, shake, shake
+Yeah, oh-oh, oh
+And the haters gonna hate, hate, hate, hate, hate (Haters gonna hate)
+I shake it off, I shake it off (Ha)
+Heartbreakers gonna break, break, break, break, break (Mmm)
+And the fakers gonna fake, fake, fake, fake, fake (They fake and fake and fake)
+I shake it off, I shake it off (I, I)
+I, I, I shake it off (Yeah), I shake it off
+I, I, I shake it off, I shake it off (You got to)        
         `
     },
     {
         dayOfWeek: 5,
         lyrics: `
-Я — маленькая лошадка и мне живется несладко
-Мне трудно нести мою ношу — настанет день и я ее брошу
-Я — маленькая лошадка, но стою очень много денег
-Я везу свою большую повозку с того на этот берег
-Мне хочется плакать, мне хочется смеяться
-Мне хочется прыгать, валяться и брыкаться
-Чтобы были друзья или хотя бы один
-Но я работаю как вол, в моей тележке кокаин
-Я умру очень рано, и я знаю об этом
-Может быть, не весной, может быть, ранним летом
-Я люблю слушать песни и костра нюхать дым
-Но нельзя мне отвлекаться — я везу кокаин
-Я устала ужасно, я хочу отдохнуть
-Съесть мешков десять сена и надолго уснуть
-Я хочу к перелетным птицам вклиниться в
-Клин, но работа важнее — за спиной кокаин
-Мне противно и трудно, но нельзя отступить
-Хоть и хочется есть, хоть и хочется пить
-Мы когда-нибудь за это в адском пламени сгорим
-Но все это потом, а в данный момент — кокаин
-Мне обидно, и капают слезы, когда мне под ноги кидают розы
-Когда люди на улицах и в окнах квартир
-Меня встречают и устраивают пир на весь мир
-Мне рады даже малые дети, мне машут даже деревьев ветви
-Меня приветствуют все, все как один — я привезла им новый мир!
-Я привезла кокаин!
+Широка река, глубока река
+Не доплыть тебе с того бережка
+Тучи низкие прячут лунный свет
+Полететь бы мне, да вот крыльев нет
+Во сыром бору злой огонь кипит
+Конь черней, чем ночь, у огня стоит
+Бьёт копытом он, ищет седока
+Оттолкнул тот конь наши берега
+Постучалась в дом боль незваная
+Вот она, любовь окаянная
+Коротаем мы ночи длинные
+Нелюбимые с нелюбимыми
+Чёрная вода далеко течёт
+Унесло весло да разбило плот
+Были ласточки, стали вороны
+Рано встретились, поздно поняли
+Двери новые не сорвать с петель
+И одна беда стелит нам постель
+Широка река, эхо долгое
+Конь черней, чем ночь, ходит около        
 `
     },
     {
         dayOfWeek: 6,
         lyrics: `
-I work all night, I work all day
-To pay the bills, I have to pay
-Ain't it sad?
-And still there never seems to be
-A single penny left for me
-That's too bad
-In my dreams, I have a plan
-If I got me a wealthy man
-I wouldn't have to work at all
-I'd fool around and have a ball
-Money, money, money
-Must be funny
-In a rich man's world
-Always sunny
-Oh-oh-oh-oh
-All the things I could do
-If I had a little money
-It's a rich man's world
-A man like that is hard to find
-But I can't get him off my mind
-And if he happens to be free
-I bet he wouldn't fancy me
-So I must leave, I'll have to go
-To Las Vegas or Monaco
-And win a fortune in a game
-My life will never be the same
-Oh-oh-oh-oh-oh-oh
+Time can never mend
+The careless whispers
+Of a good friend
+To the heart and mind
+Ignorance is kind
+There's no comfort in the truth
+Pain is all you'll find
+Should've known better, yeah
+I feel so unsure
+As I take your hand
+And lead you to the dance floor
+As the music dies
+Something in your eyes
+Calls to mind a silver screen
+And all its sad goodbyes
+I'm never gonna dance again
+Guilty feet have got no rhythm
+Though it's easy to pretend
+I know you're not a fool
+Should've known better than to cheat a friend
+And waste a chance that I've been given
+So I'm never gonna dance again
+The way I danced with you, oh
+(Should've known better, yeah)
+Never without your love
+Tonight, the music seems so loud
+I wish that we could lose this crowd
+Maybe it's better this way
+We'd hurt each other with the things we want to say
+We could have been so good together
+We could have lived this dance forever
+But now, who's gonna dance with me?
+Please stay
+And I'm never gonna dance again
+(Now that you're gone)
+Now that you're gone
+Was what I did so wrong, so wrong
+That you had to leave me alone?        
 `
     },
     {
         dayOfWeek: 7,
         lyrics: `
-Ladies and gentlemen
-Добро пожаловать к нам в клуб
-Yo, Dlee, давай жару, поехали (Are you ready?)
-Когда мы в клубе, чиксы танцуют
-Пусть город знает, с кем он тусует
-Встречайте прямо из Москвы
-(А Тимати и DJ Dlee)
-Где лучшие тусовки? — У нас в клубе
-Где лучшие подруги? — У нас в клубе
-Где люди живут хип-хопом? — У нас в клубе
-Если я нужен тебе, ищи меня в клубе (Еще раз!)
-Если я нужен тебе, ищи меня в клубе
-Килограммы денег просто ни к чему
-Мы покупаем доли в клубах — вот как я живу
-Спроси мою братву, из желтых бутылок реки
-Допивая свой rose, подписываю чеки
-Чики просто в шоке от моей манеры
-Никогда не туплю — всегда подхожу первый
-Как тебя зовут, ма? Ты одна тут, ма?
-Пойдем к нам за стол, нас все уже ждут, ма
-О-оу, чья-то чика за моим столом
-Она пьет со мной на брудершафт, знаешь, что потом, а?
-Мы танцуем вдвоем в центре этой party
-Окей, малыш, остановись, все, хватит
-Эй, baby, подскажи, как тебя любить, а?
-Моя конфетка, не смогу тебя забыть (у)
-Люблю твой style, особенно вид сзади
-Я приглашаю тебя на afterparty
-Вижу, ты согласна, это было ясно
-Хоть мама говорила, что быть с Тимати опасно
-Это напрасно, не слушай ерунду
-Я сворую тебя ночью и привезу к утру
-Если любишь жару, если любишь огни
-Глазом подмигни, за собой мани
-И растворившись в V.I.P
-Мы не покинем клуб, пока играет DJ Dlee (Dlee)
-Клубы любят (Тимати)
-Чиксы любят (Тимати)
-Мажоры почему-то тоже уважают (Тимати)
-Зоны любят (Тимати)
-Погоны любят (Тимати)
-А кто меня не любит, вы просто мне завидуете
-Mr. Black Star — золотой ребенок
-Привык жить в люксе уже с пеленок
-Звезда кинопленок, король любой party
-Вы ее хотели, ну, нет вопросов, на те
-Ladies, shake, shake, shake, shake your body
-Now, fellows, light it up like it's your last party
-Throw your hands up everybody
-Поднимите руки в воздух, если эта тема катит
-На танцполе тесно, в клубе нету места
-Очередь на входе — у нас опять fiesta
-Фейсконтроль в курсе — у нас опять fiesta
-Ты знаешь style — лохам здесь не место
-У нас в клубе
-Fiesta
-Ha afterparty
-Москва over here
-Лохам здесь не место
-Я из Москвы, brother
-У нас Тимати
-Who the best? DJ Dlee
-Все
+Не позвонила, не открыла и не спала
+Почти душила, но забила на твои слова
+Опять мне кажется, что кружится моя голова
+Мой мармеладный, я не права
+Поцеловала, обнимала, после развела
+Почти любила, но забыла про твои слова
+Попробуй муа-муа, попробуй джага-джага
+Попробуй у-у, мне это надо, надо
+Опять мне кажется, что кружится голова
+Совсем остыла, не простила и не берегла
+Потом решила и забила на твои слова
+Ему шептала и шипела, и опять звала
+И целовала, но забыла про твои слова
 `
     },
 ]

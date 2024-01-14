@@ -1,55 +1,69 @@
 function getWeekSongs() {
     return [
-    {
-        dayOfWeek: 1,
-        artist: "Филипп Киркоров",
-        song: "Марина",
-        cover: "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2Fcca24ac1bb96268686cb1fde091cf8da.1000x1000x1.jpg",
-        youtube: "https://www.youtube.com/watch?v=umN4e8J9AO8&ab_channel=%D0%A4%D0%B8%D0%BB%D0%B8%D0%BF%D0%BF%D0%9A%D0%B8%D1%80%D0%BA%D0%BE%D1%80%D0%BE%D0%B2"
-    },
-    {
-        dayOfWeek: 2,
-        artist: "Papa Roach",
-        song: "Last Resort",
-        cover: "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2Ff862a675f1171799c7baeed78b9c0aad.500x436x1.jpg",
-        youtube: "https://www.youtube.com/watch?v=j0lSpNtjPM8&ab_channel=PapaRoachVEVO"
-    },
-    {
-        dayOfWeek: 3,
-        artist: "Машина Времени",
-        song: "Однажды мир прогнётся под нас",
-        cover: "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2F54954dd2ff39804607b2a87c3f1a1717.1000x1000x1.png",
-        youtube: "https://www.youtube.com/watch?v=THwPZNo4dy0&ab_channel=%D0%9C%D0%B0%D1%88%D0%B8%D0%BD%D0%B0%D0%92%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B8"
-    },
-    {
-        dayOfWeek: 4,
-        artist: "Bon Jovi",
-        song: "It's My Life",
-        cover: "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2Fa1daf0a66c39ad5b499ae9252d6c8413.500x500x1.jpg",
-        youtube: "https://www.youtube.com/watch?v=vx2u5uUu3DE&ab_channel=BonJoviVEVO"
-    },
-    {
-        dayOfWeek: 5,
-        artist: "Найк Борзов",
-        song: "Лошадка",
-        cover: "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2F2087a2ca785077ae443b1d454e399c8f.500x500x1.jpg",
-        youtube: "https://www.youtube.com/watch?v=4qcPopWKJlQ&ab_channel=%D0%9D%D0%B0%D0%B9%D0%BA%D0%91%D0%BE%D1%80%D0%B7%D0%BE%D0%B2"
-    },
-    {
-        dayOfWeek: 6,
-        artist: "ABBA",
-        song: "Money, Money, Money",
-        cover: "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2F4f5363e88e6456b07194538b98584404.1000x1000x1.png",
-        youtube: "https://www.youtube.com/watch?v=ETxmCCsMoD0&ab_channel=AbbaVEVO"
-    },
-    {
-        dayOfWeek: 7,
-        artist: "Тимати",
-        song: "В клубе",
-        cover: "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2Fc6bac335c84db8ce26caa7b9e67c3c51.1000x1000x1.png",
-        youtube: "https://www.youtube.com/watch?v=jYqsEj9MKS4&ab_channel=StarPro"
-    },
-]
+        {
+            dayOfWeek: '1',
+            artist: 'КОРНИ ',
+            song: 'Вика ',
+            cover: 'https://images.genius.com/6e4a31783af963b4501f7ca5e2561d5a.800x800x1.jpg',
+            youtube: 'http://www.youtube.com/watch?v=lRIQj4vfwXc',
+            date: '2003-12-10',
+            geniusId: '5551821',
+        },
+        {
+            dayOfWeek: '2',
+            artist: 'Gorillaz ',
+            song: 'Feel Good Inc.',
+            cover: 'https://images.genius.com/9977b1f6b007d3b19976d17e53e94a89.1000x1000x1.jpg',
+            youtube: 'http://www.youtube.com/watch?v=HyHNuVaZJ-k',
+            date: '2005-05-13',
+            geniusId: '21569',
+        },
+        {
+            dayOfWeek: '3',
+            artist: 'Агата Кристи ',
+            song: 'Сказочная тайга ',
+            cover: 'https://images.genius.com/d6a9e48f22e9add1dbf4c3cae1b57c7b.491x491x1.jpg',
+            youtube: 'http://www.youtube.com/watch?v=sKupU_POaGs',
+            date: '1995-01-20',
+            geniusId: '3413728',
+        },
+        {
+            dayOfWeek: '4',
+            artist: 'Taylor Swift',
+            song: 'Shake It Off',
+            cover: 'https://images.genius.com/e7670a941db01564c2aaa56668faaefb.1000x1000x1.png',
+            youtube: 'http://www.youtube.com/watch?v=nfWlot6h_JM',
+            date: '2014-08-19',
+            geniusId: '499725',
+        },
+        {
+            dayOfWeek: '5',
+            artist: 'Ансамбль ”Золотое Кольцо” & Надежда Кадышева )',
+            song: 'Широка река ',
+            cover: 'https://images.genius.com/af74843829cb0a8baed5e37591ece831.1000x1000x1.jpg',
+            youtube: 'http://www.youtube.com/watch?v=qhgiU-PRYBE',
+            date: '',
+            geniusId: '5604913',
+        },
+        {
+            dayOfWeek: '6',
+            artist: 'George Michael',
+            song: 'Careless Whisper',
+            cover: 'https://images.genius.com/f08cf00584ad56432be673ac125e82af.600x600x1.jpg',
+            youtube: 'http://www.youtube.com/watch?v=izGwDsrQ1eQ',
+            date: '1984-07-24',
+            geniusId: '110101',
+        },
+        {
+            dayOfWeek: '7',
+            artist: 'Катя Лель ',
+            song: 'Мой мармеладный ',
+            cover: 'https://images.genius.com/024639d847edea2f9cd8ca898658fd1d.1000x1000x1.png',
+            youtube: 'http://www.youtube.com/watch?v=rsXJ7KApMU8',
+            date: '2003-02-28',
+            geniusId: '7306070',
+        },
+    ]
 }
 
 

@@ -202,6 +202,11 @@ Attempts
         display: flex;
         justify-content: center;
     }
+
+    .info-wrapper .collapsible {
+        font-size: 50px;
+    }
+
     .title {
         display: grid;
     }

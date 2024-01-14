@@ -1,24 +1,36 @@
 
-var Word = {
-    interjections: [
-            'ah',
-            'hey', 'huh',
-            'mm',
-            'nah',
-            'oh', 'ooh', 
-            'uh',
-            'whoo',
-            // 'yeah',
-            'е-а', 'оу-о-о-о',
-            'oh-i-oh-i-oh-i-oh-i', // Ed Sheeran - Shap of you
-            'i-i-i-i-i-i', 'ah-ah', 'ah-ah-ah', 'whoa-oh', // DNCE - Cake by the Ocean 
-    ],
+class Words {
 
-    getUniqueWords: function(lyrics) {
+    words = [];
+    wordsInTitle = [];
+    
+    interjections=  [
+        'ah',
+        'hey', 'huh',
+        'mm', 'mm-mm','mmm',
+        'nah',
+        'oh', 'ooh', 'oh-oh',
+        'uh',
+        'whoo',
+        'yeah',
+        'е-а', 'оу-о-о-о',
+        'oh-i-oh-i-oh-i-oh-i', // Ed Sheeran - Shape of you
+        'i-i-i-i-i-i', 'ah-ah', 'ah-ah-ah', 'whoa-oh', // DNCE - Cake by the Ocean
+        'oh-oh-oh-oh', 'oh-oh-oh-oh-oh-oh', // ABBA - Money
+        'у-у',
+        'ha', 'haha', 'ha-ha-ha-ha-ha', 'hahaha', 'hahahahaha', 'hahahahahaha', 'hahahahahahahahahahahahahahahahaha',
+    ];
+
+    constructor(lyrics, title) {
+        this.words = this.getUniqueWords(lyrics);
+        this.wordsInTitle = this.getWordsFromTitle(title);
+    }
+
+    getUniqueWords(lyrics) {
         let allWords = [];
     
         lyrics.forEach(item => {
-            line = item;
+            let line = item;
             line = line.toLowerCase();
             line = this.removeSpecChars(line);
     
@@ -39,23 +51,23 @@ var Word = {
         var uniqueWords = allWords.filter(onlyUnique);
     
         return uniqueWords;
-    },
+    }
     
-    removeSpecChars: function(line)
+    removeSpecChars(line)
     {
         var pattern = /["«».,!:;()\[\]?—–01234567890]/g;
     
         return line.replace(pattern, '');
-    },
+    }
     
-    removeInterjections: function(words)
+    removeInterjections(words)
     {
         let self = this;
 
         return words.filter(word => !self.interjections.includes(word));
-    },
+    }
     
-    removeSingleQuotesFromWord: function(word)
+    removeSingleQuotesFromWord(word)
     {
         if (word.endsWith("in'")) {
             word = word.slice(0, -3) + "ing";
@@ -70,17 +82,15 @@ var Word = {
         }
     
         return word;
-    },
+    }
 
-    isWordIncluded: function(word, words) {
+    isWordIncluded(word, words) {
         word = word.toLowerCase().trim();
 
         return isWordIncludes = words.includes(word);    
-    },
+    }
 
-    isWordInTitle: function(word, title) {
-        let titles = this.removeSpecChars(title).toLowerCase().split(' ');
-    
-        return titles.includes(word);
-    },
+    getWordsFromTitle(title) {
+        return this.removeSpecChars(title).toLowerCase().split(' ');
+    }
 } 

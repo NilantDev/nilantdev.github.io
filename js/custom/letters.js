@@ -1,5 +1,12 @@
-var Letter = {
-    getGuessedLetters: function(word) {
+class Letters {
+    letters = [];
+    guessedLetters = [];
+
+    constructor(words) {
+        this.letters = this.getUniqueLetters(words);
+    }
+
+    getGuessedLetters(word) {
         let result = [];
         let uniqueLetters = this.getUniqueLetters([word]);
     
@@ -15,18 +22,20 @@ var Letter = {
         }
     
         return result;
-    },
+    }
 
-    setGuessedLetters: function(word) {
+    addGuessedLetters(word) {
         let guessedLetters = this.getGuessedLetters(word);
 
         for(var i = 0; i < guessedLetters.length; i++) {
             let letter = guessedLetters[i];
             $(`#letters .letter[data-letter="${letter}"]`).addClass('guessed');
         }
-    },
 
-    getUniqueLetters: function(words) {
+        this.guessedLetters = guessedLetters;
+    }
+
+    getUniqueLetters(words) {
         let letters = [];
         let symbolsToPass = ["'", '-', '"', '&', '-'];
     
@@ -47,5 +56,5 @@ var Letter = {
         letters.sort();
     
         return letters;
-    },
+    }
 }

@@ -12,8 +12,12 @@ var GiveUp = {
             $(`#leftLetters`).append(`<span class="leftLetter">${key} - </span><span class="leftWord">${newLine}</span><br>`);
         }
         $(`#leftLetters`).show('slow');
-        $('#giveUp').prop('disabled', true);
-        $('#word').prop('disabled', true);
+        // $('#giveUp').prop('disabled', true);
+        // $('#word').prop('disabled', true);
+
+        lywoly.status = 'giveup';
+        DomOperator.addMessage(`You did the best! See you tommorow.`);
+        $('.input-actions').hide();
     },
     
     getLinesWithWords: function(lines, words, letters) {
@@ -50,7 +54,7 @@ var GiveUp = {
     
         letters.forEach(letter => {
             wordsWithLetter[letter] = [];
-            words.forEach(word => {
+            words.words.forEach(word => {
                 if (word.includes(letter)) {
                     wordsWithLetter[letter].push(word); 
                 }

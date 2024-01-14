@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <script src="js/vendor/jQuery.js"></script>
-        <script src="js/custom/letter.js"></script>
-        <script src="js/custom/word.js"></script>
+        <script src="js/custom/letters.js"></script>
+        <script src="js/custom/words.js"></script>
         <!-- <script src="songs/lyrics_ru.js"></script>
         <script src="songs/songs_ru.js"></script> -->
         <link rel="stylesheet" href="css/main.css">
@@ -42,7 +42,7 @@
             function foo() {
                 const lyrics = $('#lyrics').val();
                 let lyricsArray = lyrics.split('\n');
-
+)
                 lyricsArray = getUniqueLinesOfLyrics(lyricsArray);
                 
                 $('#formatted_lyrics').empty();
@@ -53,7 +53,9 @@
                     $('#formatted_lyrics').append('<span class="line">' + line + '</span><br>'); 
                 });
 
-                let words = Word.getUniqueWords(lyricsArray).sort();
+                let Words = new Words(lyrics, task.song);
+                let Letters = new Letters(words.words);
+                let words = Words.getUniqueWords(lyricsArray).sort();
 
                 words.forEach(word => {
                     $('#words').append('<span class="word">' + word + '</span><br>');

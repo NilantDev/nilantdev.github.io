@@ -2,13 +2,14 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <script src="js/custom/domOperator.js"></script>
         <script src="js/custom/giveup.js"></script>
         <script src="js/custom/hint.js"></script>
-        <script src="js/custom/letter.js"></script>
+        <script src="js/custom/letters.js"></script>
         <script src="js/custom/lywole.js"></script>
         <script src="js/custom/score.js"></script>
         <script src="js/custom/task.js"></script>
-        <script src="js/custom/word.js"></script>
+        <script src="js/custom/words.js"></script>
 
         <script src="js/vendor/basil.js"></script>
         <script src="js/vendor/jQuery.js"></script>
@@ -20,11 +21,13 @@
 
         <link rel="stylesheet" href="css/main.css">
 
+        <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+
         <meta name="google-site-verification" content="dpBr_XLcSNBLWcHKkBnTEy7D9GQMHsa_8kzDBre2z9I" />
     </head>
     <body>
         <div class="main-wrapper">
-            <div class="message-wrapper"><span class="message">HDHDHDHDH</span></div>
+            <div class="message-wrapper"><span class="message"></span></div>
             <div class="menu">
                 <div class="left-menu">
                     <a href="info.html">
@@ -84,24 +87,21 @@
             });
         </script>
         <script>
+            // Get song info and lyrics
             let task = Task.getTodayTask(
                 getWeekSongs(),
                 getWeekLyrics()
             );
-            let score = 0;
 
-            $('#cover').attr('src', task.cover);
-            $('#artist').text( task.artist);
-            $('#song').text( task.song);
-            $('#link').attr('href', task.youtube);
-
+            // Get Lyrics, words and letters
             const lyrics = task.lyrics;
-            let words = Word.getUniqueWords(lyrics);
-            let letters = Letter.getUniqueLetters(words);
 
-            letters.forEach(letter => {
-                $('#letters').append('<span class="letter" data-letter="' + letter + '">' + letter + '</span>');
-            });
+            let words = new Words(lyrics, task.song);
+            let letters = new Letters(words.words);
+
+            // Fill DOM with data
+            DomOperator.fillWithTaskData(task);
+            DomOperator.createLetters(letters.letters);
 
             //////////////////_INIT_////////////////////////////////////
 
@@ -111,23 +111,21 @@
             };
             let basil = new window.Basil(options);
             let lywoly = Lywole.init(basil);
-            score = lywoly.score;
+            let score = lywoly.score;
 
             if (lywoly.status === 'won') {
                 $('.input-actions').hide();
             }
         </script>
-
         <script>
             function showHint() {
                 let hint = Hint.getHint(lyrics);
                 if (hint) {
-                    $('.message-wrapper .message').text(`Hint: ${hint}`);
-                    $('.message-wrapper').show();
+                    DomOperator.addMessage(`Hint: ${hint}`);
+                    $('#getHint').attr('disabled', true);
                 }
             }
         </script>
-
         <script>
             function checkWord() {
                 let word = $('#word').val().toLowerCase().trim();
@@ -135,24 +133,27 @@
 
                 if (word == '' || isWordInAttempts != undefined) {
                     let message = word == '' ? 'You cannot input empty line' : "This word was already input";
-                    $('.message-wrapper .message').text(message);
-                    $('.message-wrapper').show();
+                    DomOperator.addMessage(message);
+                    $('#word').val('');
+
                     return;
                 }
 
-                let guessedLetters = Letter.getGuessedLetters(word);
-                isWordIncluded = Word.isWordIncluded(word, words);
+                let guessedLetters = letters.guessedLetters;
+                isWordIncluded = words.words.includes(word);
+
+                if (isWordIncluded) {
+                    letters.addGuessedLetters(word);
+                }
 
                 let points = Score.getPoints(
                     word,
-                    Word.isWordInTitle(word, task.song),
+                    words.wordsInTitle.includes(word),
                     isWordIncluded,
-                    guessedLetters
+                    letters.guessedLetters
                 );
 
                 if (isWordIncluded) {
-                    Letter.setGuessedLetters(word);
-
                     let hint = Hint.getHint(lyrics);
 
                     if (hint) {
@@ -173,11 +174,15 @@
 
                 // You won
 
-                if(allGuessedLetters.sort().join(',') === letters.sort().join(',')){
+                if(allGuessedLetters.sort().join(',') === letters.letters.sort().join(',')){
                     lywoly.status = 'won';
-                    $('.message-wrapper .message').text(`You won! Congratulations!`);
-                    $('.message-wrapper').show();
+                    DomOperator.addMessage(`You won! Congratulations!`);
                     $('.input-actions').hide();
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                    });
                 }
 
                 lywoly.saveToLocalStorage(

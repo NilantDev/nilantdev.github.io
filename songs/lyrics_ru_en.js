@@ -4,10 +4,10 @@ function getWeekLyrics() {
             {
                 dayOfWeek: 1,
                 lyrics: `
-I 've been cheated by you since I don't know when
+I've been cheated by you since I don't know when
 So I made up my mind: it must come to an end
 Look at me now, will I ever learn ?
-I don 't know how, but I suddenly lose control
+I don't know how, but I suddenly lose control
 There 's a fire within my soul
 Just one look and I can hear a bell ring
 One more look and I forget everything, whoa
@@ -15,27 +15,22 @@ Mamma mia, here I go again
 My my, how can I resist you ?
 Mamma mia, does it show again ?
 My my, just how much I 've missed you
-Yes, I 've been broken-hearted
+Yes, I've been broken-hearted
 Blue since the day we parted
-Why, why did I ever
-let you go ?
+Why, why did I ever let you go ?
 Mamma mia, now I really know
-My my, I could never
-let you go
-I 've been angry and sad about things that you do
-I can 't count all the times that I'
-ve told you we 're through
+My my, I could never let you go
+I've been angry and sad about things that you do
+I can't count all the times that I've told you we 're through
 And when you go, when you slam the door
-I think you know that you won 't be away too long
-You know that I 'm not that strong
+I think you know that you won't be away too long
+You know that I'm not that strong
 Mamma mia, does it show again
-My my, just how much I 've missed you?
-Mamma mia, even
-if I say
+My my, just how much I've missed you?
+Mamma mia, even if I say
 "Bye-bye", leave me now or never
 Mamma mia, it 's a game we play
-"Bye-bye"
-doesn 't mean forever
+"Bye-bye" doesn 't mean forever
 `
             },
             {
@@ -46,11 +41,9 @@ Having the time of your life
 Ooh, see that girl, watch that scene
 Digging the dancing queen
 Friday night and the lights are low
-Looking out
-for a place to go
+Looking out for a place to go
 Where they play the right music, getting in the swing
-You come to look
-for a king
+You come to look for a king
 Anybody could be that guy
 Night is young and the music 's high
 With a bit of rock music, everything is fine
@@ -129,7 +122,7 @@ She has a personal style
 Some people like it, others tend to go wild
 You hear her voice everywhere
 Taking the chair
-She 's a leading lady
+She's a leading lady
 And with no trace of hesitation, she keeps going
 Head over heels, breaking her way
 Pushing through unknown jungles every day

@@ -1,9 +1,33 @@
+:root {
+    --dark-mode-color: rgb(248, 250, 252);
+}
 @font-face {
     font-family: 'icomoon';
     src: url(fonts/icomoon.woff);
 }
+
+body.dark-mode {
+    background-color: #1E1F23;
+    color: var(--dark-mode-color);
+}
+
+
+body.dark-mode .menu #info::before,
+body.dark-mode .menu #settings::before,
+body.dark-mode .menu #faq::before {
+    color: var(--dark-mode-color);  
+}
+
+body.dark-mode .letter {
+    border: solid var(--dark-mode-color) 1px;
+}
+
+body.dark-mode a {
+    color: beige;
+}
+
 .message-wrapper {
-    background: white;
+    /* background: white; */
     border: solid 1px grey;
     display: none;
     padding: 5px 0;
@@ -43,7 +67,7 @@
 }
 
 .menu #info::before,
-/* .menu #settings::before, */
+.menu #settings::before,
 .menu #faq::before {
     color: black;
 }
@@ -53,7 +77,7 @@
 }
 .menu #settings::before {
     content: '\e900';
-    color: grey;
+    /* color: grey; */
 }
 .menu #faq::before {
     content: '\e902';

@@ -1,0 +1,8 @@
+.lang {
+  cursor: pointer;
+  color: gray;
+}
+
+.lang.selected {
+  color: inherit;
+}

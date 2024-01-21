@@ -3,6 +3,7 @@ class Words {
 
     words = [];
     wordsInTitle = [];
+    guessedWords = [];
     
     interjections=  [
         'ah',
@@ -92,5 +93,9 @@ class Words {
 
     getWordsFromTitle(title) {
         return this.removeSpecChars(title).toLowerCase().split(' ');
+    }
+
+    addGuessedWord(word) {
+        this.guessedWords.push(word);
     }
 } 

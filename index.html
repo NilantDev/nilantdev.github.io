@@ -14,18 +14,20 @@
         <script src="js/vendor/basil.js"></script>
         <script src="js/vendor/jQuery.js"></script>
 
-        <script src="songs/lyrics_01.js"></script>
-        <script src="songs/songs_01.js"></script>
+        <script src="songs/lyrics_ru_en.js"></script>
+        <script src="songs/songs_ru_en.js"></script>
 
         <script src="popup/content.js"></script>
 
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/lang.css">
 
         <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
 
         <meta name="google-site-verification" content="dpBr_XLcSNBLWcHKkBnTEy7D9GQMHsa_8kzDBre2z9I" />
     </head>
     <body>
+        <span id="max-score"></span>
         <div class="main-wrapper">
             <div class="message-wrapper"><span class="message"></span></div>
             <div class="menu">
@@ -41,6 +43,8 @@
                     <span>Lywole</span>
                 </div>
                 <dev class="right-menu">
+                    <span class="lang selected" data-lang="en">en</span>
+                    <span class="lang" data-lang="ru">ru</span>
                     <a href="faq.html">
                         <span id="faq"></span>
                     </a>
@@ -87,34 +91,41 @@
             });
         </script>
         <script>
-            // Get song info and lyrics
-            let task = Task.getTodayTask(
-                getWeekSongs(),
-                getWeekLyrics()
-            );
 
-            // Get Lyrics, words and letters
-            const lyrics = task.lyrics;
+            function selectTask(lang) {
+                // Get song info and lyrics
+                let task = Task.getTodayTask(
+                    getWeekSongs(),
+                    getWeekLyrics(),
+                    lang
+                );
+    
+                // Get Lyrics, words and letters
+                const lyrics = task.lyrics;
+                let words = new Words(lyrics, task.song);
+                let letters = new Letters(words.words);
+    
+                // Fill DOM with data
+                DomOperator.fillWithTaskData(task);
+                DomOperator.createLetters(letters.letters);
+    
+                //////////////////_INIT_////////////////////////////////////
+    
+                let options = {
+                    namespace: 'lywoly',
+                    storage: 'local'
+                };
+                let basil = new window.Basil(options);
+                let lywoly = Lywole.init(basil, lang);
+                let score = lywoly.score;
+                DomOperator.addAttempts(lywoly.attempts);
+                if (lywoly.status === 'won') {
+                    $('.input-actions').hide();
+                } else {
+                    $('.input-actions').show();
+                }
 
-            let words = new Words(lyrics, task.song);
-            let letters = new Letters(words.words);
-
-            // Fill DOM with data
-            DomOperator.fillWithTaskData(task);
-            DomOperator.createLetters(letters.letters);
-
-            //////////////////_INIT_////////////////////////////////////
-
-            let options = {
-                namespace: 'lywoly',
-                storage: 'local'
-            };
-            let basil = new window.Basil(options);
-            let lywoly = Lywole.init(basil);
-            let score = lywoly.score;
-
-            if (lywoly.status === 'won') {
-                $('.input-actions').hide();
+                return [lyrics, words, letters, lywoly, score, basil];
             }
         </script>
         <script>
@@ -144,6 +155,7 @@
 
                 if (isWordIncluded) {
                     letters.addGuessedLetters(word);
+                    words.addGuessedWord(word);
                 }
 
                 let points = Score.getPoints(
@@ -161,21 +173,24 @@
                     }
                 }
 
-                Lywole.addAttemptToDom(word, isWordIncluded, points);
+                DomOperator.addAttempt(word, isWordIncluded, points);
 
                 score += points;
-
-                $('#score').text(score);
                 
                 let allGuessedLetters = [];
                 $('#letters .letter.guessed').each(function(index) {
                     allGuessedLetters.push($(this).data('letter'));
                 });
 
+                // $("#max-score").text(letters.getWordWithMaxScore(
+                //     words.words, words.guessedWords
+                // ));
+
                 // You won
 
                 if(allGuessedLetters.sort().join(',') === letters.letters.sort().join(',')){
                     lywoly.status = 'won';
+                    score += 10;
                     DomOperator.addMessage(`You won! Congratulations!`);
                     $('.input-actions').hide();
                     confetti({
@@ -185,6 +200,8 @@
                     });
                 }
 
+                $('#score').text(score);
+
                 lywoly.saveToLocalStorage(
                     score, 
                     {
@@ -192,12 +209,25 @@
                         isWordIncluded: isWordIncluded, 
                         points: points, 
                     },
-                    isWordIncluded ? guessedLetters : [],
-                    basil
+                    isWordIncluded ? letters.guessedLetters : [],
+                    basil,
+                    $('.lang.selected').data('lang')
                 );
 
                 $('#word').val('');
             }
+
+            $('.lang').on('click', function() {
+                const clsSelected = 'selected';
+                if (!$(this).hasClass(clsSelected)) {
+                    $('.lang').removeClass(clsSelected);
+                    $(this).addClass(clsSelected);
+                    [lyrics, words, letters, lywoly, score, basil] = selectTask($(this).data('lang'));
+                }
+            });
+
+            let [lyrics, words, letters, lywoly, score, basil] = selectTask('en');
+            DomOperator.setDarkMode(basil.get('settings'));
         </script>
     </body>
 </html>

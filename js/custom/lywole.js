@@ -6,9 +6,16 @@ var Lywole = {
     letters: [],
     totalScore: 0,
 
-    init: function(basil) {
-        let lywoly = basil.get('lywoly');
+    init: function(basil, lang) {
+        let lywoly = basil.get(lang);
         if (lywoly === null) {
+            this.day = 0;
+            this.score = 0;
+            this.status = 'start';
+            this.attempts = [];
+            this.letters = [];
+            this.totalScore = 0;
+
             return this;
         }
 
@@ -36,33 +43,23 @@ var Lywole = {
         });
 
         this.attempts = lywoly.attempts;
-        this.attempts.forEach(el => {
-            this.addAttemptToDom(el.word, el.isWordIncluded, el.points);
-        });
-
         this.totalScore = lywoly.totalScore;
-
         this.status = lywoly.status;
 
         return this;
     },
 
-    saveToLocalStorage: function(score, attempt, letters, basil) {
+    saveToLocalStorage: function(score, attempt, letters, basil, lang) {
         this.day = this.getDayOfYear();
         this.score = score;
         this.attempts.push(attempt);
         this.letters = this.letters.concat(letters);
 
-        this.saveAsBasil(basil);
+        this.saveAsBasil(basil, lang);
     },
 
-    saveAsBasil: function(basil) {
-        basil.set('lywoly', this);
-    },
-
-    addAttemptToDom: function(word, isWordIncluded, points) {
-        const classVal = isWordIncluded ? 'succes' : 'failed';
-        $('#attempts').append('<div class="attempt-wrapper"><span class="attempt ' + classVal + '">' + word + '</span> <span class="points">' + points + '</span></div>');
+    saveAsBasil: function(basil, lang) {
+        basil.set(lang, this);
     },
 
     getDayOfYear: function() {

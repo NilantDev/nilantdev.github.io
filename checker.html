@@ -29,7 +29,7 @@
                 height: fit-content;
             }
         </style>
-        <div class="main-wrapper">
+        <div class="main-wrapper" style="width: 100%;">
             <div>
                 <textarea id="lyrics"></textarea>     
             </div>
@@ -39,10 +39,11 @@
             <div id="letters"></div>
         </div>
         <script>
+            let self = this;
             function foo() {
                 const lyrics = $('#lyrics').val();
                 let lyricsArray = lyrics.split('\n');
-)
+
                 lyricsArray = getUniqueLinesOfLyrics(lyricsArray);
                 
                 $('#formatted_lyrics').empty();
@@ -53,15 +54,15 @@
                     $('#formatted_lyrics').append('<span class="line">' + line + '</span><br>'); 
                 });
 
-                let Words = new Words(lyrics, task.song);
-                let Letters = new Letters(words.words);
-                let words = Words.getUniqueWords(lyricsArray).sort();
+                let wordsObj = new Words(lyricsArray, '');
+                let lettersObj = new Letters(wordsObj.words);
+                let words = wordsObj.words.sort();// wordsObj.getUniqueWords(lyricsArray).sort();
 
                 words.forEach(word => {
                     $('#words').append('<span class="word">' + word + '</span><br>');
                 });
 
-                let letters = Letter.getUniqueLetters(words);
+                let letters = lettersObj.getUniqueLetters(words);
 
                 letters.forEach(letter => {
                     $('#letters').append('<span class="letter">' + letter + '</span><br>'); 
@@ -74,6 +75,21 @@
 
                 lyrics.forEach(line => {
                     tmp = line.trim();
+
+                    if (tmp.includes('[') 
+                    && (
+                        tmp.includes('Куплет')
+                        || tmp.includes('Припев')
+                        || tmp.includes('Бридж')
+                        || tmp.includes('Verse')
+                        || tmp.includes('Chorus')
+                        || tmp.includes('Outro')
+                        || tmp.includes('Interlude')
+                        )
+                    ) {
+                        console.log();
+                        return;
+                    }
 
                     if (tmp == '') {
                         return;

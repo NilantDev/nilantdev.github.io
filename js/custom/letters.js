@@ -57,4 +57,33 @@ class Letters {
     
         return letters;
     }
+
+    getWordWithMaxScore(words, guessedWords) {
+        let maxScore = 0;
+        let maxWord = '';
+        let allGuessedLetters = [];
+            $('#letters .letter.guessed').each(function(index) {
+                allGuessedLetters.push($(this).data('letter'));
+            });
+        words.forEach(word => {
+            if (word.length < maxScore) {
+                return;
+            }
+
+            if (guessedWords.includes(word)) {
+                return;
+            }
+
+            let uniqueLetters = this.getUniqueLetters([word]);
+            
+            const filteredArray = uniqueLetters.filter(element => !allGuessedLetters.includes(element));
+
+            if (filteredArray.length > maxScore) {
+                maxScore = filteredArray.length;
+                maxWord = word;
+            }
+        });
+
+        return maxWord;
+    }
 }

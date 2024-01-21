@@ -1,11 +1,11 @@
 var Task = {
-    getTodayTask: function(songs, lyrics) {
+    getTodayTask: function(songs, lyrics, lang) {
         const date = new Date();
-        const dayOfWeek = date.getDay() == 0 ? 7 : date.getDay();
-        const lyricsArray = lyrics[dayOfWeek - 1]['lyrics'].split('\n');
+        let dayOfWeek = date.getDay() == 0 ? 7 : date.getDay();
+        dayOfWeek -= 1;
 
-        let result = songs[dayOfWeek - 1];
-        result['lyrics'] = lyricsArray;
+        let result = songs[lang][dayOfWeek];
+        result['lyrics'] = lyrics[lang][dayOfWeek]['lyrics'].split('\n');;
     
         return result;
     }

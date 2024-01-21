@@ -30,6 +30,9 @@
 
             let basil = new window.Basil(options);
             let settings = basil.get('settings');
+            if (!settings) {
+                settings = {};
+            }
 
             titles.forEach(title => {
                 let tmpSetting = false;
@@ -42,9 +45,11 @@
                 }
     
                 $('#' + title).change(function() {
-                    settings[title] = $('#' + title).prop('checked');
-                    basil.set('settings', settings);
-                    DomOperator.setModes(settings);
+                    // if (settings.hasOwnProperty(title)) {
+                        settings[title] = $('#' + title).prop('checked');
+                        basil.set('settings', settings);
+                        DomOperator.setModes(settings);
+                    // }
                 });
             });
 

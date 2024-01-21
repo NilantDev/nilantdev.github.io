@@ -31,16 +31,21 @@ var DomOperator = {
     },
 
     setModes(settings) {
-        if (settings.darkMode == true) {
-            $('body').addClass('dark-mode');
-        } else {
-            $('body').removeClass('dark-mode');
-        }
+        let properties = {
+            darkMode: 'dark-mode',
+            sportMode: 'sport-mode'
+        };
 
-        if (settings.sportMode == true) {
-            $('body').addClass('sport-mode');
-        } else {
-            $('body').removeClass('sport-mode');
-        }
+        // properties.forEach(item => {
+        for (const [item, className] of Object.entries(properties)) {
+            if (settings && settings.hasOwnProperty(item)) {
+                let className = properties[item];
+                if (settings[item] == true) {
+                    $('body').addClass(className);
+                } else {
+                    $('body').removeClass(className);
+                }
+            } 
+        };
     }
 }

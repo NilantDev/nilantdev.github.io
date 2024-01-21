@@ -27,6 +27,11 @@ body.dark-mode a {
 
 body.sport-mode #score-wrapper,
 body.sport-mode .attempt-wrapper .points {
+    display: block;
+}
+
+#score-wrapper,
+.attempt-wrapper .points {
     display: none;
 }
 

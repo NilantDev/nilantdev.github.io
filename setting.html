@@ -12,7 +12,7 @@
         <div class="main-wrapper info-wrapper">
             <h1>Settings</h1>
             <div>
-                <input type="checkbox" id="sportMode" name="sportMode" disabled/>
+                <input type="checkbox" id="sportMode" name="sportMode"/>
                 <label for="sportMode">Sport mode</label>
             </div>
             <div>
@@ -44,11 +44,11 @@
                 $('#' + title).change(function() {
                     settings[title] = $('#' + title).prop('checked');
                     basil.set('settings', settings);
-                    DomOperator.setDarkMode(settings);
+                    DomOperator.setModes(settings);
                 });
             });
 
-            DomOperator.setDarkMode(settings);
+            DomOperator.setModes(settings);
         </script>
     </body>
 </html>

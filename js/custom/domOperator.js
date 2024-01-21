@@ -30,11 +30,17 @@ var DomOperator = {
         $('#attempts').append('<div class="attempt-wrapper"><span class="attempt ' + classVal + '">' + word + '</span> <span class="points">' + points + '</span></div>');
     },
 
-    setDarkMode(settings) {
+    setModes(settings) {
         if (settings.darkMode == true) {
             $('body').addClass('dark-mode');
         } else {
             $('body').removeClass('dark-mode');
+        }
+
+        if (settings.sportMode == true) {
+            $('body').addClass('sport-mode');
+        } else {
+            $('body').removeClass('sport-mode');
         }
     }
 }

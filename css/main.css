@@ -38,8 +38,12 @@ body.sport-mode .attempt-wrapper .points {
     display: none;
 }
 
+body.dark-mode .message-wrapper {
+    background-color: #1E1F23;
+}
+
 .message-wrapper {
-    /* background: white; */
+    background: white;
     border: solid 1px grey;
     display: none;
     padding: 5px 0;

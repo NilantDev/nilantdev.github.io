@@ -38,8 +38,8 @@ function getWeekSongs() {
             },
             {
                 dayOfWeek: '5',
-                artist: 'ЛСП ',
-                song: 'Безумие ',
+                artist: 'ЛСП ft. Oxxxymiron',
+                song: 'Безумие (Remix)',
                 cover: 'https://images.genius.com/262a73eb16748435cfbbba59b7e277a9.1000x1000x1.png',
                 youtube: 'http://www.youtube.com/watch?v=GRvRIS--JRo',
                 date: '2015-07-16',

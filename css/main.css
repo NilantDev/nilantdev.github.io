@@ -149,7 +149,12 @@ Attempts
     float: left;
 }
 
+.attempt {
+    padding: 0 3px;
+}
+
 .attempt.succes {
+    color: black;
     background-color: rgb(145, 230, 145);
 }
 .attempt.failed {

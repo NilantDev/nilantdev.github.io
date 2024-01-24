@@ -19,16 +19,16 @@ function copyShare() {
 
 function getLines() {
     let lines = [];
-    let title = $('.lang.selected').data('lang') == 'en' ? 'Lywole' : 'TeaSloBoo';
-    lines.push(title + ' #' + Lywole.getDayOfYear());
-    lines.push($('#artist').text());
-    lines.push($('#song').text());
+    let title = $('.lang.selected').data('lang') == 'en' ? '- LYWOLE -' : 'TeaSloBoo';
+    lines.push('————' + title + ' #' + Lywole.getDayOfYear() + '————');
+    lines.push($('#artist').text() + ' - ' + $('#song').text());
     let succesLen = $('.attempt.succes').length;
     let failedLen = $('.attempt.failed').length;
 
-    lines.push('✅' + succesLen + ' ⛔' + failedLen);
-    lines.push('Score: ' + $('#score').text());
+    lines.push('🫖' + $('#score').text() + ' ✅' + succesLen + ' ⛔' + failedLen);
+    lines.push('');
     lines.push('https://nilantdev.github.io/');
+    lines.push('———————————————');
 
     return lines;
 }

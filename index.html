@@ -8,6 +8,7 @@
         <script src="js/custom/letters.js"></script>
         <script src="js/custom/lywole.js"></script>
         <script src="js/custom/score.js"></script>
+        <script src="js/custom/share.js"></script>
         <script src="js/custom/task.js"></script>
         <script src="js/custom/words.js"></script>
 
@@ -70,6 +71,9 @@
                     <button onclick="showHint()" id="getHint" disabled>Get hint!</button>
                 </div>
             </div>
+            <div class="share" style="display: none;">
+                <button onclick="copyShare()" id="share">Share</button>
+            </div>
             <div id="letters" class="letter-wrapper"></div>
             <hr>
             <div id="leftLetters" style="display: none;"></div>
@@ -121,9 +125,9 @@
                 DomOperator.addAttempts(lywoly.attempts);
                 console.log(lywoly.status);
                 if (lywoly.status === 'won') {
-                    $('.input-actions').hide();
+                    DomOperator.toggleActions(false);
                 } else {
-                    $('.input-actions').show();
+                    DomOperator.toggleActions(true);
                 }
 
                 return [lyrics, words, letters, lywoly, score, basil];
@@ -194,7 +198,7 @@
                     lywoly.status = 'won';
                     score += 10;
                     DomOperator.addMessage(`You won! Congratulations!`);
-                    $('.input-actions').hide();
+                    DomOperator.toggleActions(false);
                     confetti({
                         particleCount: 100,
                         spread: 70,

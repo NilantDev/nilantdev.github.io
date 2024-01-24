@@ -47,5 +47,15 @@ var DomOperator = {
                 }
             } 
         };
+    },
+
+    toggleActions(isShow) {
+        if (isShow) {
+            $('.input-actions').show();
+            $('.share').hide();
+        } else {
+            $('.input-actions').hide();
+            $('.share').show();
+        }
     }
 }

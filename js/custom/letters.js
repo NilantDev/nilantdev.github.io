@@ -37,7 +37,7 @@ class Letters {
 
     getUniqueLetters(words) {
         let letters = [];
-        let symbolsToPass = ["'", '-', '"', '&', '-'];
+        let symbolsToPass = ["'", '-', '"', '&', '-', '…'];
     
         words.forEach(word => {
             for(var i=0; i < word.length; i++) {

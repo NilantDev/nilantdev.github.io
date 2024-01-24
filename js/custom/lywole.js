@@ -24,10 +24,11 @@ var Lywole = {
         if (lywoly.day !== dayOfWeek) {
             this.day = dayOfWeek;
             this.score = 0;
+            this.status = 'start';
             this.attempts = this.letters = [];
             this.totalScore = lywoly.totalScore;
 
-            this.saveAsBasil(basil);
+            this.saveAsBasil(basil, lang);
 
             return this;
         }

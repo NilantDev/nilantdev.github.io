@@ -119,6 +119,7 @@
                 let lywoly = Lywole.init(basil, lang);
                 let score = lywoly.score;
                 DomOperator.addAttempts(lywoly.attempts);
+                console.log(lywoly.status);
                 if (lywoly.status === 'won') {
                     $('.input-actions').hide();
                 } else {
@@ -140,6 +141,7 @@
         <script>
             function checkWord() {
                 let word = $('#word').val().toLowerCase().trim();
+                word = word.replace('ё', 'е');
                 let isWordInAttempts = lywoly.attempts.find(obj => obj.word === word);
 
                 if (word == '' || isWordInAttempts != undefined) {

@@ -13,8 +13,7 @@ function copyShare() {
     document.execCommand('copy');
     document.body.removeChild(textarea);
 
-    // Log a message or perform any other action
-    console.log( textToCopy);
+    $('.share-note').css('display', 'block');    
 }
 
 function getLines() {

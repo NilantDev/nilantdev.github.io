@@ -136,6 +136,10 @@ div {
     margin-top: 10px;
 }
 
+.share-note {
+    display: none;
+}
+
 
 #leftLetters {
     text-align: left;
@@ -239,7 +243,7 @@ Attempts
         border: solid;
     }
 
-    .actions button {
+    button {
         font-size: 45px;
     }
 

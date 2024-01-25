@@ -18,13 +18,13 @@ function copyShare() {
 
 function getLines() {
     let lines = [];
-    let title = $('.lang.selected').data('lang') == 'en' ? '- LYWOLE -' : 'TeaSloBoo';
+    let title = $('.lang.selected').data('lang') == 'en' ? 'LYWOLE' : 'TeaSloBoo';
     lines.push('————' + title + ' #' + Lywole.getDayOfYear() + '————');
     lines.push($('#artist').text() + ' - ' + $('#song').text());
     let succesLen = $('.attempt.succes').length;
     let failedLen = $('.attempt.failed').length;
 
-    lines.push('🫖' + $('#score').text() + ' ✅' + succesLen + ' ⛔' + failedLen);
+    lines.push('😎' + $('#score').text() + ' ✅' + succesLen + ' ⛔' + failedLen);
     lines.push('');
     lines.push('https://nilantdev.github.io/');
     lines.push('———————————————');

@@ -245,7 +245,7 @@ Man, it's a hot one
 Like seven inches from the midday sun
 Well, I hear you whisper and the words melt everyone
 But you stay so cool
-My muñequita, my Spanish Harlem Mona Lisa
+My munequita, my Spanish Harlem Mona Lisa
 You're my reason for reason, the step in my groove, yeah
 And if you say, "This life ain't good enough"
 I would give my world to lift you up

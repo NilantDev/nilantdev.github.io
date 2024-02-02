@@ -355,7 +355,7 @@ And you should know that, so call me, maybe
             {
                 dayOfWeek: 6,
                 lyrics: `
-Every time​ that I look in the mirror
+Every time that I look in the mirror
 All these lines on my face getting clearer
 The past is gone
 It went by like dusk to dawn

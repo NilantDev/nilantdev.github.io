@@ -1,5 +1,5 @@
 var GiveUp = {
-    giveUp: function(words, lines) {
+    giveUp: function(words, lines, basil) {
         const letters = this.getLeftLetters();
         const allWordsWithLetter = this.getAllWordsWithLetter(words, letters);
         const wordsWithLetter = this.getWordWithLetter(allWordsWithLetter, letters);
@@ -17,7 +17,8 @@ var GiveUp = {
 
         lywoly.status = 'giveup';
         DomOperator.addMessage(`You did the best! See you tommorow.`);
-        $('.input-actions').hide();
+        DomOperator.toggleActions(false);
+        lywoly.saveToLocalStorage(basil);
     },
     
     getLinesWithWords: function(lines, words, letters) {

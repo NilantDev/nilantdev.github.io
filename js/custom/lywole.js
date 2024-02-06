@@ -50,11 +50,12 @@ var Lywole = {
         return this;
     },
 
-    saveToLocalStorage: function(score, attempt, letters, basil, lang) {
+    saveToLocalStorage: function(basil, attempt, letters) {
         this.day = this.getDayOfYear();
-        this.score = score;
         this.attempts.push(attempt);
         this.letters = this.letters.concat(letters);
+
+        const lang = DomOperator.getSelectedLang();
 
         this.saveAsBasil(basil, lang);
     },

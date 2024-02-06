@@ -18,14 +18,17 @@ function copyShare() {
 
 function getLines() {
     let lines = [];
-    let title = $('.lang.selected').data('lang') == 'en' ? 'LYWOLE' : 'TeaSloBoo';
+    let title = DomOperator.getSelectedLang() == 'en' ? 'LYWOLE' : 'TeaSloBoo';
     lines.push('————' + title + ' #' + Lywole.getDayOfYear() + '————');
     lines.push($('#artist').text() + ' - ' + $('#song').text());
     let succesLen = $('.attempt.succes').length;
     let failedLen = $('.attempt.failed').length;
-
-    lines.push('😎' + $('#score').text() + ' ✅' + succesLen + ' ⛔' + failedLen);
+    let smile = Lywole.status === 'won' ? '😎' : '🙌';
+    lines.push(smile + $('#score').text() + ' ✅' + succesLen + ' ⛔' + failedLen);
     lines.push('');
+    if (this.getGiveUpLine()) {
+        lines.push(this.getGiveUpLine());
+    }
     lines.push('https://nilantdev.github.io/');
     lines.push('———————————————');
 
@@ -38,6 +41,15 @@ function getTextToCopy(lines) {
     lines.forEach(line => {
         result += line + "\n";
     });
+
+    return result;
+}
+
+function getGiveUpLine() {
+    let result = '';
+    if (Lywole.status === 'giveup') {
+        result = DomOperator.getUnguessedLetters().join('').toUpperCase();
+    }
 
     return result;
 }

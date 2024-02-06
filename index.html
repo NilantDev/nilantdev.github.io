@@ -67,7 +67,7 @@
                 <input id="word">
                 <div class="actions">
                     <button onclick="checkWord()" id="checkWord">Try the word!</button>
-                    <button onclick="GiveUp.giveUp(words, lyrics)" id="giveUp">Give up!</button>
+                    <button onclick="GiveUp.giveUp(words, lyrics, basil)" id="giveUp">Give up!</button>
                     <button onclick="showHint()" id="getHint" disabled>Get hint!</button>
                 </div>
             </div>
@@ -125,7 +125,7 @@
                 let score = lywoly.score;
                 DomOperator.addAttempts(lywoly.attempts);
                 console.log(lywoly.status);
-                if (lywoly.status === 'won') {
+                if (['won', 'giveup'].includes(lywoly.status)) {
                     DomOperator.toggleActions(false);
                 } else {
                     DomOperator.toggleActions(true);
@@ -209,16 +209,16 @@
 
                 $('#score').text(score);
 
+                lywoly.score = score;
+
                 lywoly.saveToLocalStorage(
-                    score, 
+                    basil,
                     {
                         word: word, 
                         isWordIncluded: isWordIncluded, 
                         points: points, 
                     },
-                    isWordIncluded ? letters.guessedLetters : [],
-                    basil,
-                    $('.lang.selected').data('lang')
+                    isWordIncluded ? letters.guessedLetters : []
                 );
 
                 $('#word').val('');

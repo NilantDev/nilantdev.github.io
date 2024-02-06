@@ -21,7 +21,9 @@ var DomOperator = {
     addAttempts: function(attempts) {
         $('#attempts').empty();
         attempts.forEach(el => {
-            this.addAttempt(el.word, el.isWordIncluded, el.points);
+            if (el) {
+                this.addAttempt(el.word, el.isWordIncluded, el.points);
+            }
         }); 
     },
 
@@ -57,5 +59,19 @@ var DomOperator = {
             $('.input-actions').hide();
             $('.share').show();
         }
+    },
+
+    getSelectedLang() {
+        return $('.lang.selected').data('lang');
+    },
+
+    getUnguessedLetters() {
+        let letters = [];
+
+        $('.letter:not(.guessed)').filter(function() {
+            letters.push($(this).data('letter'));
+        });
+
+        return letters;
     }
 }

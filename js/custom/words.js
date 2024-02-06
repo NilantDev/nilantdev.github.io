@@ -78,9 +78,9 @@ class Words {
             word = word.replace("'", '');
         }
     
-        if (word.endsWith("'s")) {
-            word = word.slice(0, -2);
-        }
+        // if (word.endsWith("'s")) {
+        //     word = word.slice(0, -2);
+        // }
     
         return word;
     }

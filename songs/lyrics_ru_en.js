@@ -1,508 +1,484 @@
-
 function getWeekLyrics() {
     return {
         'ru': [
             {
                 dayOfWeek: 1,
                 lyrics: `
-С любовью встретиться проблема трудная
-Планета вертится круглая, круглая
-Летит планета вдаль сквозь суматоху дней
-Нелегко, нелегко полюбить на ней
-Звенит январская вьюга и ливни хлещут упруго
-И звезды мчатся по кругу и шумят города
-Не видят люди друг друга, проходят мимо друг друга
-Теряют люди друг друга, а потом не найдут никогда
-В любви еще одна задача сложная
-Найдешь, а вдруг она ложная, ложная
-Найдешь обманную, но в суматохе дней
-Нелегко, нелегко разобраться в ней
-А где-то есть моя любовь сердечная
-Неповторимая вечная, вечная
-Ее давно ищу, но в суматохе дней
-Нелегко, нелегко повстречаться с ней
-Теряют люди друг друга, а потом не найдут никогда, никогда
-А потом не найдут никогда
-`
+Ночью уснуть не могу никак
+И пришла я на техно, чтобы найти тебя снова тут
+Vans'ы твои, как год назад
+Но рядом Nike уже не мои топчат знакомый мне groove
+Ты же был лишь моим, лишь моим
+И мы вместе мечтали купить что-то в «Кузнецком мосту»
+Villalobos играет для вас, а я слезы еле держу
+Плачу на техно, я плачу на техно
+Ты не со мной, слезы льются на рэйве
+Плачу навзрыд, слезы бегут по щекам
+И со щек кап-кап мне на новый Стонак
+Я жила лишь тобой, ты сказал мне: «Goodbye»
+И я горько рыдаю, словно вновь закрыли Outline
+Nina Kraviz играет для вас, и я слез уже не держу
+        `
             },
             {
                 dayOfWeek: 2,
                 lyrics: `
-Ароматы ванили, сладкой ваты клубы
-Надо мной проплывают, пропадая вдали
-Заплетаются косы виноградной лозы
-Оставляя улыбку и немного слезы
-А дождь на окнах рисует
-Напоминая о твоих поцелуях
-Все дело в том, что дождь ничем не рискует
-А я боюсь, что потерял тебя
-Я невозможно скучаю
-Я очень болен, я почти умираю
-А где-то ты и ничего не узнаешь
-И я боюсь, что потерял тебя
-Ты по Малой Ордынке, по Крещатику я
-На веселых картинках мы не находим себя
-Нам осталась в награду, может быть повезло
-Горы битого счастья, да седьмой лепесток
-`
+Каста здесь! Да, давай
+Пока кто-то там шепотом где-то там диссит
+Блатота, босота к нам за кулисы
+Прет; это так, а мы впятером
+То в Сибири где-то, то где-то под Питером
+Пейте ром в кругу друзей ваших давнишних:
+Андрея, Юры, Влада, Антона и Миши
+Пусть молодые пишут, и дух борьбы царит
+Только пусть эти рыцари друг другу глаза не выцарапают
+Тогда будет кому прийти на смену нам всем
+Только следите, пацаны, за своим пьяным рамсом
+Я и сам кромсал речь ранее по пьяни
+Отфильтровал, теперь внимание
+Мания моя как у пиратов была на Карибах
+Покорить мир, как его покорил Бах (Да)
+Видит Бог, в залах не будет пусто
+Ты не устал? Это Каста, чувствуй (Чувствуй)
+Вокруг шум, пусть так
+Не кипишуй, все ништяк
+Не кипишуй, все ништяк!
+Какие-то типы качают головой в ритм
+С таким видом, мол, узнали себя они там
+В наших песнях, и новый смысл на старом месте
+Уже нашли; он и вправду есть там
+Каста звучит на весь дом у нее, у красавицы
+Что любуется своим бельем с кремом на лице
+Перед зеркалом кривляется, танцует
+Прямо супер, такого не увидишь в клубе
+Да, в клубах мало, что заметно
+Из-за пафоса и азарта все вверх дном
+Но когда ты завтра очнешься в смутах (В смутах)
+Мы вернем к старту твой рассудок
+Вы смотрите на главных каналах все эти сериалы
+Которые снимали для умственно отсталых
+Вы читаете журналы, где смакуют
+Фото пьяных кинозвезд и прочую хуйню такую
+Вам нравятся рассказы о всем самом-самом
+Вы любите полазить по ссылкам из спама (Да?)
+И ерунду повыбирать из этого хлама (А?)
+Именно ту, что расхваливает реклама
+Что ж, зато в мирное время живешь
+Друзья на свободе, люди на работе, молодежь
+На дискотеках; и я уж года полтора как
+Не видел, чтоб где-то на улицах что-то решалось в драках
+Лениво люди бродят по торговым центрам
+За рубль с чем-то технику берут под проценты
+Так бы и шло, только не заплыл бы мозг жиром
+Кому тяжело, держитесь, желаем мира
+(Давай, давай, давай, эй)
+Да, Каста
+Влади, Шым, Хамиль, Змей
+Вместе
+        `
             },
             {
                 dayOfWeek: 3,
                 lyrics: `
-Ты слишком молод, чтобы звать меня гулять
-Тебе семнадцать, а ему все двадцать пять
-Он подарил магнитофон мне и цветы
-А ты? (Что?)
-Пока он на разборках в лесополосе
-Ты едешь в свою школу на автобусе
-Все знают, что он криминальный элемент
-О, нет! (Не может быть!)
-А мой мальчик едет на девятке
-По автостраде вдоль ночных дорог
-Я кружилась с ним на танцплощадке
-А ты и дальше будешь одинок
-Только больше не надо слов
-Не нужна мне твоя любовь
-Убегу от тебя и сяду на такси
-Только дело совсем не в нем
-Извини, но ты ни о чем
-Я не буду с тобой и даже не проси
-Он носит кожаную куртку — это класс
-А на твоих ногах паленый «Adidas»
-Мне нравится «Мираж», а ты играешь рок
-Ну, ок (Странно)
-Прости, что я с тобою так и не сошлась
-Просто твоя судьба еще не родилась
-Тебе всего семнадцать — стоит подождать
-Лет пять (Условно)
-`
+От края до края
+Небо в огне сгорает
+И в нем исчезают все надежды и мечты
+Но ты засыпаешь
+И ангел к тебе слетает
+Смахнет твои слезы, и во сне смеешься ты
+Засыпай, на руках у меня засыпай
+Засыпай под пенье дождя
+Далеко, там где неба кончается край
+Ты найдешь потерянный рай
+Во сне хитрый демон
+Может пройти сквозь стены
+Дыханье у спящих он умеет похищать
+Бояться не надо
+Душа моя будет рядом
+Твои сновиденья до рассвета охранять
+Подставлю ладони
+Их болью своей наполни
+Наполни печалью, страхом гулкой темноты
+И ты не узнаешь
+Как небо в огне сгорает
+И жизнь разбивает все надежды и мечты
+В мире снов, в мире снов
+Все надежды и мечты
+        `
             },
             {
                 dayOfWeek: 4,
                 lyrics: `
-Это острые коготки
-Это тонкие лепестки
-Это тихое «Не могу»
-Это шепот усталых губ
-Это слабость усталых рук
-Это делай не только так
-Это там, где бывают сны
-Это легкое «Обними»
-Это делает нас одним
-Это больно и сразу нет
-Это ночью и там где свет
-Это будет с тобой и мной
-Это сделает нас огнем
-Это будет казаться сном
-Это ты, это я!
-Это не сможет нас уберечь!
-Это будут ожоги встреч!
-Мало мало мало мало мало огня
-Я хочу еще немного больше
-Разрешаю - это значит можно
-Это капельки от вина
-Это значит опять одна
-Это тихое "не хочу"
-Это только не надо надо слез
-Это только не надо слов
-Это только в последний раз
-Это не сможет нас уберечь
-Это будут ожоги встреч
-`
+Если б мне платили каждый раз
+Каждый раз, когда я думаю о тебе
+Я бы бомжевала возле трасс
+Я бы стала самой бедной из людей
+Где ты, когда ты не онлайн, когда я жду тебя в сети?
+В какие ссылки перейти, чтоб просто оказаться там?
+О чем ты думаешь сейчас? Давай среди берез густых
+Читать любимый твой рассказ — страничку я, страничку ты
+Или в гости и просто чаю, и сердцами WhatsApp закидан
+Но я снова не отвечаю, я инкогнито — инкогнида
+Но если б мне платили, милый, каждый раз, когда взгляд твой дымный
+Мне мерещится где-то мимо, каждый раз, когда снишься ты мне
+Старая конфорка плещет нам, на двоих одна заварка
+За окном темно, в окне трещина, лампочка-луна над парком
+Я опять кручу на пальце прядь, пахну, как мамины духи
+Ты хочешь меня (Снять) снять-снять, а я хочу писать стихи-стихи
+Уезжай, чай не допивай, снег или дождь там — уходи
+Пусть хоть всего переморосит, пусть хоть торнадо унесет вдаль
+Может, есть еще твой трамвай? Может, нет? Все равно иди
+Там промозглый седой февраль — он теперь, как и ты, один
+И тебя не жаль, не жаль, не жаль, хоть slow-mo в дыме сигарет
+Даже в миноре и под рояль, даже под грустную скрипку — нет
+Если б ты не любил стихи, превратилась бы в звонкий ямб
+Если б был наркотою ты, фитоняшкой бы стала я
+        `
             },
             {
                 dayOfWeek: 5,
                 lyrics: `
-В этот серый скучный вечер
-Я тебя случайно встретил
-Я позвал тебя с собою
-И назвал своей судьбою
-У тебя глаза, как море
-Словно ночь, твои ресницы
-Твои руки, словно крылья
-Крылья одинокой птицы
-Сегодня в белом танце кружимся
-Наверно, мы с тобой подружимся
-И ночью мы вдвоем останемся
-А утром навсегда расстанемся
-Среди серых стен молчанья
-Я тебя нашла случайно
-Позвала тебя с собою
-Назвала своей судьбою
-У тебя глаза, как небо (Небо)
-Словно ночь, твои ресницы (Словно ночь)
-Твои руки, словно крылья (Крылья)
-`
+Ночь безмолвною была
+Тихо, как погост
+Мне навстречу ты плыла в окружении звезд
+Ах, какой ты юной была и с ума мне сердце свела
+Стюардесса по имени Жанна
+Обожаема ты и желанна
+Ангел мой неземной, ты повсюду со мной
+Ты мой пятый океан, чудо-человек
+Пусть небесный наш роман длится целый век
+Пусть нас минут зло и обман и нежданных бед ураган
+От забот меня зовет, от печалей прочь
+В нескончаемый полет стюардесса-ночь
+Я лечу и небо поет и все выше наш самолет
+        `
             },
             {
                 dayOfWeek: 6,
                 lyrics: `
-Я вырос на окраине рабочей, городской (А)
-Парнишка в модной кепке, зуб потертый золотой (Хоп)
-Парнишка весь простой, и вовсе не красавец я (Шо?)
-А мне навстречу все девчонки улыбаются (Давай)
-Когда под вечер я из дома выхожу во двор (А)
-Сажусь в машину, улыбнусь и завожу мотор (Хоп)
-Включаю музыку и разноцветные огни (Чоп)
-С тоскою полною в глазах глядят мне вслед они
-Ведь у меня есть черный бумер, он всегда со мной
-Ведь у меня есть черный бумер, быстрый и шальной
-Ведь у меня есть черный бумер, бумер заводной
-Садись смелей, девчонка, покатаемся с тобой
-Черный бумер, черный бумер
-Стоп-сигнальные огни (Чоп, чоп)
-Если можешь, догони (Черный бумер)
-Под окном катается (Чоп, чоп)
-Девкам очень нравится (Черный бумер)
-А наш райончик на отшибе городском стоит (А)
-И вся округа день и ночь стаканами звенит (Хоп)
-Ребята местны горьку пьют, не знают фитнеса (Шо?)
-Все потому что перспективы нет и бизнеса (Давай)
-Ай, улица родная, семь домов, три доски (А)
-Здесь делать неча, наши мурки воют от тоски (Хоп)
-А только мне все нипочем до самых сумерек (Чоп)
-Я по райончику форсю на черном бумере
-(Чоп, чоп)
-(Черный бумер)
-И если кто-нибудь из них попросит: «Прокати!» (А)
-Я прокачу ее, пусть даже мне не по пути (Хоп)
-Ведь я парнишка с виду из себя, хоть и простой (Чоп)
-Но отказать я не могу девчонке ни одной
-Ведь для того и нужен бумер, он всегда со мной
-Ведь для того и нужен бумер, быстрый и шальной
-Ведь для того и нужен бумер, бумер заводной
-`
+В конце туннеля яркий свет слепой звезды
+Подошвы на сухой листве оставят следы
+Еще под кожей бьется пульс и надо жить
+Я больше может не вернусь
+А может я с тобой останусь
+Останусь пеплом на губах
+Останусь пламенем в глазах
+В твоих руках дыханьем ветра
+Останусь снегом на щеке
+Останусь светом вдалеке
+Я для тебя останусь светом
+В конце туннеля яркий свет и я иду
+Иду по выжженной траве, по тонкому льду
+Не плачь, я боли не боюсь, ее там нет
+Светом
+        `
             },
             {
                 dayOfWeek: 7,
                 lyrics: `
-С собою, с собою, с собою
-Забери солнце с собою
-С собою
-Мокрые улицы, сонные машины
-Длинные пальцы, метро невыносимо
-Давят виски, мне туда надо войти
-Пользуясь правом на дождь, я убегаю
-Пользуясь правом в лицо я отвечаю
-Можешь идти, тебе же так надо, лети
-Оно мне не нужно, веришь
-Оно меня больше не любит
-Оно меня больше не греет
-Блеск светофора, через перекресток
-Так далеко, и кажется, так просто
-Перешагнуть
-Снова в тебе утонуть
-Полный вагон людей, а я пустая
-Жму кулаки, сильнее повторяю:
-«Что ты стоишь?
-Ведь ты все равно улетишь»
-`
+Были ночи, были дни
+Оставались мы одни
+Не пойму, как все случилось
+Но я кажется влюбилась
+То краснела, то бледнела
+Я с тобою быть хотела
+Все хотела, чтоб с одной
+Ты ходил в кино со мной
+Но подружка проболталась
+Что с тобой тайком встречалась
+По щеке бежит слеза
+И скажу тебе в глаза
+Уходи и дверь закрой
+У меня теперь другой
+Мне не нужен больше твой
+Номер в книжке записной
+Натерпелась, наждалась
+Я любовью обожглась
+Но теперь я наконец-то
+Будто снова родилась
+День - не день, и ночь - не ночь
+Отгоняю мысли прочь
+Я не знаю, как мне быть
+И кто сможет мне помочь
+Я иду одна в дали
+Гаснут города огни
+Без тебя - меня не стало
+Ну зачем же я сказала
+        `
             },
         ],
         'en': [
             {
                 dayOfWeek: 1,
                 lyrics: `
-Keep you in the dark, you know they all pretend
-Keep you in the dark and so it all began
-Send in your skeletons
-Sing as their bones go marchin' in again
-The need you buried deep
-The secrets that you keep are ever ready
-Are you ready?
-I'm finished makin' sense
-Done pleading ignorance, that whole defense
-Spinning infinity, boy
-The wheel is spinnin' me, it's never ending, never ending
-Same old story
-What if I say I'm not like the others?
-What if I say I'm not just another one of your plays?
-You're the pretender
-What if I say I will never surrender?
-What if I say that I'll never surrender?
-In time or so I'm told
-I'm just another soul for sale, oh well
-The page is out of print
-We are not permanent, we're temporary, temporary
-What if I say I will never surrender? Oh
-I'm the voice inside your head
-You refuse to hear
-I'm the face that you have to face
-Mirrorin' your stare
-I'm what's left, I'm what's right
-I'm the enemy
-I'm the hand that'll take you down
-Bring you to your knees
-So who are you?
-Yeah, who are you?
-(Keep you in the dark, you know they all pretend)
-What if I say I'm not like the others? (Keep you in the dark)
-What if I say I'm not just another one of your plays? (You know they all)
-You're the pretender (Pretend)
-`
+You change your mind
+Like a girl changes clothes
+Yeah, you PMS
+Like a bitch, I would know
+And you overthink
+Always speak cryptically
+I should know
+That you're no good for me
+'Cause you're hot, then you're cold
+You're yes, then you're no
+You're in, then you're out
+You're up, then you're down
+You're wrong when it's right
+It's black and it's white
+We fight, we break up
+We kiss, we make up
+(You) You don't really wanna stay, no
+(You) But you don't really wanna go-o
+You're hot, then you're cold
+We used to be
+Just like twins, so in sync
+The same energy
+Now's a dead battery
+Used to laugh (Used to laugh) 'bout nothing ('Bout nothing)
+Now you're plain (Now you're plain) boring (Boring)
+That you're not gonna change
+Someone call the doctor
+Got a case of a love bipolar
+Stuck on a roller coaster
+Can't get off this ride
+        `
             },
             {
                 dayOfWeek: 2,
                 lyrics: `
-Work it, make it, do it, makes us
-Harder, better, faster, stronger
-N-Now-Now that, that don't kill me
-Can only make me stronger
-I need you to hurry up now
-'Cause I can't wait much longer
-I know I got to be right now
-'Cause I can't get much wronger
-Man, I've been waitin' all night now
-That's how long I been on ya
-Work it harder, make it better
-Do it faster, makes us stronger
-(I need you right now, right now)
-More than ever, hour after hour
-Work—
-Let's get lost tonight
-You could be my black Kate Moss tonight
-Play secretary, I'm the boss tonight
-And you don't give a fuck what they all say, right?
-Awesome, the Christian in Christian Dior
-Damn, they don't make 'em like this anymore
-I ask, 'cause I'm not sure
-Do anybody make real shit anymore?
-Bow in the presence of greatness
-'Cause right now, thou hast forsaken us
-You should be honored by my lateness
-That I would even show up to this fake shit
-So go ahead, go nuts, go apeshit
-'Specially in my Pastelle, on my Bape shit
-Act like you can't tell who made this
-New Gospel, homie, take six
-And take this, haters
-(I need you right now, now)
-Me likey
-I don't know if you got a man or not
-If you made plans or not
-If God put me in your plans or not
-I'm trippin', this drink got me sayin' a lot
-But I know that God put you in front of me
-So how the hell could you front on me?
-There's a thousand you's, there's only one of me
-I'm trippin', I'm caught up in the moment, right?
-'Cause it's Louis Vuitton Don night
-So we gon' do everything that Kan' like
-Heard they'd do anything for a Klondike
-Well, I'd do anything for a blonde dyke
-And she'll do anything for the limelight
-And we'll do anything when the time's right
-Uh, baby, you're makin' it
-Harder, better, faster, stronger (Oh)
-N-Now th-that, that don't kill me (Oh)
-Can only make me stronger (Oh)
-I need you to hurry up now (Oh)
-'Cause I can't wait much longer (Oh)
-I know I got to be right now (Oh)
-'Cause I can't get much wronger (Oh)
-Work is never over
-You know how long I've been on ya
-Since Prince was on Apollonia
-Since O.J. had Isotoners
-Don't act like I never told ya
-Work it, work is never over
-Harder, work is never over
-Uh, don't act like I never told ya
-Told ya, told ya
-Never told ya, told ya, told ya
-Never told ya
-Never over (W—), never over (Ha—), never over (Fa—), never over (St—)
-Never over, never over, never over
-`
+It's gonna take more than one margarita
+I'm gonna call you my sweet senorita
+I'm gonna leave after night only with ya
+All you have to do is to be ready for some action now
+Don't be a dummy, dummy
+I got that yummy, yummy
+Can we be chummy, chummy right after midnight?
+Yeah, you so charming bunny
+Yeah, you so funny honey
+Uno (Uno), dos (Dos), cuatro (Cuatro)
+Uno, uno, uno (Uno), dos (Dos), cuatro (Cuatro)
+Uno, dos, tres, cuatro, cinco, seis
+Uno, uno
+Ho! Are you ready?
+Ha! Hold it steady
+Ho! Come to daddy
+The night is charming bunny
+You are so funny honey
+        `
             },
             {
                 dayOfWeek: 3,
                 lyrics: `
-Let's get it started in here
-And the bass keeps runnin', runnin' and runnin', runnin'
-And runnin', runnin' and runnin', runnin'
-And runnin', runnin, and runnin', runnin' and
-In this context, there's no disrespect
-So when I bust my rhyme, you break yo necks
-We got five minutes for us to disconnect
-From all intellect and let the rhythm effect
-To lose this inhibition, follow your intuition
-Free your inner soul and break away from tradition
-'Cause when we be out, girlies pull they weave out
-You wouldn't believe how we wow shit out
-Burn it 'til it's burned out, turn it 'til it's turned out
-Actin' up from north, west, east, south
-Everybody (Yeah), everybody (Yeah)
-Let's get into it (Yeah), get stupid (Come on)
-Get it started (Come on), get it started (Yeah)
-Get it started
-Let's get it started (Hah)
-Let's get it started in here, yeah
-Lose control of body and soul
-Don't move too fast, people, just take it slow
-Don't get ahead, just jump into it
-Y'all hear about it, the Peas will do it
-Get started, get stupid
-Don't worry about it, people, we'll walk you through it
-Step by step like an infant new kid
-Inch by inch with the new solution
-Transmit hits with no delusion
-The feeling's irresistible and that's how we movin'
-(Yo) Everybody (Yeah), everybody (Yeah)
-Let's get into it (Yeah) and get stupid (Come on)
-(And the bass keeps runnin', runnin' and runnin', runnin')
-C'mon y'all, let's get coo-koo, uh-huh, let's get, we coo-koo in here
-Wild out, get coo-koo, uh-huh, let's get, we coo-koo in here
-Wild out, get coo-koo, uh-huh, let's get, we coo-koo in here (Oh, oh, oh)
-Ya, ya, ya, ya, ya, ya, ya, ya, ya, ya, ya, ya, ya, ya, ya, ya
-Let's get ill, that's the deal
-At the gate and we'll bring the bugged out drill
-(Just) Lose your mind, this is the time
-Y'all can't stand still, twist and bang your spine
-(Just) Bob your head like me, apl.de
-Up inside the club or in your Bentley
-Get messy, loud and sick
-Y'all mind pass normal on another head trip
-(So) Come them now, do not correct it
-Let's get ign'ant, let's get hectic
-Everybody, everybody (Yeah)
-Get it started (Come on), get it started
-Let's get it started in here, yeah (Whoa, whoa, whoa, whoa)
-Get coo-koo, uh-huh, we coo-koo in here
-Let's get coo-koo (Yeah, yeah), uh-huh, we coo-koo in here
-Wild out, get coo-koo (Yeah, yeah), uh-huh, we coo-koo in here (Oh, oh, oh)
-(Come on and say) Ya, ya, ya, ya, ya, ya, ya, ya, ya, ya, ya, ya, ya, ya, ya, ya
-And runnin', runnin' and...
+Oh, it seemed forever stopped today
+All the lonely hearts in London
+Caught a plane and flew away
+And all the best women are married
+All the handsome men are gay
+You feel deprived
+Yeah, are you questioning your size?
+Is there a tumour in your humour?
+Are there bags under your eyes?
+Do you leave dents where you sit?
+Are you getting on a bit?
+Will you survive?
+You must survive
+When there's no love in town
+This new century keeps bringing you down
+All the places you have been
+Trying to find a love supreme
+A love supreme
+Oh, what are you really looking for?
+Another partner in your life
+To abuse and to adore?
+Is it lovey dovey stuff?
+Do you need a bit of rough?
+Get on your knees
+Yeah, turn down the love songs that you hear
+'Cause you can't avoid the sentiment
+That echoes in your ear
+Saying love will stop the pain
+Saying love will kill the fear
+Do you believe?
+You must believe
+I spy with my little eye
+Something beginning with (Ah)
+Got my back up
+And now she's screaming
+So I've got to turn the track up
+Sit back and watch the royalties stack up
+I know this girl, she likes to switch teams
+And I'm a fiend but I'm living for a love supreme
+Come and live a love supreme
+Don't let it get you down
+Everybody lives for love
 `
             },
             {
                 dayOfWeek: 4,
                 lyrics: `
-"Twenty seconds and counting
-T minus fifteen seconds, guidance is internal"
-When I look back upon my life
-It's always with a sense of shame
-I've always been the one to blame
-For everything I long to do
-No matter when or where or who
-Has one thing in common, too
-It's a, it's a, it's a, it's a sin
-It's a sin
-Everything I've ever done
-Everything I ever do
-Every place I've ever been
-Everywhere I'm going to
-At school they taught me how to be
-So pure in thought and word and deed
-They didn't quite succeed
-Father, forgive me
-I tried not to do it
-Turned over a new leaf
-Then tore right through it
-Whatever you taught me
-I didn't believe it
-Father, you fought me
-'Cause I didn't care
-And I still don't understand
-So I look back upon my life
-Forever with a sense of shame
-`
+(Murder, murder, murder…)
+It's murder on the dancefloor
+But you better not kill the groove
+DJ, gonna burn this goddamn house right down
+Oh, I know, I know, I know, I know, I know, I know, I know
+About your kind
+And so, and so, and so, and so, and so, and so, and so
+I'll have to play
+If you think you're getting away, I will prove you wrong
+I'll take you all the way, boy, just come along
+Hear me when I say, hey
+But you better not kill the groove, hey-hey, hey-hey
+But you better not steal the moves
+I know there may be others
+You'll just have to pray
+I'll take you all the way, stay another song
+I'll blow you all away, hey
+DJ, gonna turn this house around somehow
+Murder on the dancefloor (On the dancefloor)
+It's murder on the dancefloor (On the dancefloor)
+Don't think you'll get away, I will prove you wrong
+Oh, I know, I know, I know, I know, I know, I know, I know (On the dancefloor)
+        `
             },
             {
                 dayOfWeek: 5,
                 lyrics: `
-Ooh, ah, ah
-A-ah, ah, ah...
-Took a ride to the end of the line
-Where no one ever goes
-Ended up on a broken train
-With nobody I know
-But the pain and the longing's the same when you're dying
-Now I'm lost, and I'm screaming for help alone...
-Relax, take it easy
-For there is nothing that we can do
-Blame it on me or blame it on you
-It's as if I'm scared
-It's as if I'm terrified
-It's as if I'm playing with fire
-Scared
-Are you scared?
-Are we playing with fire?
-Relax...
-Oh, there is an answer
-To the darkest times
-It's clear, we don't understand it
-But the last thing on my mind
-Is to leave you, I believe that we're in this together
-Don't scream; there are so many roads left to run
-`
+He's laughing with another girl
+And playing with another heart
+Placing high stakes, making hearts ache
+He's loved in seven languages
+Diamond nights and ruby lights
+High in the sky
+Heaven help him when he falls
+Diamond life lover boy
+He moves in space with minimum waste and maximum joy
+City lights and business nights
+When you require streetcar desire for higher heights
+No place for beginners or sensitive hearts
+The sentiment is left to chance
+No place to be ending but somewhere to start
+No need to ask, he's a smooth operator
+Smooth operator
+Coast-to-coast, L.A. to Chicago, western male
+Across the North and South, to Key Largo, love for sale
+Face-to-face, each classic case
+We shadowbox and double-cross
+Yet need the chase
+A license to love, insurance to hold
+Melts all your memories and change into gold
+His eyes are like angels; his heart is cold
+        `
             },
             {
                 dayOfWeek: 6,
                 lyrics: `
-(Rock Mafia)
-It's been said and done
-Every beautiful thought's been already sung
-And I guess right now, here's another one
-So your melody will play on and on with the best of 'em
-You are beautiful
-Like a dream come alive, incredible
-A centerfold miracle, lyrical
-You saved my life again
-And I want you to know, baby
-I, I love you like a love song, baby
-And I keep hittin' repeat-peat-peat-peat-peat-peat (Oh)
-I, I love you like a love song, baby (Oh)
-And I keep hittin' repeat-peat-peat-peat-peat-peat
-Constantly
-Boy, you play through my mind like a symphony
-There's no way to describe what you do to me
-You just do to me what you do
-And it feels like I've been rescued
-I've been set free
-I am hypnotized by your destiny
-You are magical, lyrical, beautiful, you are
-I, I love you like a love song, baby (I love you, I love you)
-And I keep hittin' repeat-peat-peat-peat-peat-peat (Like a love song)
-No one compares
-You stand alone to every record I own
-Music to my heart, that's what you are (Ba-ba-baby)
-A song that goes on and on (And on)
-I, I love you like a love song, baby (I love you)
-I, I love you like a love song, baby (I love you like a song)
-And I keep hittin' repeat-peat-peat-peat-peat-peat (Like a love, oh)
-I love you like a love song
-`
+Ooh-oh, ooh-woo
+You say you love me, I say you crazy
+We're nothing more than friends
+You're not my lover, more like a brother
+I known you since we were like ten, yeah
+Don't mess it up, talking that shit
+Only gonna push me away, that's it!
+When you say you love me, that make me crazy
+Here we go again
+Don't go look at me with that look in your eye
+You really ain't going away without a fight
+You can't be reasoned with, I'm done being polite
+I've told you one, two, three, four, five, six thousand times
+Haven't I made it obvious?
+Haven't I made it clear?
+Want me to spell it out for you?
+F-R-I-E-N-D-S
+Haven't I made it obvious? (Ooh-oh, ooh-wooh)
+Want me to spell it out for you? (Ooh-oh, ooh-wooh)
+Have you got no shame? You looking insane
+Turning up at my door (Ah)
+It's two in the morning, the rain is pouring
+Haven't we been here before? (Ah)
+Only gonna push me away, that's it! (Ah)
+So don't go look at me with that look in your eye
+Haven't I made it obvious? (Haven't I made it?)
+Haven't I made it clear? (Haven't I made it clear?)
+Haven't I made it obvious? (Ooh, ooh-woah)
+Haven't I made it clear? (Haven't I?)
+Want me to spell it out for you? (To spell it out for you?)
+That's how you  spell "friends"
+Get that shit inside your head
+No, no, yeah, uh, ah
+We're just friends
+So don't go look at me (No) with that look in your eye
+You really ain't going nowhere without a fight (A fight, nah, nah)
+Haven't I made it obvious? (Have I not made it obvious?)
+Haven't I made it clear? (Yeah, I made it very clear)
+Want me to spell it out for you? (Yo)
+F-R-I-E-N-D-S (I said F-R-I-E-N-D-S)
+Haven't I made it obvious? (I made it very obvious)
+Haven't I made it clear? (I made it very clear)
+Mmm, ooh, ooh, ooh
+Ah, ah-oh, ah-oh
+        `
             },
             {
                 dayOfWeek: 7,
                 lyrics: `
-Feelin' my way through the darkness
-Guided by a beatin' heart
-I can't tell where the journey will end
-But I know where to start
-They tell me I'm too young to understand
-They say I'm caught up in a dream
-Well, life will pass me by if I don't open up my eyes
-Well, that's fine by me
-So wake me up when it's all over
-When I'm wiser and I'm older
-All this time, I was findin' myself and I
-Didn't know I was lost
-I tried carryin' the weight of the world
-But I only have two hands
-Hope I get the chance to travel the world
-But I don't have any plans
-Wish that I could stay forever this young
-Not afraid to close my eyes
-Life's a game made for everyone
-And love is the prize
-I didn't know I was lost
-I didn't know, I didn't know, I didn't know
-`
+Hmm-mmm-mmm-mmm-mmm-mmm
+Let me talk to 'em, let me talk to 'em
+Let it ring
+Let me talk to 'em (Come on)
+Shawty had them Apple Bottom jeans (Jeans), boots with the fur (With the fur)
+The whole club was lookin' at her
+She hit the flo' (She hit the flo'), next thing you know
+Shawty got low-low-low-low-low-low-low-low
+Them baggy sweatpants and the Reeboks with the straps (With the straps)
+She turned around and gave that big booty a smack (Ayy!)
+Hey, I ain't never seen nothin' that'll make me go
+This crazy all night spendin' my dough
+Had a million dollar vibe and a bottle to go
+Them birthday cakes they stole the show
+So sexual, she was flexible
+Professional, drinkin' X and O
+Hold up, wait a minute, do I see what I think I, whoa
+Did I think I see shawty get low?
+Ain't the same when it's up that close
+Make it rain, I'm makin' it snow
+Work the pole, I got the bank roll
+I'ma say that I prefer them no clothes
+I'm into that, I love women exposed
+She threw it back at me, I gave her mo'
+Cash ain't no problem, I know where it goes
+She had them
+Apple Bottom jeans (Jeans), boots with the fur (With the fur)
+Hey, shawty, what I gotta do to get you home?
+My jeans full of guap and they ready for shones
+Cadillacs, Maybachs for the sexy groan
+Patron on the rocks that'll make you moan
+One stack c'mon, two stacks c'mon
+Three stacks c'mon, now that's three grand
+What, you think I'm playin', baby girl?
+I'm the man, I invented rubber bands
+That's what I told her, her legs on my shoulder
+I knew it was over, that Henny and Cola
+Got me like a soldier, she ready for Rover
+I couldn't control her
+So lucky oh me, I was just like a clover
+Shawty was hot like a toaster
+Sorry but I had to fold her
+Like a pornography poster, she showed her
+Whoa, shawty
+Yeah, she was worth the money
+Lil' mama took my cash and I ain't want it back
+The way she bent that back, got her them paper stacks
+Tattoo above her crack, I had to handle that
+I was on it, sexy woman
+Let me showin' and made me want it
+Two in the mornin', I'm zonin' and them Ros bottles foamin'
+She wouldn't stop, made it drop
+Shawty did that pop and lock
+Had to break her off that guap
+Gal was fly just like my Glock
+Shawty got low-low-low-low-low-low-low-low (Come on)
+        `
             },
         ]
     }
 }
-
-

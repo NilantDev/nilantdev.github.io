@@ -203,7 +203,7 @@
 
                 if(allGuessedLetters.sort().join(',') === letters.letters.sort().join(',')){
                     lywoly.status = 'won';
-                    score += 10;
+                    // score += 10;
                     DomOperator.addMessage(`You won! Congratulations!`);
                     DomOperator.toggleActions(false);
                     confetti({

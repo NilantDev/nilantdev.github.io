@@ -57,12 +57,12 @@ function getWeekSongs() {
             },
             {
                 dayOfWeek: '7',
-                artist: 'Евгения Отрадная',
-                song: 'Уходи и дверь закрой',
+                artist: 'Свинцовый туман',
+                song: 'Я знаю',
                 cover: '',
-                youtube: 'http://www.youtube.com/watch?v=sajZP8ACfRE',
+                youtube: 'https://www.youtube.com/watch?v=hjByiWZfhko',
                 date: '',
-                geniusId: '6061133',
+                geniusId: '',
             },
         ],
         'en': [

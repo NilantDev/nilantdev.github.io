@@ -9,6 +9,10 @@ function getWeekSongs() {
                 youtube: 'https://www.youtube.com/watch?v=VNKvtA9Akj',
                 date: '',
                 geniusId: '7611454',
+                definition: {
+                    'х': '💩',
+                    'ф': '😛😜😝'
+                }
             },
             {
                 dayOfWeek: '2',
@@ -338,6 +342,10 @@ function getWeekSongs() {
                 youtube: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
                 date: '1997-11-17',
                 geniusId: '134900',
+                definition: {
+                    'gn' : "🚼",
+                    'le': '👍🏻',
+                }
             },
             {
                 dayOfWeek: '2',

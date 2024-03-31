@@ -110,15 +110,16 @@
                     getWeekLyrics(),
                     lang
                 );
-    
+
                 // Get Lyrics, words and letters
                 const lyrics = task.lyrics;
                 let words = new Words(lyrics, task.song);
                 let letters = new Letters(words.words);
     
+                let definition = task.definition == undefined ? {} : task.definition;
                 // Fill DOM with data
                 DomOperator.fillWithTaskData(task);
-                DomOperator.createLetters(letters.letters);
+                DomOperator.createLetters(letters.letters, definition);
     
                 //////////////////_INIT_////////////////////////////////////
     
@@ -137,7 +138,7 @@
                     DomOperator.toggleActions(true);
                 }
 
-                return [lyrics, words, letters, lywoly, score, basil];
+                return [lyrics, words, letters, lywoly, score, basil, definition];
             }
         </script>
         <script>
@@ -237,12 +238,24 @@
                 if (!$(this).hasClass(clsSelected)) {
                     $('.lang').removeClass(clsSelected);
                     $(this).addClass(clsSelected);
-                    [lyrics, words, letters, lywoly, score, basil] = selectTask($(this).data('lang'));
+                    [lyrics, words, letters, lywoly, score, basil, definition] = selectTask($(this).data('lang'));
                 }
             });
 
-            let [lyrics, words, letters, lywoly, score, basil] = selectTask('en');
+            let [lyrics, words, letters, lywoly, score, basil, definition] = selectTask('en');
             DomOperator.setModes(basil.get('settings'));
+        </script>
+        <script>
+            $('#letters').on('click', '.letter', function(){
+                let symbol = $(this).data('letter');
+                for (const key in definition) {
+                    if (key.includes(symbol)) {
+                        DomOperator.addMessage('Hint: ' + definition[key]);
+
+                        return;
+                    }
+                }
+            })
         </script>
     </body>
 </html>

@@ -6,10 +6,13 @@ var DomOperator = {
         $('#link').attr('href', task.youtube);
     },
 
-    createLetters: function(letters) {
+    createLetters: function(letters, definitions) {
         $('#letters').empty();
+        let defKeys = Object.keys(definitions);
+        let definition = (defKeys.length != 0) ? defKeys.join() : '';
         letters.forEach(letter => {
-            $('#letters').append('<span class="letter" data-letter="' + letter + '">' + letter + '</span>');
+            let style = definition.includes(letter) ? 'style="text-decoration:underline"' : '';
+            $('#letters').append('<span class="letter" data-letter="' + letter + '" ' + style + '>' + letter + '</span>');
         });
     },
 

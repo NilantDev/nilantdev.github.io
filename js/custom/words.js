@@ -56,7 +56,7 @@ class Words {
     
     removeSpecChars(line)
     {
-        var pattern = /["«».,!:;()\[\]?—–01234567890]/g;
+        var pattern = /["«».,!:;()\[\]?—–]/g;
     
         return line.replace(pattern, '');
     }

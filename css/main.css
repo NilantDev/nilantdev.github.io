@@ -243,7 +243,7 @@ Attempts
     .letter-wrapper {
         width: 90%;
         margin: auto;
-        font-size: 75px;
+        font-size: 65px;
 
         & .letter {
             padding: 10px;

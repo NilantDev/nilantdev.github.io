@@ -18,8 +18,6 @@
         <script src="songs/lyrics_ru_en.js"></script>
         <script src="songs/songs_ru_en.js"></script>
 
-        <script src="popup/content.js"></script>
-
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/lang.css">
 
@@ -63,12 +61,13 @@
                 </div>
             </div>
             <div id="score-wrapper"><span>Your score: </span><span id="score"></span></div>
+            <div id="asked-letter-wrapper"><span>Input word with letter </span><span id="asked-letter"></span></div>
             <div class="input-actions">
                 <input id="word">
                 <div class="actions">
-                    <button onclick="checkWord()" id="checkWord">Try the word!</button>
+                    <button onclick="words.checkWord()" id="checkWord" hidden>Try the word!</button>
                     <button onclick="GiveUp.giveUp(words, lyrics, basil)" id="giveUp">Give up!</button>
-                    <button onclick="showHint()" id="getHint" disabled>Get hint!</button>
+                    <button onclick="Hint.showHint()" id="getHint" disabled>Get hint!</button>
                 </div>
             </div>
             <div class="share" style="display: none;">
@@ -79,171 +78,48 @@
             <hr>
             <div id="leftLetters" style="display: none;"></div>
             <div id="attempts"></div><br>
+            <div id="lyrics"></div><br>
+
             <div id="foreign-words" style="display: inline-block;">
                 <ul style="text-align: left;">
                     <li hidden>Приложение для обмена сообщениями</li>
                 </ul>
-                
             </div>
         </div>
         <script>
             $(document).ready(function(){
-                $('#word').keypress(function(e){
+                // $('#word').keypress(function(e){
+                $('#word').keyup(function(e){
                     $('.message-wrapper').hide();
+                    if (gameMode == 'just_play') {
+                        $('#checkWord').click();
+                    }
 
                     if (e.keyCode == 13) {
                         $('#checkWord').click();
-                    }
-                    // checking of space
-                    if (e.keyCode == 13) {
-                        
                     }
                 });
             });
         </script>
         <script>
-
-            function selectTask(lang) {
-                // Get song info and lyrics
-                let task = Task.getTodayTask(
-                    getWeekSongs(),
-                    getWeekLyrics(),
-                    lang
-                );
-
-                // Get Lyrics, words and letters
-                const lyrics = task.lyrics;
-                let words = new Words(lyrics, task.song);
-                let letters = new Letters(words.words);
-    
-                let definition = task.definition == undefined ? {} : task.definition;
-                // Fill DOM with data
-                DomOperator.fillWithTaskData(task);
-                DomOperator.createLetters(letters.letters, definition);
-    
-                //////////////////_INIT_////////////////////////////////////
-    
-                let options = {
-                    namespace: 'lywoly',
-                    storage: 'local'
-                };
-                let basil = new window.Basil(options);
-                let lywoly = Lywole.init(basil, lang);
-                let score = lywoly.score;
-                DomOperator.addAttempts(lywoly.attempts);
-                console.log(lywoly.status);
-                if (['won', 'giveup'].includes(lywoly.status)) {
-                    DomOperator.toggleActions(false);
-                } else {
-                    DomOperator.toggleActions(true);
-                }
-
-                return [lyrics, words, letters, lywoly, score, basil, definition];
-            }
-        </script>
-        <script>
-            function showHint() {
-                let hint = Hint.getHint(lyrics);
-                if (hint) {
-                    DomOperator.addMessage(`Hint: ${hint}`);
-                    $('#getHint').attr('disabled', true);
-                }
-            }
-        </script>
-        <script>
-            function checkWord() {
-                let word = $('#word').val().toLowerCase().trim();
-                word = word.replace('ё', 'е');
-                let isWordInAttempts = lywoly.attempts.find(obj => obj.word === word);
-
-                if (word == '' || isWordInAttempts != undefined) {
-                    let message = word == '' ? 'You cannot input empty line' : "This word was already input";
-                    DomOperator.addMessage(message);
-                    $('#word').val('');
-
-                    return;
-                }
-
-                let guessedLetters = letters.guessedLetters;
-                isWordIncluded = words.words.includes(word);
-
-                if (isWordIncluded) {
-                    letters.addGuessedLetters(word);
-                    words.addGuessedWord(word);
-                }
-
-                let points = Score.getPoints(
-                    word,
-                    words.wordsInTitle.includes(word),
-                    isWordIncluded,
-                    letters.guessedLetters
-                );
-
-                if (isWordIncluded) {
-                    let hint = Hint.getHint(lyrics);
-
-                    if (hint) {
-                        $('#getHint').attr('disabled', false);
-                    } else {
-                        $('#getHint').attr('disabled', true);
-                    }
-                }
-
-                DomOperator.addAttempt(word, isWordIncluded, points);
-
-                score += points;
-                
-                let allGuessedLetters = [];
-                $('#letters .letter.guessed').each(function(index) {
-                    allGuessedLetters.push($(this).data('letter'));
-                });
-
-                // $("#max-score").text(letters.getWordWithMaxScore(
-                //     words.words, words.guessedWords
-                // ));
-
-                // You won
-
-                if(allGuessedLetters.sort().join(',') === letters.letters.sort().join(',')){
-                    lywoly.status = 'won';
-                    // score += 10;
-                    DomOperator.addMessage(`You won! Congratulations!`);
-                    DomOperator.toggleActions(false);
-                    confetti({
-                        particleCount: 100,
-                        spread: 70,
-                        origin: { y: 0.6 },
-                    });
-                }
-
-                $('#score').text(score);
-
-                lywoly.score = score;
-
-                lywoly.saveToLocalStorage(
-                    basil,
-                    {
-                        word: word, 
-                        isWordIncluded: isWordIncluded, 
-                        points: points, 
-                    },
-                    isWordIncluded ? letters.guessedLetters : []
-                );
-
-                $('#word').val('');
-            }
-
             $('.lang').on('click', function() {
                 const clsSelected = 'selected';
                 if (!$(this).hasClass(clsSelected)) {
                     $('.lang').removeClass(clsSelected);
                     $(this).addClass(clsSelected);
-                    [lyrics, words, letters, lywoly, score, basil, definition] = selectTask($(this).data('lang'));
+                    [lyrics, words, letters, lywoly, score, basil, definition] = Task.selectTask($(this).data('lang'));
                 }
             });
 
-            let [lyrics, words, letters, lywoly, score, basil, definition] = selectTask('en');
-            DomOperator.setModes(basil.get('settings'));
+            $('#word').on('swiperight', function() {
+                $('span[data-lang="ru"]').click();
+            });
+
+            let [lyrics, words, letters, lywoly, score, basil, definition] = Task.selectTask('en');
+
+            let settings = basil.get('settings');
+            let gameMode = settings && settings.hasOwnProperty('game_mode') ? settings['game_mode'] : 'just_play';
+            DomOperator.setModes(settings);
         </script>
         <script>
             $('#letters').on('click', '.letter', function(){

@@ -56,5 +56,13 @@ var Hint = {
         });
     
         return letters;
+    },
+
+    showHint: function() {
+        let hint = Hint.getHint(lyrics);
+        if (hint) {
+            DomOperator.addMessage(`Hint: ${hint}`);
+            $('#getHint').attr('disabled', true);
+        }
     }
 }

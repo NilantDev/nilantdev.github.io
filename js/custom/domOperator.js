@@ -38,20 +38,24 @@ var DomOperator = {
     setModes(settings) {
         let properties = {
             darkMode: 'dark-mode',
-            sportMode: 'sport-mode'
+            'game_mode': hasSetting('game_mode') ? settings['game_mode'] : '',
         };
 
         // properties.forEach(item => {
         for (const [item, className] of Object.entries(properties)) {
-            if (settings && settings.hasOwnProperty(item)) {
-                let className = properties[item];
-                if (settings[item] == true) {
+            if (hasSetting(item)) {
+
+                if (settings[item]) {
                     $('body').addClass(className);
                 } else {
                     $('body').removeClass(className);
                 }
             } 
         };
+
+        function hasSetting(key) {
+            return settings && settings.hasOwnProperty(key);
+        }
     },
 
     toggleActions(isShow) {
@@ -76,5 +80,19 @@ var DomOperator = {
         });
 
         return letters;
+    },
+
+    getFirstOpenLetter() {
+        return $('.letter:not(.guessed)').data('letter');
+    },
+
+    updateFirstOpenLetterOnLabel() {
+        let firstLetter = this.getFirstOpenLetter();
+        try {
+            firstLetter = firstLetter.toUpperCase();
+        } catch (error) {
+            console.log(firstLetter);
+        }
+        $('#asked-letter').text(firstLetter);
     }
 }

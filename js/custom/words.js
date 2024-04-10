@@ -5,22 +5,7 @@ class Words {
     wordsInTitle = [];
     guessedWords = [];
     
-    interjections=  [
-        'ah',
-        'hey', 'huh',
-        'mm', 'mm-mm','mmm',
-        'nah',
-        'oh', 'ooh', 'oh-oh',
-        'uh',
-        'whoo',
-        'yeah',
-        'е-а', 'оу-о-о-о',
-        'oh-i-oh-i-oh-i-oh-i', // Ed Sheeran - Shape of you
-        'i-i-i-i-i-i', 'ah-ah', 'ah-ah-ah', 'whoa-oh', // DNCE - Cake by the Ocean
-        'oh-oh-oh-oh', 'oh-oh-oh-oh-oh-oh', // ABBA - Money
-        'у-у',
-        'ha', 'haha', 'ha-ha-ha-ha-ha', 'hahaha', 'hahahahaha', 'hahahahahaha', 'hahahahahahahahahahahahahahahahaha',
-    ];
+    interjections=  [];
 
     constructor(lyrics, title) {
         this.words = this.getUniqueWords(lyrics);
@@ -38,7 +23,7 @@ class Words {
             let words = line.split(' ');
             words = this.removeInterjections(words);
             
-            for (var i = 0; i < words.length; i++) {
+            for (let i = 0; i < words.length; i++) {
                 words[i] = this.removeSingleQuotesFromWord(words[i]) 
             }
     
@@ -48,15 +33,13 @@ class Words {
         function onlyUnique(value, index, array) {
             return array.indexOf(value) === index;
         }
-    
-        var uniqueWords = allWords.filter(onlyUnique);
-    
-        return uniqueWords;
+
+        return allWords.filter(onlyUnique);
     }
     
     removeSpecChars(line)
     {
-        var pattern = /["«».,!:;()\[\]?—–]/g;
+        const pattern = /["«».,!:;()\[\]?—–]/g;
     
         return line.replace(pattern, '');
     }
@@ -78,17 +61,13 @@ class Words {
             word = word.replace("'", '');
         }
     
-        // if (word.endsWith("'s")) {
-        //     word = word.slice(0, -2);
-        // }
-    
         return word;
     }
 
     isWordIncluded(word, words) {
         word = word.toLowerCase().trim();
 
-        return isWordIncludes = words.includes(word);    
+        return words.includes(word);    
     }
 
     getWordsFromTitle(title) {
@@ -97,5 +76,116 @@ class Words {
 
     addGuessedWord(word) {
         this.guessedWords.push(word);
+    }
+
+    checkWord() {
+        let word = $('#word').val().toLowerCase().trim();
+
+        // TODO ёфицировать
+        word = word.replace('ё', 'е');
+
+        if (gameMode == 'a_to_z') {
+            let firstOpenLetter = DomOperator.getFirstOpenLetter();
+
+            if (!word.includes(firstOpenLetter)) {
+                let message = `"${word}" doesn't contain letter ${firstOpenLetter.toUpperCase()}.`;
+                DomOperator.addMessage(message);
+
+                return;
+            }
+        }
+
+        if (gameMode == 'word_by_word') {
+        
+        }
+
+        let isWordInAttempts = lywoly.attempts.find(obj => obj.word === word);
+
+        if (word == '' || isWordInAttempts != undefined) {
+            if (gameMode != 'just_play') {
+                let message = word == '' ? 'You cannot input empty line' : "This word was already input";
+                DomOperator.addMessage(message);
+                $('#word').val('');
+            }
+
+            return;
+        }
+
+        let guessedLetters = letters.guessedLetters;
+        let isWordIncluded = this.isWordIncluded(word, this.words);
+
+        if (gameMode == 'just_play' && !isWordIncluded) {
+            return;
+        }
+
+        if (isWordIncluded) {
+            letters.addGuessedLetters(word);
+            words.addGuessedWord(word);
+        }
+
+        let points = Score.getPoints(
+            word,
+            words.wordsInTitle.includes(word),
+            isWordIncluded,
+            letters.guessedLetters
+        );
+
+        if (isWordIncluded) {
+            let hint = Hint.getHint(lyrics);
+
+            if (hint) {
+                $('#getHint').attr('disabled', false);
+            } else {
+                $('#getHint').attr('disabled', true);
+            }
+        }
+
+        DomOperator.addAttempt(word, isWordIncluded, points);
+
+        score += points;
+        
+        let allGuessedLetters = [];
+        $('#letters .letter.guessed').each(function(index) {
+            allGuessedLetters.push($(this).data('letter'));
+        });
+
+
+        if (gameMode == 'a_to_z') {
+            DomOperator.updateFirstOpenLetterOnLabel();
+        }
+
+        // $("#max-score").text(letters.getWordWithMaxScore(
+        //     words.words, words.guessedWords
+        // ));
+
+        // You won
+
+        if(allGuessedLetters.sort().join(',') === letters.letters.sort().join(',')){
+            lywoly.status = 'won';
+            // score += 10;
+            DomOperator.addMessage(`You won! Congratulations!`);
+            DomOperator.toggleActions(false);
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+            });
+        }
+
+        $('#score').text(score);
+
+        lywoly.score = score;
+
+        lywoly.saveToLocalStorage(
+            basil,
+            {
+                word: word, 
+                isWordIncluded: isWordIncluded, 
+                points: points, 
+            },
+            isWordIncluded ? letters.guessedLetters : []
+        );
+
+        $('#word').val('');
     }
 } 

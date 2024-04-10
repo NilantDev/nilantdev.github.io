@@ -1,63 +1,85 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/main.css">
-        <meta name="google-site-verification" content="dpBr_XLcSNBLWcHKkBnTEy7D9GQMHsa_8kzDBre2z9I" />
-        <script src="js/vendor/basil.js"></script>
-        <script src="js/custom/domOperator.js"></script>
-        <script src="js/vendor/jQuery.js"></script>
-    </head>
-    <body>
-        <div class="main-wrapper info-wrapper">
-            <h1>Settings</h1>
-            <div>
-                <input type="checkbox" id="sportMode" name="sportMode"/>
-                <label for="sportMode">Sport mode</label>
-            </div>
-            <div>
-                <input type="checkbox" id="darkMode" name="darkMode" />
-                <label for="darkMode">Dark theme</label>
-            </div>
-            <div>
-                <input type="checkbox" id="hideClosed" name="hideClosed" />
-                <label for="hideClosed">Dark theme</label>
-            </div>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main.css">
+    <meta name="google-site-verification" content="dpBr_XLcSNBLWcHKkBnTEy7D9GQMHsa_8kzDBre2z9I" />
+    <script src="js/vendor/basil.js"></script>
+    <script src="js/custom/domOperator.js"></script>
+    <script src="js/vendor/jQuery.js"></script>
+</head>
+
+<body>
+    <div class="main-wrapper info-wrapper">
+        <h1>Settings</h1>
+        <div>
+            <input type="checkbox" id="darkMode" name="darkMode" />
+            <label for="darkMode">Dark theme</label>
         </div>
-        <script>
-            let titles = ['sportMode', 'darkMode'];
+        <div>
+            <fieldset>
+                <legend>Game mode</legend>
+                <input type="radio" id="just_play" name="game_mode" value="just_play">
+                <label for="just_play">Just Play</label><br>
+                <input type="radio" id="sport_mode" name="game_mode" value="sport_mode">
+                <label for="sport_mode">Sport Mode</label><br>
+                <input type="radio" id="a_to_z" name="game_mode" value="a_to_z">
+                <label for="a_to_z">A to Z</label><br>
+                <!-- <input type="radio" id="word_by_word" name="game_mode" value="word_by_word">
+                <label for="word_by_word">Word by Word</label> -->
+            </fieldset>
+        </div>
+    </div>
+    <script>
+        let titles = ['darkMode', 'just_play', 'sport_mode', 'a_to_z', 'word_by_word'];
 
-            let options = {
-                namespace: 'lywoly',
-                storage: 'local'
-            };
+        let options = {
+            namespace: 'lywoly',
+            storage: 'local'
+        };
 
-            let basil = new window.Basil(options);
-            let settings = basil.get('settings');
-            if (!settings) {
-                settings = {};
+        let basil = new window.Basil(options);
+        let settings = basil.get('settings');
+        if (!settings) {
+            settings = {};
+        }
+
+        // Game mode
+        if (settings['game_mode']) {
+            $('#' + settings['game_mode']).prop('checked', true);
+        }
+
+        titles.forEach(title => {
+            let tmpSetting = false;
+            if (settings !== null) {
+                tmpSetting = settings[title];
             }
 
-            titles.forEach(title => {
-                let tmpSetting = false;
-                if (settings !== null) {
-                    tmpSetting = settings[title];
-                }
-    
-                if (tmpSetting) {
-                    $('#' + title).prop('checked', tmpSetting);
-                }
-    
-                $('#' + title).change(function() {
-                    // if (settings.hasOwnProperty(title)) {
-                        settings[title] = $('#' + title).prop('checked');
-                        basil.set('settings', settings);
-                        DomOperator.setModes(settings);
-                    // }
-                });
-            });
+            if (tmpSetting) {
+                $('#' + title).prop('checked', tmpSetting);
+            }
 
-            DomOperator.setModes(settings);
-        </script>
-    </body>
+            $('#' + title).change(function () {
+                let elemTitle = '';
+                let elemValue = '';
+
+                if ($('#' + title).attr('type') == 'radio') {
+                    elemTitle = $('#' + title).prop('name');
+                    elemValue = $('#' + title).prop('id');
+                } else {
+                    elemTitle = title;
+                    elemValue = $('#' + title).prop('checked');
+                }
+
+                settings[elemTitle] = elemValue;
+                basil.set('settings', settings);
+                DomOperator.setModes(settings);
+            });
+        });
+
+        DomOperator.setModes(settings);
+    </script>
+</body>
+
 </html>

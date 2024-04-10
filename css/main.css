@@ -25,16 +25,29 @@ body.dark-mode a {
     color: beige;
 }
 
-body.sport-mode #score-wrapper {
+body.dark-mode #word {
+    background: black;
+    border: solid 1px white;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+body.sport_mode #score-wrapper {
     display: block;
 }
 
-body.sport-mode .attempt-wrapper .points {
+body.a_to_z #asked-letter-wrapper {
+    display: block;
+}
+
+body.sport_mode .attempt-wrapper .points {
     display: inline;
 }
 
 #score-wrapper,
-.attempt-wrapper .points {
+.attempt-wrapper .points,
+#asked-letter-wrapper {
     display: none;
 }
 
@@ -228,8 +241,13 @@ Attempts
     }
 
     .letter-wrapper {
-        width: 65%;
+        width: 90%;
         margin: auto;
+        font-size: 75px;
+
+        & .letter {
+            padding: 10px;
+        }
     }
 
     .input-actions {
@@ -270,7 +288,8 @@ Attempts
         margin-left: 5%;
     }
 
-    input[type="checkbox"] {
+    input[type="checkbox"],
+    input[type="radio"] {
         width: 30px;
         height: 30px;
     }

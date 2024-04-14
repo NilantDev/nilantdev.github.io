@@ -1,6 +1,7 @@
 :root {
     --dark-mode-color: rgb(248, 250, 252);
 }
+
 @font-face {
     font-family: 'icomoon';
     src: url(fonts/icomoon.woff);
@@ -14,7 +15,7 @@ body.dark-mode {
 body.dark-mode .menu #info::before,
 body.dark-mode .menu #settings::before,
 body.dark-mode .menu #faq::before {
-    color: var(--dark-mode-color);  
+    color: var(--dark-mode-color);
 }
 
 body.dark-mode .letter {
@@ -71,7 +72,7 @@ body.dark-mode .message-wrapper {
 }
 
 .menu .left-menu a,
-.menu .right-menu a{
+.menu .right-menu a {
     text-decoration: none;
 }
 
@@ -104,10 +105,12 @@ body.dark-mode .message-wrapper {
 .menu #info::before {
     content: '\e901';
 }
+
 .menu #settings::before {
     content: '\e900';
     /* color: grey; */
 }
+
 .menu #faq::before {
     content: '\e902';
 }
@@ -146,7 +149,21 @@ div {
 }
 
 .actions {
-    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    & #checkWord {
+        margin: 0 auto;
+    }
+
+    & #giveUp {
+        margin-right: auto;
+    }
+
+    & #getHint {
+        margin-left: auto;
+    }
 }
 
 .share-note {
@@ -159,6 +176,10 @@ div {
     margin-left: 23%;
 }
 
+body.just_play .actions #checkWord {
+    display: none;
+
+}
 
 /*
 Attempts
@@ -178,6 +199,7 @@ Attempts
     color: black;
     background-color: rgb(145, 230, 145);
 }
+
 .attempt.failed {
     background-color: rgb(207, 110, 110);
 }

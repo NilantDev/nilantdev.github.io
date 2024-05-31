@@ -355,6 +355,15 @@ function getWeekSongs() {
                 date: '',
                 geniusId: '3035772',
             },
+            {
+                dayOfWeek: '31',
+                artist: 'Мечтать',
+                song: 'Лётчик',
+                cover: 'https://images.genius.com/dea8e584340488b1280715f72f61eab7.1000x1000x1.jpg',
+                youtube: 'http://www.youtube.com/watch?v=59qwN9ik5OY',
+                date: '1996-01-01',
+                geniusId: '6532233',
+            },
         ],
     }
 }

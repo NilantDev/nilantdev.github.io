@@ -271,6 +271,15 @@ function getWeekSongs() {
                 date: '1991-09-24',
                 geniusId: '3226',
             },
+            {
+                dayOfWeek: '31',
+                artist: 'Bon Jovi',
+                song: 'Livin’ On A Prayer',
+                cover: 'https://images.genius.com/6ecac4be30233f4383b95e704b0f7f39.800x800x1.jpg',
+                youtube: 'http://www.youtube.com/watch?v=lDK9QqIzhwk',
+                date: '1986-10-31',
+                geniusId: '65318',
+            },
         ],
     }
 }

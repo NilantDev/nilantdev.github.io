@@ -1,137 +1,15 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <script src="js/custom/domOperator.js"></script>
-        <script src="js/custom/giveup.js"></script>
-        <script src="js/custom/hint.js"></script>
-        <script src="js/custom/letters.js"></script>
-        <script src="js/custom/lywole.js"></script>
-        <script src="js/custom/score.js"></script>
-        <script src="js/custom/share.js"></script>
-        <script src="js/custom/task.js"></script>
-        <script src="js/custom/words.js"></script>
-
-        <script src="js/vendor/basil.js"></script>
-        <script src="js/vendor/jQuery.js"></script>
-
-        <script src="songs/lyrics_ru_en.js"></script>
-        <script src="songs/songs_ru_en.js"></script>
-
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/lang.css">
-
-        <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
-
-        <meta name="google-site-verification" content="dpBr_XLcSNBLWcHKkBnTEy7D9GQMHsa_8kzDBre2z9I" />
-    </head>
-    <body>
-        <span id="max-score"></span>
-        <div class="main-wrapper">
-            <div class="message-wrapper"><span class="message"></span></div>
-            <div class="menu">
-                <div class="left-menu">
-                    <a href="info.html">
-                        <span id="info"></span>
-                    </a>
-                    <a href="setting.html">
-                        <span id="settings"></span>
-                    </a>
-                </div>
-                <div class="title">
-                    <span>Lywole</span>
-                </div>
-                <dev class="right-menu">
-                    <span class="lang selected" data-lang="en">en</span>
-                    <span class="lang" data-lang="ru">ru</span>
-                    <a href="faq.html">
-                        <span id="faq"></span>
-                    </a>
-                </dev>
-            </div>
-            <hr>
-            <div class="info">
-                <img width="200px" id="cover" src="">
-                <br>
-                <div class="title">
-                    <span id="artist"></span>
-                    <a id="link" target="_blank">
-                        <span id="song"></span>
-                    </a>
-                </div>
-            </div>
-            <div id="score-wrapper"><span>Your score: </span><span id="score"></span></div>
-            <div id="asked-letter-wrapper"><span>Input word with letter </span><span id="asked-letter"></span></div>
-            <div class="input-actions">
-                <input id="word">
-                <div class="actions">
-                    <button onclick="GiveUp.giveUp(words, lyrics, basil)" id="giveUp">Give up!</button>
-                    <button onclick="words.checkWord()" id="checkWord">Try the word!</button>
-                    <button onclick="Hint.showHint()" id="getHint" disabled>Get hint!</button>
-                </div>
-            </div>
-            <div class="share" style="display: none;">
-                <button onclick="copyShare()" id="share">Share</button><br>
-                <span class="share-note">Result is copied to clipboard</span>
-            </div>
-            <div id="letters" class="letter-wrapper"></div>
-            <hr>
-            <div id="leftLetters" style="display: none;"></div>
-            <div id="attempts"></div><br>
-            <div id="lyrics"></div><br>
-
-            <div id="foreign-words" style="display: inline-block;">
-                <ul style="text-align: left;">
-                    <li hidden>Приложение для обмена сообщениями</li>
-                </ul>
-            </div>
-        </div>
-        <script>
-            $(document).ready(function(){
-                // $('#word').keypress(function(e){
-                $('#word').keyup(function(e){
-                    $('.message-wrapper').hide();
-                    if (gameMode == 'just_play') {
-                        $('#checkWord').click();
-                    }
-
-                    if (e.keyCode == 13) {
-                        $('#checkWord').click();
-                    }
-                });
-            });
-        </script>
-        <script>
-            $('.lang').on('click', function() {
-                const clsSelected = 'selected';
-                if (!$(this).hasClass(clsSelected)) {
-                    $('.lang').removeClass(clsSelected);
-                    $(this).addClass(clsSelected);
-                    [lyrics, words, letters, lywoly, score, basil, definition] = Task.selectTask($(this).data('lang'));
-                }
-            });
-
-            $('#word').on('swiperight', function() {
-                $('span[data-lang="ru"]').click();
-            });
-
-            let [lyrics, words, letters, lywoly, score, basil, definition] = Task.selectTask('en');
-
-            let settings = basil.get('settings');
-            let gameMode = settings && settings.hasOwnProperty('game_mode') ? settings['game_mode'] : 'just_play';
-            DomOperator.setModes(settings);
-        </script>
-        <script>
-            $('#letters').on('click', '.letter', function(){
-                let symbol = $(this).data('letter');
-                for (const key in definition) {
-                    if (key.includes(symbol)) {
-                        DomOperator.addMessage('Hint: ' + definition[key]);
-
-                        return;
-                    }
-                }
-            })
-        </script>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nilant DEV</title>
+    <meta name="google-site-verification" content="dpBr_XLcSNBLWcHKkBnTEy7D9GQMHsa_8kzDBre2z9I" />
+</head>
+<body>
+    <div>
+        <div><a href="lywole.html">LYWOLE</a> <span>Песни на английском</span></div>
+        <div><a href="teasloboo.html">TeaSloBoo</a> <span>Песни на русском</span></div>
+    </div>
+</body>
 </html>

@@ -18,7 +18,7 @@ function copyShare() {
 
 function getLines() {
     let lines = [];
-    let title = DomOperator.getSelectedLang() == 'en' ? 'LYWOLE' : 'TeaSloBoo';
+    // let title = DomOperator.getSelectedLang() == 'en' ? 'LYWOLE' : 'TeaSloBoo';
     lines.push('————' + title + ' #' + Lywole.getDayOfYear() + '————');
     lines.push($('#artist').text() + ' - ' + $('#song').text());
     let succesLen = $('.attempt.succes').length;

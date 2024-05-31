@@ -1,9 +1,9 @@
 var DomOperator = {
     fillWithTaskData: function(task) {
-        $('#cover').attr('src', task.cover);
-        $('#artist').text( task.artist);
-        $('#song').text( task.song);
-        $('#link').attr('href', task.youtube);
+        $('.task-wrapper #cover').attr('src', task.cover);
+        $('.task-wrapper #artist').text( task.artist);
+        $('.task-wrapper #song').text( task.song);
+        $('.task-wrapper #link').attr('href', task.youtube);
     },
 
     createLetters: function(letters, definitions) {
@@ -35,13 +35,7 @@ var DomOperator = {
         $('#attempts').append('<div class="attempt-wrapper"><span class="attempt ' + classVal + '">' + word + '</span> <span class="points">' + points + '</span></div>');
     },
 
-    setModes(settings) {
-        let properties = {
-            darkMode: 'dark-mode',
-            'game_mode': hasSetting('game_mode') ? settings['game_mode'] : '',
-        };
-
-        // properties.forEach(item => {
+    setModes(properties) {
         for (const [item, className] of Object.entries(properties)) {
             if (hasSetting(item)) {
 
@@ -68,10 +62,6 @@ var DomOperator = {
         }
     },
 
-    getSelectedLang() {
-        return $('.lang.selected').data('lang');
-    },
-
     getUnguessedLetters() {
         let letters = [];
 
@@ -83,7 +73,7 @@ var DomOperator = {
     },
 
     getFirstOpenLetter() {
-        return $('.letter:not(.guessed)').data('letter');
+        return $('.letter-wrapper .letter:not(.guessed):first').data('letter');
     },
 
     updateFirstOpenLetterOnLabel() {

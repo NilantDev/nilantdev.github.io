@@ -7,43 +7,112 @@
     src: url(fonts/icomoon.woff);
 }
 
-body.dark-mode {
-    background-color: #1E1F23;
-    color: var(--dark-mode-color);
+/* Common */
+
+body {
+
+    /* DARK MODE */
+    &.dark-mode {
+        background-color: #1E1F23;
+        color: var(--dark-mode-color);
+
+        .menu {
+
+            #info::before,
+            #settings::before,
+            #faq::before {
+                color: var(--dark-mode-color);
+            }
+
+            .modes {
+                background: #1E1F23;
+                border: 1px solid var(--dark-mode-color);
+            }
+        }
+
+    }
+
+    .letter {
+        border: solid var(--dark-mode-color) 1px;
+    }
+
+    a {
+        color: beige;
+    }
+
+    #word {
+        background: black;
+        border: solid 1px white;
+        color: white;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .message-wrapper {
+        background-color: #1E1F23;
+    }
+
+    /*============= GAME MODES =============*/
+
+    &.just_play {
+        .actions #checkWord {
+            display: none;
+        }
+
+        #lyrics {
+            display: none;
+        }
+    }
+
+    &.sport_mode {
+        #score-wrapper {
+            display: block;
+        }
+
+        .attempt-wrapper .points {
+            display: inline;
+        }
+
+        #lyrics {
+            display: none;
+        }
+    }
+
+    &.a_to_z {
+        #asked-letter-wrapper {
+            display: block;
+        }
+
+        #lyrics {
+            display: none;
+        }
+    }
+
+    &.word_by_word {
+        #attempts {
+            display: none;
+        }
+    }
 }
 
-body.dark-mode .menu #info::before,
-body.dark-mode .menu #settings::before,
-body.dark-mode .menu #faq::before {
-    color: var(--dark-mode-color);
+
+.hidden {
+    display: none !important;
 }
 
-body.dark-mode .letter {
-    border: solid var(--dark-mode-color) 1px;
+.info-wrapper {
+
+    .example-wrapper {
+        border: 1px solid;
+        text-align: center;
+    }
 }
 
-body.dark-mode a {
-    color: beige;
-}
 
-body.dark-mode #word {
-    background: black;
-    border: solid 1px white;
-    color: white;
-    padding: 15px;
-    text-align: center;
-}
-
-body.sport_mode #score-wrapper {
-    display: block;
-}
-
-body.a_to_z #asked-letter-wrapper {
-    display: block;
-}
-
-body.sport_mode .attempt-wrapper .points {
-    display: inline;
+.info {
+    #cover {
+        width: 200px;
+    }
 }
 
 #score-wrapper,
@@ -52,9 +121,6 @@ body.sport_mode .attempt-wrapper .points {
     display: none;
 }
 
-body.dark-mode .message-wrapper {
-    background-color: #1E1F23;
-}
 
 .message-wrapper {
     background: white;
@@ -65,54 +131,87 @@ body.dark-mode .message-wrapper {
     top: 0;
 }
 
-.menu .left-menu,
-.menu .title,
-.menu .right-menu {
-    width: 33%;
-}
-
-.menu .left-menu a,
-.menu .right-menu a {
-    text-decoration: none;
-}
-
-.menu .left-menu {
-    padding-left: 20px;
-    text-align: left;
-}
-
-.menu .right-menu {
-    padding-right: 20px;
-    text-align: right;
-}
-
 .menu {
-    font-family: 'icomoon';
     display: flex;
-}
+    font-family: 'icomoon';
+    margin: auto;
+    width: 30%;
 
-.menu,
-.menu div {
-    margin: 0;
-}
+    .left-menu,
+    .title,
+    .right-menu {
+        width: 33%;
+    }
 
-.menu #info::before,
-.menu #settings::before,
-.menu #faq::before {
-    color: black;
-}
+    .title {
+        text-decoration: underline;
 
-.menu #info::before {
-    content: '\e901';
-}
+        span {
+            margin: auto;
+        }
+    }
 
-.menu #settings::before {
-    content: '\e900';
-    /* color: grey; */
-}
+    .left-menu {
+        padding-left: 20px;
+        text-align: left;
+    }
 
-.menu #faq::before {
-    content: '\e902';
+    .right-menu {
+        padding-right: 20px;
+        text-align: right;
+    }
+
+    div {
+        margin: 0;
+    }
+
+    #info::before,
+    #settings::before,
+    #faq::before {
+        color: black;
+    }
+
+    #info::before {
+        content: '\e901';
+    }
+
+    #settings::before {
+        content: '\e900';
+    }
+
+    #faq::before {
+        content: '\e902';
+    }
+
+    #theme-selector::before {
+        content: '\e9d5';
+    }
+
+
+    #replay {
+        margin-left: 10px;
+    }
+
+    #replay::before {
+        content: '\ea2e';
+    }
+
+    span {
+        cursor: pointer;
+    }
+
+    .modes-wrapper {
+        .modes {
+            background: var(--dark-mode-color);
+            border: 1px solid #1E1F23;
+            display: grid;
+            left: 32px;
+            position: absolute;
+            top: 0;
+            width: max-content;
+            z-index: 100;
+        }
+    }
 }
 
 .letter {
@@ -153,32 +252,37 @@ div {
     justify-content: space-between;
     margin-top: 30px;
 
-    & #checkWord {
+    #checkWord {
         margin: 0 auto;
     }
 
-    & #giveUp {
+    #giveUp {
         margin-right: auto;
     }
 
-    & #getHint {
+    #getHint {
         margin-left: auto;
     }
 }
 
+.share,
 .share-note {
     display: none;
 }
 
-
 #leftLetters {
+    display: none;
     text-align: left;
     margin-left: 23%;
 }
 
-body.just_play .actions #checkWord {
-    display: none;
 
+
+.slick-slide {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 /*
@@ -242,6 +346,12 @@ Attempts
     .mobile {
         display: none;
     }
+
+    .info {
+        #cover {
+            margin: auto;
+        }
+    }
 }
 
 /* 
@@ -255,6 +365,19 @@ Attempts
 
     .menu {
         margin-top: 30px;
+        width: 100%;
+        font-size: 50px;
+
+        #theme-selector {
+            margin-right: 15px;
+        }
+
+        .modes-wrapper {
+            .modes {
+                width: 345px;
+                left: 70px;
+            }
+        }
     }
 
     .main-wrapper {
@@ -267,7 +390,7 @@ Attempts
         margin: auto;
         font-size: 65px;
 
-        & .letter {
+        .letter {
             padding: 10px;
         }
     }

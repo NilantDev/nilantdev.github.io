@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="js/vendor/jQuery.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.8.1/slick/slick.css" />
+    <script type="text/javascript" src="js/vendor/slick-1.8.1/slick/slick.min.js"></script>
+
+    <script src="js/vendor/basil.js"></script>
+
+    <script src="js/custom/domOperator.js"></script>
+    <script src="js/custom/giveup.js"></script>
+    <script src="js/custom/hint.js"></script>
+    <script src="js/custom/letters.js"></script>
+    <script src="js/custom/lywole.js"></script>
+    <script src="js/custom/score.js"></script>
+    <script src="js/custom/share.js"></script>
+
+    <script src="js/custom/task.js"></script>
+    <script src="js/custom/words.js"></script>
+    <script src="js/custom/faq.js"></script>
+    <script src="js/custom/settings.js"></script>
+    <script src="js/custom/misc.js"></script>
+
+    <script src="songs/lyrics_teasloboo.js"></script>
+    <script src="songs/songs_teasloboo.js"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/faq.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+
+    <meta name="google-site-verification" content="dpBr_XLcSNBLWcHKkBnTEy7D9GQMHsa_8kzDBre2z9I" />
+</head>
+
+<body class="dark-mode">
+    <span id="max-score"></span>
+    <div class="menu">
+        <div class="left-menu" style="display: flex;">
+            <span id="theme-selector"></span>
+            <div class="modes-wrapper" style="position: relative;">
+                <span id="replay"></span>
+                <div class="modes hidden">
+                    <span class="mode" data-mode="just_play">Просто играй</span>
+                    <span class="mode" data-mode="sport_mode">Спортивный режим</span>
+                    <span class="mode" data-mode="a_to_z">от А до Я</span>
+                    <span class="mode" data-mode="word_by_word">Слово за слово</span>
+                </div>
+            </div>
+        </div>
+        <script>
+            let lang = 'TeaSloBoo';
+        </script>
+        <div class="title">
+            <span><script>document.write(lang);</script></span>
+        </div>
+        <div class="right-menu">
+            <span id="info"></span>
+            <span id="faq"></span>
+        </div>
+    </div>
+    <hr>
+
+    <div class="main-wrapper">
+
+        <div class="task-wrapper">
+            <div class="message-wrapper"><span class="message"></span></div>
+            <div class="info">
+                <img width="200px" id="cover" src="">
+                <br>
+                <div class="title">
+                    <span id="artist"></span>
+                    <a id="link" target="_blank">
+                        <span id="song"></span>
+                    </a>
+                </div>
+            </div>
+            <div id="score-wrapper"><span>Счёт: </span><span id="score"></span></div>
+            <div id="asked-letter-wrapper"><span>Введите слово с буквой </span><span id="asked-letter"></span></div>
+            <div class="input-actions">
+                <input id="word" placeholder="Нажмите сюда для начала">
+                <div class="actions">
+                    <button onclick="GiveUp.giveUp(words, lyrics, basil)" id="giveUp">Сдаться</button>
+                    <button onclick="words.checkWord()" id="checkWord">Ввести слово</button>
+                    <button onclick="Hint.showHint()" id="getHint" disabled>Подсказка</button>
+                </div>
+            </div>
+            <div class="share">
+                <button onclick="copyShare()" id="share">Поделиться</button><br>
+                <span class="share-note">Результат скопирован в буфер обмена</span>
+            </div>
+            <div id="letters" class="letter-wrapper"></div>
+            <hr>
+            <div id="leftLetters"></div>
+            <div id="attempts"></div><br>
+            <div id="lyrics"></div><br>
+        </div>
+        <div class="info-wrapper">
+            <h1>How to play</h1>
+            <span>Cover all letters from song.</span><br>
+            <span>Each guess must be a valid word from lyrics.</span><br>
+            <span>After each guess, the letters will become closed (grey).</span><br>
+            <hr>
+            <h1>Example</h1>
+            <span>The task is song "Yesterday" by The Beatles</span>
+            <div class="example-wrapper">
+                <div class="info">
+                    <img id="cover"
+                        src="https://upload.wikimedia.org/wikipedia/en/e/e7/Help%21_%28The_Beatles_album_-_cover_art%29.jpg">
+                    <span class="info-hint desktop">Album cover</span>
+                    <br>
+                    <div class="title">
+                        <span id="artist">The Beatles</span>
+                        <a id="link" target="_blank">
+                            <span id="song">Yesterday</span>
+                        </a>
+                        <span class="info-hint desktop">The artist and song title</span>
+                    </div>
+                    <span class="info-hint mobile">Album, cover, the artist and song title</span>
+                </div>
+                <div id="score-wrapper"><span>Your score: </span><span>6</span></div>
+                <div class="input-actions">
+                    <input><span class="info-hint">Input words here</span>
+                    <div class="actions">
+                        <button>Try the word!</button>
+                        <button>Give up!</button>
+                        <button disabled>Get hint!</button>
+                    </div>
+                </div>
+                <div class="example-letter-wrapper">
+                    <span class="letter">a</span><span class="letter">b</span><span class="letter">c</span>
+                    <span class="letter">d</span><span class="letter">e</span>
+                    <span class="letter">f</span><span class="letter">g</span>
+                    <span class="letter">h</span><span class="letter">i</span>
+                    <span class="letter">k</span><span class="letter">l</span>
+                    <span class="letter">m</span><span class="letter">n</span>
+                    <span class="letter">o</span><span class="letter">p</span>
+                    <span class="letter">r</span><span class="letter">s</span>
+                    <span class="letter">t</span><span class="letter">u</span>
+                    <span class="letter">v</span><span class="letter">w</span>
+                    <span class="letter">y</span><span class="info-hint">Unique letters
+                        from the song.</span>
+                </div>
+            </div>
+            <span>
+                You input word 'yesterday' and then the letters A, D, E, R, S, T, Y became grey. Also you get some
+                points for every correct word.
+            </span>
+            <div class="example-letter-wrapper">
+                <span class="letter guessed">a</span><span class="letter">b</span><span class="letter">c</span>
+                <span class="letter guessed">d</span><span class="letter guessed">e</span><span class="letter">f</span>
+                <span class="letter">g</span><span class="letter">h</span><span class="letter">i</span><span
+                    class="letter">k</span>
+                <span class="letter">l</span><span class="letter">m</span><span class="letter">n</span><span
+                    class="letter">o</span>
+                <span class="letter">p</span><span class="letter guessed">r</span><span class="letter guessed">s</span>
+                <span class="letter guessed">t</span><span class="letter">u</span><span class="letter">v</span>
+                <span class="letter">w</span><span class="letter guessed">y</span>
+            </div>
+            <span>
+                The game will end after you close all letters.
+            </span>
+        </div>
+
+        <div class="faq-wrapper">
+            <h1>FAQ</h1>
+
+            <div>
+                <button type="button" class="collapsible">When is a new game available?</button>
+                <div class="content">
+                    <p>A new game is available every day at 0:00 am, local time of your device!</p>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" class="collapsible">Where can I find previous Lywoly?</button>
+                <div class="content">
+                    <p>Nowhere, yet.</p>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" class="collapsible">How to play if I don't know the song?</button>
+                <div class="content">
+                    <p>As a challenge, you can listen to the song and play right after it.</p>
+                    <p>The title on the main page is a link to the song.</p>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" class="collapsible">But I don't want to hear a new songs.</button>
+                <div class="content">
+                    <img src="img/motivation.jpg" alt="motivation"
+                        title="Rick and Morty - S03E06 Rest and Ricklaxation">
+                    <p>Morty: We should listen to one random song a day, you know? We'd end up hearing more songs we
+                        didn't
+                        like, but we'd discover a lot more that we did. </p>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" class="collapsible">How score are calculated?</button>
+                <div class="content">
+                    <p>If the word is in the title and in the lyrics, then you get 1 point for every unique letter (UL).
+                    </p>
+                    <p>If the word is not in the title but is in the lyrics, then the points are calculated as a
+                        progression.
+                        For the first UL, you get 1 point; for the second, 2 points; for the third, 3 points, etc.
+                        Then all points are summed up. For example, for the word 'yesterday,' you'll get 28 points.
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="2">YESTERDAY - 7 ULs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Y</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>E</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>S</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>T</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>R</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>D</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>A</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>SUM:</td>
+                                <td>28</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </p>
+                    <p>To earn points, the word should also contain open letters - the letters that weren't in the
+                        previously guessed words.</p>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" class="collapsible">What is sport mode?</button>
+                <div class="content">
+                    <p>TBA</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let [lyrics, words, letters, lywoly, score, basil, definition] = Task.selectTask(lang);
+
+        let gameMode = lywoly.gameMode;
+        $('body').addClass(gameMode);
+
+        let darkTheme = lywoly.darkTheme;
+        $('body').toggleClass('dark-mode', darkTheme);
+
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+@font-face {
+    font-family: 'Typewriter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('EvilTypewriter.ttf');
+}
+
+@import url(stamp.css);
+
+body {
+    /* width: 30%; */
+    margin: auto;
+    /* border: 1px solid; */
+    font-family: monospace;
+    background-color: #f5f5dc;
+}
+
+.page-wrapper {
+    /* width: 480px; */
+    /* height: 100vw; */
+    border: 1px solid black;
+
+    width: 100%; 
+    max-width: 480px;
+    position: relative;
+    margin: auto;
+}
+
+.card {
+    background:
+        -webkit-linear-gradient(-90deg, hsl(40, 50%, 95%) 0, hsl(40, 50%, 95%) 104px, hsl(200, 0%, 70%) 106px),
+        -webkit-linear-gradient(-90deg, transparent 0, transparent 141px, hsl(200, 0%, 70%) 142px),
+        -webkit-linear-gradient(-90deg, transparent 0, transparent 35px, hsl(200, 0%, 70%) 36px),
+        -webkit-linear-gradient(0deg, transparent 0, transparent 64px, hsl(200, 0%, 70%) 65px),
+        hsl(40, 50%, 95%);
+    background-repeat:
+        no-repeat,
+        no-repeat,
+        repeat,
+        no-repeat;
+    background-size:
+        100% 106px,
+        100% 142px,
+        100% 36px,
+        65px 100%;
+    border-radius: 3px;
+    box-shadow: 0 0 0.2em hsla(0, 0%, 0%, 0.5);
+    height: 395px;
+    margin-left: -5px;
+    position: absolute;
+    width: 290px;
+    -webkit-animation: card-stuff 1s 1;
+    -webkit-backface-visibility: hidden;
+    top: 1px;
+
+    transition-duration: 1s;
+}
+
+.card:not(.active) {
+    margin-top: 20px;
+}
+
+.quote {
+    &.blocked {
+        filter: blur(2px);
+    }
+
+    & .text {
+        line-height: 27px;
+        margin: 0 17px 0 19px;
+        word-wrap: break-word;
+        height: 235px;
+    }
+}
+
+#reader-card {
+    margin: auto;
+    position: relative;
+    height: fit-content;
+
+    & .info-wrapper {
+        margin: 15px 0 15px;
+
+        .firstname,
+        .lastname {
+            margin-left: 20px;
+        }
+
+        &>div {
+            display: flex;
+        }
+
+        & input {
+            background: hsl(40, 50%, 95%);
+            border: none;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
+
+.info-wrapper {
+    display: grid;
+    margin: 15px 0 15px 20px;
+
+    & div {
+        /* line-height: 0; */
+
+        &.author,
+        &.title {
+            & .value {
+                /* filter: blur(4px); */
+            }
+        }
+
+        & span {
+            display: inline-block;
+
+            &.attribute {
+                width: 30%;
+
+                &::after {
+                    content: ":";
+                }
+            }
+        }
+    }
+}
+
+.title-wrapper {
+    align-items: center;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    /* margin-top: 25px; */
+
+    & .card-title {
+        text-align: center;
+    }
+}
+
+.class-table {
+    & .class-title {
+        height: 32px;
+        width: 58px;
+        /* border: 1px solid; */
+    }
+
+    & .class-value {
+        height: 32px;
+        width: 220px;
+        /* border: 1px solid; */
+    }
+}
+
+.colontitile-wrapper {
+    span {
+        position: absolute;
+        top: 20px;
+    }
+
+    & .right {
+        float: right;
+        right: 0;
+    }
+
+    & .leftt {
+        float: leftt;
+    }
+
+    & span {
+        text-orientation: mixed;
+        writing-mode: vertical-rl;
+        margin-top: 5px;
+    }
+}
+
+#similars_films {
+    h3 {
+        margin: 0 17px;
+    }
+
+    ul {
+        margin: 0 17px 0 0;
+    }
+}
+
+.search-wrapper {
+    margin-left: 15px;
+
+    input {
+        width: 345px;
+    }
+}
+
+.attempt-wrapper {
+    position: relative;
+    top: 450px;
+
+    .attempt-list {
+        position: inherit;
+        margin: 0 15px;
+
+        background: hsl(40, 50%, 95%);
+    }
+}
+
+
+#myUL {
+    height: 200px;
+    /* Set the desired height for the ul */
+    overflow: hidden;
+    /* Hide the overflowing content */
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+    width: 345px;
+    height: 304px;
+}
+
+#myUL li {
+    /* You can set styles for the li elements here */
+    /* For example: */
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+ol li.strike {
+    text-decoration: line-through;
+}
+
+/* Optionally, you can add styles for the last visible li element */
+#myUL li:last-child {
+    border-bottom: none;
+    /* Remove border from the last visible li */
+}
+
+
+.header-link {
+    margin: 7px;
+}
+
+header {
+    background: #d9cda6;
+    display: flex;
+    justify-content: space-around;
+}
+

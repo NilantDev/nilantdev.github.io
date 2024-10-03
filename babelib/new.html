@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вавиленская библиотеки</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/task/book.js"></script>
+    <script src="js/task/list.js"></script>
+    <script src="js/task/cardData.js"></script>
+    <link rel="stylesheet" href="css/card.css">
+    <script src="js/custom/localStorage.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="page-wrapper quotes">
+            <header>
+                <a class="header-link" href="formular.html">Формуляр</a>
+                <a class="header-link" href="new.html">Играть</a>
+                <a class="header-link" href="info.html">Правила</a>
+            </header>
+            <div v-for="(data, index) in cards" class="card quote" :id="data.code"
+                :class="{active : data.zIndex == 10, blocked: data.blocked}"
+                :style="{'margin-left': getCardMarginLeft(index), 'z-index': data.zIndex}" @click="selectCard(index)">
+                <div class="info-wrapper">
+                    <div v-for="(item, code) in headerData" class="item.code"><span class="attribute"
+                            v-text="item.label"></span><span class="value" v-text="task[code]"
+                            v-show="item.canShow"></span></div>
+                </div>
+                <div class="title-wrapper">
+                    <h2 class="card-title" v-text="data.title"></h2>
+                </div>
+
+                <p v-if="isQuote(data.code)" class="text" v-html="task[data.code]"></p>
+
+                <div v-if="data.code == 'classifier'">
+                    <table class="class-table">
+                        <tr v-for="item in classifierData" :id="item.code">
+                            <td class="class-title" v-text="item.label"></td>
+                            <td class="class-value" v-text="task['classificatory'][item.code]"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div v-if="data.code == 'similars_films'">
+                    <h3>Похожие произведения:</h3>
+                    <ul id="similars">
+                        <li v-for="similar in task.similars" v-text="similar"></li>
+                    </ul>
+                    <h3>Экранизации:</h3>
+                    <ul id="films">
+                        <li v-for="film in task.films" v-text="film"></li>
+                    </ul>
+                </div>
+
+                <span class="stamp result" :class="stampClass" v-if="data.showStamp" v-text="stampText"></span>
+
+                <div class="sup" v-if="data.sup"><sup><span class="alt-card-label" v-text="data.sup"></span></sup></div>
+                <div class="colontitile-wrapper"><span class="left" v-text="data.colontitle"></span><span class="right"
+                        v-text="data.colontitle"></span></div>
+            </div>
+            <!-- ///////////////////////////////////// -->
+            <div class="attempt-wrapper" v-show="canInput">
+                <div class="attempt-list">
+                    <ol>
+                        <li v-for="attempt in attempts" v-text="attempt"></li>
+                    </ol>
+                </div>
+                <div class='search-wrapper'>
+                    <input type="text" id="myInput" v-model="searchLine" placeholder="Выберите книгу из списка"
+                        data-book-id=""><button type="button" @click="checkBook()">Попробовать</button>
+                    <ul id="myUL">
+                        <li v-for="data in list" :value="data.id" v-show="showSearchOption(data)"
+                            v-text="getSearchOptionLabel(data)" @click="fillSearchInput(data)"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- //////////////////////////////// -->
+
+    </div>
+    <script>
+        const { createApp } = Vue;
+        const STATUS_PLAYING = 'playing';
+        const STATUS_WON = 'won';
+        const STATUS_FAILED = 'failed';
+        createApp({
+            data() {
+                return {
+                    task: getBookData()['6'],
+                    list: getBookList(),
+                    cards: getCardData(),
+                    headerData: {
+                        'isbn': { 'label': 'ISBN', canShow: true },
+                        'author': { 'label': 'Автор', canShow: false },
+                        'title': { 'label': 'Название', canShow: false },
+                        'year': { 'label': 'Год', canShow: false },
+                        'translator': { 'label': 'Переводчик', canShow: false },
+                    },
+                    classifierData: [
+                        { 'code': 'genre', 'label': 'Жанры / поджанры:' },
+                        { 'code': 'general', 'label': 'Общие хар-ки:' },
+                        { 'code': 'place', 'label': 'Место действия:' },
+                        { 'code': 'time', 'label': 'Время действия:' },
+                        { 'code': 'plot', 'label': 'Сюжетные ходы:' },
+                        { 'code': 'line', 'label': 'Линей ность:' },
+                        { 'code': 'age', 'label': 'Возраст читателя:' },
+                    ],
+                    attempts: ['-', '-', '-', '-', '-', '-',],
+                    searchLine: '',
+                    attemptId: 0,
+                    canInput: true,
+                    stampText: '',
+                    stampClass: '',
+                    status: STATUS_PLAYING
+                }
+            },
+            mounted() {
+                if ([STATUS_FAILED, STATUS_WON].includes(getValueFromLocalStorage('status'))) {
+                    this.unblockAllCards();
+                    this.canInput = false;
+                } else {
+                    this.unblockAlreadyOpenCards();
+                }
+            },
+
+            computed: {
+                isbn() {
+                    return this.task.id;
+                }
+            },
+            methods: {
+                addAttemptToList() {
+                    for (const [index, element] of this.attempts.entries()) {
+                        if (element == '-') {
+                            this.attempts[index] = this.searchLine;
+                            break;
+                        };
+                    }
+                },
+                addStamp(isWon, activeCardId = null) {
+                    this.stampText = isWon ? 'ДОБРО' : 'Отказать';
+                    this.stampClass = isWon ? 'won' : 'failed';
+                    if (!activeCardId) {
+                        activeCardId = this.getCardIndex('zIndex', 10);
+                    }
+                    this.cards[activeCardId]['showStamp'] = true;
+                },
+                getCardMarginLeft(index) {
+                    const value = 21 * index;
+                    return value + 'px';
+                },
+                isQuote(code) {
+                    return !['classifier', 'similars_films'].includes(code);
+                },
+                selectCard(i) {
+                    let currentCard = this.cards[i];
+
+                    if (currentCard.alternative) {
+                        currentCard.blocked = false;
+                        this.setAlternativeCards(false);
+                        let secondCardCode = currentCard.code == 'line_last' ? 'lin_first' : 'line_last';
+                        const secondCardIndex = this.getCardIndex('code', secondCardCode);
+                        if (this.cards[secondCardIndex]) {
+                            const quote6Index = this.getCardIndex('code', 'quote_6');
+                            this.cards[quote6Index].sup = this.cards[quote6Index].sup + ' ' + this.cards[secondCardIndex].title;
+                        }
+                    }
+
+                    if (currentCard.blocked) {
+                        return false;
+                    }
+
+                    // getIndex of max zIndex
+                    // const maxOldIndex = this.cards.findIndex(element => element.zIndex === 10);
+                    // getIndex of max zIndex
+
+                    currentCard.zIndex = 10;
+                    let zIndex = 9;
+                    for (let index = i + 1; index <= 9; index++) {
+                        this.cards[index].zIndex = zIndex;
+                        zIndex--;
+                    }
+
+                    zIndex = 9;
+                    for (let index = i - 1; index >= 0; index--) {
+                        this.cards[index].zIndex = zIndex;
+                        zIndex--;
+                    }
+                },
+                showSearchOption(data) {
+                    const txtValue = this.getSearchOptionLabel(data);
+
+                    return this.searchLine !== '' && txtValue.toLowerCase().indexOf(this.searchLine.toLowerCase()) > -1;
+                },
+                getSearchOptionLabel(data) {
+                    return data.author + ' - ' + data.title;
+                },
+                fillSearchInput(data) {
+                    this.searchLine = this.getSearchOptionLabel(data);
+                    this.attemptId = data.id;
+                },
+
+                checkBook() {
+                    if (this.attempts.includes(this.searchLine)) {
+                        return;
+                    }
+
+                    if (this.attemptId == this.task.id) {
+                        this.unblockAllCards();
+                        this.addAttemptToList();
+                        this.canInput = false;
+                        this.showAnswer();
+                        this.addStamp(true);
+                        this.status = STATUS_WON;
+                        saveInLocalStorage('status', this.status);
+                    } else {
+                        if (this.attemptId == 0) {
+                            return false;
+                        }
+                        this.addAttemptToList();
+                        if (this.attempts[5] != '-') {
+                            this.showAnswer();
+                            this.canInput = false;
+                        }
+
+                        let nextCardIndex = 0;
+                        for (const [index, element] of this.cards.entries()) {
+                            if (element.blocked == true) {
+                                element.blocked = false;
+
+                                nextCardIndex = index;
+                                break;
+                            };
+                        }
+
+                        this.selectCard(nextCardIndex);
+                        this.searchLine = '';
+                    }
+
+                    saveInLocalStorage('attempts', this.attempts);
+                },
+                setAlternativeCards(isAlternative) {
+                    ['line_first', 'line_last'].forEach(value => {
+                        const altCardIndex = this.getCardIndex('code', value);
+                        this.cards[altCardIndex].alternative = isAlternative;
+                    })
+                },
+                getCardIndex(key, value) {
+                    return this.cards.findIndex(obj => obj[key] === value);
+                },
+                unblockAllCards() {
+                    for (const [index, element] of this.cards.entries()) {
+                        element.blocked = false;
+                    }
+                },
+                unblockLastCards() {
+                    const lastCardIndex = this.getCardIndex('blocked', true);
+                    if (lastCardIndex > 0) {
+                        this.cards[lastCardIndex].blocked = false;
+                    }
+                },
+                unblockAlreadyOpenCards() {
+                    if (getValueFromLocalStorage('attempts')) {
+                        this.attempts = getValueFromLocalStorage('attempts');
+
+                        for (const [index, element] of this.attempts.entries()) {
+                            if (element != '-') {
+                                this.cards[index + 1].blocked = false;
+                                this.selectCard(index + 1);
+                            }
+                        }
+                    }
+                },
+
+                showAnswer() {
+                    this.headerData.author.canShow = true;
+                    this.headerData.title.canShow = true;
+                    this.showAdditionalHeaderInfo();
+                },
+                showAdditionalHeaderInfo() {
+                    this.headerData.year.canShow = true;
+                    this.headerData.translator.canShow = true;
+                }
+            },
+            watch: {
+                // 0 quote_1
+                'cards.1.blocked'(newValue, oldValue) {
+                    this.showAdditionalHeaderInfo()
+                },
+
+                // 2 quote_3
+                'cards.2.blocked'(newValue, oldValue) {
+                    const addCardIndex = this.getCardIndex('code', this.cards[2].additional_card);
+                    this.cards[addCardIndex].blocked = false;
+                },
+                // 3 quote_4
+                'cards.3.blocked'(newValue, oldValue) {
+                    const addCardIndex = this.getCardIndex('code', this.cards[3].additional_card);
+                    this.cards[addCardIndex].blocked = false;
+                },
+                // 4 quote_5
+
+                'cards.4.blocked'(newValue, oldValue) {
+                    this.setAlternativeCards(true);
+                },
+                // 5 quote_6
+                'cards.5.blocked'(newValue, oldValue) {
+                    this.unblockLastCards();
+                },
+
+                'status'(newValue, oldValue) {
+                    if (newValue == STATUS_WON) {
+                        let achieves = getValueFromLocalStorage('achieves');
+                        const genreCode = this.task.classificatory.genre_code;
+                        console.log(genreCode);
+                        if (achieves[genreCode]) {
+                            achieves[genreCode]++;
+                        } else {
+                            achieves = {};
+                            achieves[genreCode] = 1;
+                        }
+
+                        saveInLocalStorage('achieves', achieves);
+                    }
+                }
+            },
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

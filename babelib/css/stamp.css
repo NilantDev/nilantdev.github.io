@@ -1,0 +1,79 @@
+#reader-card {
+    & .info-wrapper {
+        .stamps {
+            margin-top: 16px;
+
+            > div {
+                height: 36px;
+                display: flex;
+                align-items: center;
+
+                .date-stamp {
+                    margin: 0 2px;
+                    padding: 0;
+                    font-weight: 900;
+                    font-family: 'Typewriter';
+                }
+            }
+        }
+    }
+}
+
+.stamp {
+    height: 50px;
+    transform: rotate(12deg);
+    color: #555;
+    font-weight: 700;
+    border: 0.25rem solid #555;
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    font-family: 'Courier';
+    -webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+    /* -webkit-mask-image:  url('img/grunge.png'); */
+    -webkit-mask-size: 944px 604px;
+    mix-blend-mode: multiply;
+}
+
+
+
+.stamp.result {
+    bottom: 58px;
+    max-width: 230px;
+    position: absolute;
+    right: 10px;
+    font-size: 3rem;
+
+    &.won {
+        color: green;
+        border-color: green;
+    }
+
+    &.failed {
+        color: red;
+    }
+}
+
+
+.stamps {
+    display: grid !important;
+    /* height: 270px; */
+    /* margin-left: 45px; */
+
+    height: fit-content; 
+    min-height: 270px;
+
+    .stamp {
+        margin: auto;
+        font-size: 16px;
+        height: fit-content;
+        width: fit-content;
+        text-align: center;
+    }
+}
+
+.date-stamp {
+    border: none;
+    transform: rotate(0deg)
+}

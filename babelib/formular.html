@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вавиленская библиотеки</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/custom/localStorage.js"></script>
+    <link rel="stylesheet" href="css/card.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="page-wrapper formular">
+            <header>
+                <a class="header-link" href="formular.html">Формуляр</a>
+                <a class="header-link" href="new.html">Играть</a>
+                <a class="header-link" href="info.html">Правила</a>
+            </header>
+            <div id="reader-card" class="card reader active">
+                <div class="title-wrapper">
+                    <h2 class="card-title">Формуляр</h2>
+                </div>
+                <div class="text">
+                    <div class="info-wrapper">
+                        <div class="firstname">
+                            <span class="attribute" @click="focusInput('first')">Имя</span>
+                            <input class="name first" ref="firstInput" v-model="firstName"
+                                @input="saveToLocalStorage('firstName', firstName)" />
+                        </div>
+                        <div class="lastname">
+                            <span class="attribute" @click="focusInput('last')">Фамилия</span>
+                            <input class="name last" ref="lastInput" v-model="lastName"
+                                @input="saveToLocalStorage('lastName', lastName)" />
+                        </div>
+                        <div class="stamps">
+                            <div v-for="(stamp, code) in stamps" v-show="showStamp(code)">
+                                <span class="date-stamp stamp" v-text="stamp.date"></span>
+                                <span class="stamp" v-text="stamp.title"
+                                    :style="{'color': stamp.color, 'transform': stamp.transform, 'border-color': stamp.color}"></span>
+                            </div>
+                        </div>
+                        <div class="sup">*Нажмите на Имя/Фамилия и начните ввод</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    firstName: '',
+                    lastName: '',
+                    stamps: {
+                        'loyal1': { title: 'постояный читатель', transform: 'rotate(3deg)', date: '01.12.45' },
+                        'loyal3': { title: 'квартал', transform: 'rotate(2deg)', date: '01.12.45' },
+                        'loyal6': { title: 'вместе полгода', transform: 'rotate(-2deg)', date: '01.12.45' },
+                        'loyal12': { title: 'годовщина', transform: 'rotate(1deg)', date: '01.12.45' },
+                        'scifi': { title: 'фантастика!', color: 'blue', transform: 'rotate(2deg)', date: '01.12.45' },
+                        'detective': { title: 'нюх как у собаки', transform: 'rotate(-3deg)', date: '01.12.45' },
+                        'horror': { title: 'мастер ужасов', color: 'black', transform: 'rotate(-3deg)', date: '01.12.45' },
+                        'distop': { title: 'антиутопляемый', transform: 'rotate(0deg)', color: 'orange', date: '01.12.45' },
+                        // 'classic': { title: 'знaток классики', transform: 'rotate(-1deg)', date: '01.12.45' },
+                        // 'fantasy': { title: 'эльф 80-го уровня', transform: 'rotate(0deg)', date: '01.12.45' },
+                        // 'child': { title: 'чайлд король', transform: 'rotate(0deg)', date: '01.12.45' },
+                    }
+                };
+            },
+            mounted() {
+                this.firstName = getValueFromLocalStorage('firstName') || '';
+                this.lastName = getValueFromLocalStorage('lastName') || '';
+            },
+
+            methods: {
+                focusInput(type) {
+                    if (type === 'first') {
+                        this.$refs.firstInput.focus();
+                    } else if (type === 'last') {
+                        this.$refs.lastInput.focus();
+                    }
+                },
+                saveToLocalStorage(key, value) {
+                    saveInLocalStorage(key, value);
+                },
+                showStamp(code) {
+                    return true;
+                    const achieves = getValueFromLocalStorage('achieves');
+
+                    return achieves[code] && achieves[code] >= 2;
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

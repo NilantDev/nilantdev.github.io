@@ -194,6 +194,7 @@ body {
 .attempt-wrapper {
     position: relative;
     top: 450px;
+    width: var(--max-width);
 
     .attempt-list {
         position: inherit;
@@ -209,6 +210,7 @@ body {
     /* Set the desired height for the ul */
     overflow: hidden;
     /* Hide the overflowing content */
+    width: 448px;
 
     list-style-type: none;
     margin: 0;
@@ -233,6 +235,14 @@ ol li.strike {
 #myUL li:last-child {
     border-bottom: none;
     /* Remove border from the last visible li */
+}
+
+.search-wrapper {
+    line-height: 24px;
+
+    input, button {
+        line-height: inherit;
+    }
 }
 
 

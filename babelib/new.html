@@ -16,7 +16,7 @@
 
 <body>
     <div id="app">
-        <header>
+        <header class="quote-header">
             <a class="header-link" href="formular.html">Формуляр</a>
             <a class="header-link" href="new.html">Играть</a>
             <a class="header-link" href="info.html">Правила</a>
@@ -70,8 +70,9 @@
                     </ol>
                 </div>
                 <div class='search-wrapper'>
-                    <input type="text" id="myInput" v-model="searchLine" placeholder="Выберите книгу из списка"
-                        data-book-id=""><button type="button" @click="checkBook()">Попробовать</button>
+                    <input type="text" id="myInput" v-model="searchLine"
+                        placeholder="Начните вводить автора или книгу..." data-book-id="">
+                    <button type="button" @click="checkBook()">Попробовать</button>
                     <ul id="myUL">
                         <li v-for="data in list" :value="data.id" v-show="showSearchOption(data)"
                             v-text="getSearchOptionLabel(data)" @click="fillSearchInput(data)"></li>
@@ -111,7 +112,7 @@
                         { 'code': 'line', 'label': 'Линей ность:' },
                         { 'code': 'age', 'label': 'Возраст читателя:' },
                     ],
-                    attempts: ['-', '-', '-', '-', '-', '-',],
+                    attempts: ['', '', '', '', '', '',],
                     searchLine: '',
                     attemptId: 0,
                     canInput: true,
@@ -137,7 +138,7 @@
             methods: {
                 addAttemptToList() {
                     for (const [index, element] of this.attempts.entries()) {
-                        if (element == '-') {
+                        if (element == '') {
                             this.attempts[index] = this.searchLine;
                             break;
                         };
@@ -224,7 +225,7 @@
                             return false;
                         }
                         this.addAttemptToList();
-                        if (this.attempts[5] != '-') {
+                        if (this.attempts[5] != '') {
                             this.showAnswer();
                             this.canInput = false;
                         }
@@ -270,7 +271,7 @@
                         this.attempts = getValueFromLocalStorage('attempts');
 
                         for (const [index, element] of this.attempts.entries()) {
-                            if (element != '-') {
+                            if (element != '') {
                                 this.cards[index + 1].blocked = false;
                                 this.selectCard(index + 1);
                             }

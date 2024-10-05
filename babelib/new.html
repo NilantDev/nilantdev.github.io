@@ -10,17 +10,18 @@
     <script src="js/task/list.js"></script>
     <script src="js/task/cardData.js"></script>
     <link rel="stylesheet" href="css/card.css">
+    <script src="js/custom/date.js"></script>
     <script src="js/custom/localStorage.js"></script>
 </head>
 
 <body>
     <div id="app">
+        <header>
+            <a class="header-link" href="formular.html">Формуляр</a>
+            <a class="header-link" href="new.html">Играть</a>
+            <a class="header-link" href="info.html">Правила</a>
+        </header>
         <div class="page-wrapper quotes">
-            <header>
-                <a class="header-link" href="formular.html">Формуляр</a>
-                <a class="header-link" href="new.html">Играть</a>
-                <a class="header-link" href="info.html">Правила</a>
-            </header>
             <div v-for="(data, index) in cards" class="card quote" :id="data.code"
                 :class="{active : data.zIndex == 10, blocked: data.blocked}"
                 :style="{'margin-left': getCardMarginLeft(index), 'z-index': data.zIndex}" @click="selectCard(index)">
@@ -87,10 +88,11 @@
         const STATUS_PLAYING = 'playing';
         const STATUS_WON = 'won';
         const STATUS_FAILED = 'failed';
+        const MAX_ACHIEVE_COUNT = 4;
         createApp({
             data() {
                 return {
-                    task: getBookData()['6'],
+                    task: getBookData()['41'],
                     list: getBookList(),
                     cards: getCardData(),
                     headerData: {
@@ -127,11 +129,11 @@
                 }
             },
 
-            computed: {
-                isbn() {
-                    return this.task.id;
-                }
-            },
+            // computed: {
+            //     isbn() {
+            //         return this.task.id;
+            //     }
+            // },
             methods: {
                 addAttemptToList() {
                     for (const [index, element] of this.attempts.entries()) {
@@ -316,12 +318,16 @@
                     if (newValue == STATUS_WON) {
                         let achieves = getValueFromLocalStorage('achieves');
                         const genreCode = this.task.classificatory.genre_code;
-                        console.log(genreCode);
+
                         if (achieves[genreCode]) {
-                            achieves[genreCode]++;
+                            achieves[genreCode]['count']++;
+                            if (achieves[genreCode]['count'] > MAX_ACHIEVE_COUNT) {
+                                achieves[genreCode]['date'] = getAchieveToday();
+                            }
                         } else {
-                            achieves = {};
-                            achieves[genreCode] = 1;
+                            achieves[genreCode] = {};
+                            achieves[genreCode]['count'] = 1;
+                            achieves[genreCode]['date'] = getAchieveToday();
                         }
 
                         saveInLocalStorage('achieves', achieves);

@@ -1,3 +1,6 @@
+@import url(stamp.css);
+@import url(header.css);
+
 @font-face {
     font-family: 'Typewriter';
     font-style: normal;
@@ -5,25 +8,17 @@
     src: url('EvilTypewriter.ttf');
 }
 
-@import url(stamp.css);
-
 body {
-    /* width: 30%; */
     margin: auto;
-    /* border: 1px solid; */
     font-family: monospace;
     background-color: #f5f5dc;
 }
 
 .page-wrapper {
-    /* width: 480px; */
-    /* height: 100vw; */
-    border: 1px solid black;
-
-    width: 100%; 
+    margin: auto;
     max-width: 480px;
     position: relative;
-    margin: auto;
+    width: 100%; 
 }
 
 .card {
@@ -49,10 +44,11 @@ body {
     margin-left: -5px;
     position: absolute;
     width: 290px;
+    animation: card-stuff 1s 1;
+    backface-visibility: hidden;
     -webkit-animation: card-stuff 1s 1;
     -webkit-backface-visibility: hidden;
     top: 1px;
-
     transition-duration: 1s;
 }
 
@@ -240,13 +236,5 @@ ol li.strike {
 }
 
 
-.header-link {
-    margin: 7px;
-}
 
-header {
-    background: #d9cda6;
-    display: flex;
-    justify-content: space-around;
-}
 

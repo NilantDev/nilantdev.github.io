@@ -1,0 +1,13 @@
+@import url(vars.css);
+
+.header-link {
+    margin: 7px;
+}
+
+header {
+    background: #d9cda6;
+    display: flex;
+    justify-content: space-around;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}

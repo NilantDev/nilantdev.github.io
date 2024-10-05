@@ -12,12 +12,12 @@
 
 <body>
     <div id="app">
+        <header>
+            <a class="header-link" href="formular.html">Формуляр</a>
+            <a class="header-link" href="new.html">Играть</a>
+            <a class="header-link" href="info.html">Правила</a>
+        </header>
         <div class="page-wrapper faq" style="">
-            <header>
-                <a class="header-link" href="formular.html">Формуляр</a>
-                <a class="header-link" href="new.html">Играть</a>
-                <a class="header-link" href="info.html">Правила</a>
-            </header>
             <div v-for="(item, index) in infoData" class="card instruction"
                 :style="{'right': getRight(index), 'z-index': item.zIndex, 'top': item.top}">
                 <div class="title-wrapper">

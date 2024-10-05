@@ -13,9 +13,17 @@
 }
 
 .stamp {
-    -webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+    /* -webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png'); */
     -webkit-mask-size: 944px 604px;
-    /* -webkit-mask-image:  url('img/grunge.png'); */
+    -moz-mask-size: 944px 604px;
+    -ms-mask-size: 944px 604px;
+    mask-size: 944px 604px;
+
+    -webkit-mask-image:  url('https://nilantdev.github.io/babelib/img/grunge.png');
+    -moz-mask-image:  url('https://nilantdev.github.io/babelib/img/grunge.png');
+    -ms-mask-image:  url('https://nilantdev.github.io/babelib/img/grunge.png');
+    mask-image:  url('https://nilantdev.github.io/babelib/img/grunge.png');
+
     display: inline-block;
     font-family: 'Courier';
     mix-blend-mode: multiply;

@@ -1,13 +1,15 @@
 @import url(vars.css);
 
 .header-link {
+    font-size: 16px;
     margin: 7px;
+    padding: 7px;
 }
 
 header {
     background: #d9cda6;
     display: flex;
     justify-content: space-around;
-    max-width: var(--max-width);
-    margin: 0 auto;
+    width: var(--max-width);
+    margin: 0 auto 10px;
 }

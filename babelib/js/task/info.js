@@ -22,7 +22,7 @@ function getInfoData() {
             ],
             'zIndex': 2,
             'type': 'list',
-            'top': '245px',
+            'top': '300px',
         },
         {
             'title': 'Глоссарий',
@@ -34,7 +34,7 @@ function getInfoData() {
             ],
             'zIndex': 3,
             'type': 'list',
-            'top': '545px',
+            'top': '650px',
         },
         {
             'title': 'FAQ',
@@ -46,7 +46,7 @@ function getInfoData() {
             ],
             'zIndex': 4,
             'type': 'faq',
-            'top': '900px',
+            'top': '1000px',
         },
     ]
 }

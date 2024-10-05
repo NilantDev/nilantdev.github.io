@@ -17,9 +17,9 @@
             <a class="header-link" href="new.html">Играть</a>
             <a class="header-link" href="info.html">Правила</a>
         </header>
-        <div class="page-wrapper faq" style="">
-            <div v-for="(item, index) in infoData" class="card instruction"
-                :style="{'right': getRight(index), 'z-index': item.zIndex, 'top': item.top}">
+        <div class="page-wrapper faq">
+            <div v-for="(item, index) in infoData" class="card instruction" :class="getPositionClass(index)"
+                :style="{'z-index': item.zIndex, 'top': item.top}">
                 <div class="title-wrapper">
                     <h2 class="card-title" v-text="item.title"></h2>
                 </div>
@@ -45,8 +45,8 @@
                 }
             },
             methods: {
-                getRight(index) {
-                    return index % 2 == 0 ? 'none' : '0';
+                getPositionClass(index) {
+                    return index % 2 == 0 ? 'left' : 'right';
                 },
             }
         }).mount('#app')
@@ -55,6 +55,12 @@
         .question {
             margin: 5px;
             font-weight: 700;
+        }
+        .instruction.right {
+            right: 10px;
+        }
+        .instruction.left {
+            left: 10px;
         }
     </style>
 </body>

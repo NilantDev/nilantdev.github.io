@@ -26,9 +26,10 @@
                 :class="{active : data.zIndex == 10, blocked: data.blocked}"
                 :style="{'margin-left': getCardMarginLeft(index), 'z-index': data.zIndex}" @click="selectCard(index)">
                 <div class="info-wrapper">
-                    <div v-for="(item, code) in headerData" class="item.code"><span class="attribute"
-                            v-text="item.label"></span><span class="value" v-text="task[code]"
-                            v-show="item.canShow"></span></div>
+                    <div v-for="(item, code) in headerData" :class="code">
+                        <span class="attribute" v-text="item.label"></span>
+                        <span class="value" v-text="task[code]" :title="task[code]" v-show="item.canShow"></span>
+                    </div>
                 </div>
                 <div class="title-wrapper">
                     <h2 class="card-title" v-text="data.title"></h2>
@@ -72,7 +73,7 @@
                 <div class='search-wrapper'>
                     <input type="text" id="myInput" v-model="searchLine"
                         placeholder="Начните вводить автора или книгу..." data-book-id="">
-                    <button type="button" @click="checkBook()">Попробовать</button>
+                    <button type="button" @click="checkBook()">Выбрать</button>
                     <ul id="myUL">
                         <li v-for="data in list" :value="data.id" v-show="showSearchOption(data)"
                             v-text="getSearchOptionLabel(data)" @click="fillSearchInput(data)"></li>
@@ -125,6 +126,7 @@
                 if ([STATUS_FAILED, STATUS_WON].includes(getValueFromLocalStorage('status'))) {
                     this.unblockAllCards();
                     this.canInput = false;
+                    this.showAnswer();
                 } else {
                     this.unblockAlreadyOpenCards();
                 }
@@ -233,6 +235,8 @@
                         }
                         this.addAttemptToList();
                         if (this.attempts[5] != '') {
+                            this.status = STATUS_FAILED;
+                            saveInLocalStorage('status', this.status);
                             this.showAnswer();
                             this.canInput = false;
                         }

@@ -123,6 +123,11 @@
                 }
             },
             mounted() {
+                if (getValueFromLocalStorage('last_won') !== getToday()) {
+                    this.status = STATUS_PLAYING; 
+                    saveInLocalStorage('status', this.status); // TODO move to watcher
+                }
+                
                 if ([STATUS_FAILED, STATUS_WON].includes(getValueFromLocalStorage('status'))) {
                     this.unblockAllCards();
                     this.canInput = false;
@@ -132,7 +137,6 @@
                 }
 
                 if (!getValueFromLocalStorage(this.task.weekNumber)) {
-                    console.log(this.task.weekNumber);
                     saveInLocalStorage('attemps', [], this.task.weekNumber);
                 }
             },

@@ -1,25 +1,25 @@
 const LOCAL_STORAGE_KEY = 'bookle';
 
-function saveInLocalStorage(key, value) {
-    let localStorageItem = getLocalStorageItem();
+function saveInLocalStorage(key, value, weekNumber = '') {
+    let localStorageItem = getLocalStorageItem(weekNumber);
 
     localStorageItem[key] = value;
 
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(localStorageItem));
+    localStorage.setItem(LOCAL_STORAGE_KEY + String(weekNumber), JSON.stringify(localStorageItem));
 }
 
-function getValueFromLocalStorage(key) {
-    let localStorageItem = getLocalStorageItem();
+function getValueFromLocalStorage(key, weekNumber = '') {
+    let localStorageItem = getLocalStorageItem(weekNumber);
 
     return (key in localStorageItem) ? localStorageItem[key] : '';
 }
 
-function getLocalStorageItem() {
-    let localStorageItem = localStorage.getItem(LOCAL_STORAGE_KEY);
+function getLocalStorageItem(weekNumber) {
+    let localStorageItem = localStorage.getItem(LOCAL_STORAGE_KEY + String(weekNumber));
 
     return (localStorageItem === null) ? {} : JSON.parse(localStorageItem);
 }
 
-function cleanLocalStorage() {
-    localStorage.removeItem(LOCAL_STORAGE_KEY)
+function cleanLocalStorage(weekNumber) {
+    localStorage.removeItem(LOCAL_STORAGE_KEY + String(weekNumber))
 }

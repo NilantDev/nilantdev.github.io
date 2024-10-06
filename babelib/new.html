@@ -93,7 +93,7 @@
         createApp({
             data() {
                 return {
-                    task: getBookData()['41'],
+                    task: getTask(),
                     list: getBookList(),
                     cards: getCardData(),
                     headerData: {
@@ -118,7 +118,7 @@
                     canInput: true,
                     stampText: '',
                     stampClass: '',
-                    status: STATUS_PLAYING
+                    status: STATUS_PLAYING,
                 }
             },
             mounted() {
@@ -127,6 +127,11 @@
                     this.canInput = false;
                 } else {
                     this.unblockAlreadyOpenCards();
+                }
+
+                if (!getValueFromLocalStorage(this.task.weekNumber)) {
+                    console.log(this.task.weekNumber);
+                    saveInLocalStorage('attemps', [], this.task.weekNumber);
                 }
             },
 
@@ -218,8 +223,10 @@
                         this.canInput = false;
                         this.showAnswer();
                         this.addStamp(true);
-                        this.status = STATUS_WON;
+                        this.status = STATUS_WON; // TODO Remvoe this line if it needn't
                         saveInLocalStorage('status', this.status);
+                        saveInLocalStorage('last_won', getToday());
+                        this.addIdToPlayed();
                     } else {
                         if (this.attemptId == 0) {
                             return false;
@@ -244,7 +251,7 @@
                         this.searchLine = '';
                     }
 
-                    saveInLocalStorage('attempts', this.attempts);
+                    saveInLocalStorage('attempts', this.attempts, this.task.weekNumber);
                 },
                 setAlternativeCards(isAlternative) {
                     ['line_first', 'line_last'].forEach(value => {
@@ -267,8 +274,8 @@
                     }
                 },
                 unblockAlreadyOpenCards() {
-                    if (getValueFromLocalStorage('attempts')) {
-                        this.attempts = getValueFromLocalStorage('attempts');
+                    if (getValueFromLocalStorage('attempts', this.task.weekNumber)) {
+                        this.attempts = getValueFromLocalStorage('attempts', this.task.weekNumber);
 
                         for (const [index, element] of this.attempts.entries()) {
                             if (element != '') {
@@ -287,7 +294,35 @@
                 showAdditionalHeaderInfo() {
                     this.headerData.year.canShow = true;
                     this.headerData.translator.canShow = true;
-                }
+                },
+                addIdToPlayed() {
+                    let played = getValueFromLocalStorage('played');
+                    if (!played) {
+                        played = [];
+                    }
+
+                    played.push(this.task.weekNumber);
+
+                    saveInLocalStorage('played', played);
+                },
+                copyToClipboard() {
+                    let result = '';
+                    for (const [index, element] of this.attempts.entries()) {
+                        if (element == '') {
+                            result = result + '📖';
+                            break;
+                        } else {
+                            result = result + '📙';
+                        };
+                    }
+                    navigator.clipboard.writeText(result)
+                        .then(() => {
+                            alert("Text copied to clipboard!");
+                        })
+                        .catch(err => {
+                            console.error("Failed to copy: ", err);
+                        });
+                },
             },
             watch: {
                 // 0 quote_1
@@ -323,12 +358,14 @@
                         if (achieves[genreCode]) {
                             achieves[genreCode]['count']++;
                             if (achieves[genreCode]['count'] > MAX_ACHIEVE_COUNT) {
-                                achieves[genreCode]['date'] = getAchieveToday();
+                                achieves[genreCode]['date'] = getToday();
                             }
                         } else {
-                            achieves[genreCode] = {};
-                            achieves[genreCode]['count'] = 1;
-                            achieves[genreCode]['date'] = getAchieveToday();
+                            achieves[genreCode] = {
+                                'count': 1,
+                                'date': getToday(),
+                            };
+
                         }
 
                         saveInLocalStorage('achieves', achieves);

@@ -70,7 +70,8 @@
                         'distop': { title: 'антиутопляемый', transform: 'rotate(0deg)', color: 'orange'},
                         'classic': { title: 'знaток классики', transform: 'rotate(-1deg)'},
                         'fantasy': { title: 'эльф 80-го уровня', transform: 'rotate(0deg)'},
-                        'child': { title: 'чайлд король', transform: 'rotate(0deg)'},
+                        'child': { title: 'чайлд-король', transform: 'rotate(0deg)'},
+                        'drama': { title: 'Drama Queen', transform: 'rotate(0deg)'},
                     },
                     achieves:  getValueFromLocalStorage('achieves')
                 };
@@ -92,30 +93,21 @@
                     saveInLocalStorage(key, value);
                 },
                 showStamp(code) {
-                    // return true;
-                    // const achieves = getValueFromLocalStorage('achieves');
-
                     if (!this.achieves) {
                         this.achieves = {
                             'new' : {
                                 'count': MAX_ACHIEVE_COUNT,
-                                'date': getAchieveToday()
+                                'date': getToday()
                             }
                         };
                         saveInLocalStorage('achieves', this.achieves);
                     }
-
-                    // if (code === 'new') {
-                    //     return true;
-                    // }
 
                     return this.achieves[code] && this.achieves[code]['count'] >= 1;
                 },
                 getStampDate(code) {
                     return (this.achieves[code]) ? this.achieves[code]['date'] : '';
                 }
-
-
             }
         }).mount('#app')
     </script>

@@ -1,3 +1,40 @@
+function getCurrentWeekNumber() {
+    const currentDate = new Date();
+    const startOfYear = new Date(currentDate.getFullYear(), 0, 1);
+    const diffMilliseconds = currentDate - startOfYear;
+    const weekNumber = Math.ceil(diffMilliseconds / (1000 * 60 * 60 * 24 * 7));
+
+    return weekNumber;
+}
+
+function getTask() {
+    const weekNumber = getCurrentWeekNumber();
+    let allData = getBookData()
+    let data = {};
+    let played = getValueFromLocalStorage('played');
+
+    if (!played || (played && !played.includes(weekNumber)) || (getValueFromLocalStorage('last_won') == getToday())) {
+        data = allData[weekNumber];
+        data['weekNumber'] = weekNumber;
+
+        return data;
+    }
+
+    if (played && played.includes(weekNumber)) {
+        for (const [key, value] of Object.entries(allData)) {
+            if (!played.includes(key)) {
+                saveInLocalStorage('status', 'playing');
+                data = allData[key];
+                data['weekNumber'] = key;
+                break;
+            }
+        }
+        return data;
+    }
+    
+    
+}
+
 function getBookData() {
     return {
         '35': {
@@ -180,7 +217,7 @@ function getBookData() {
             'quote_3': 'Вернув трубу на место, он опустил иглу на пластинку, и тут же все услышали снова:\n– Против вас выдвигаются обвинения…',
             'quote_4': 'Я вскрикнул, наклонился над краем утеса и сказал, что вижу нечто, похожее на лаз в пещеру. Он тут же наклонился вслед за мною. Резкий толчок, он потерял равновесие и с плеском обрушился в море.',
             'quote_5': 'Он смотрел на подставку с фарфоровыми фигурками. И бормотал себе под нос: – Вот чудно-то! Готов поклясться, что их было десять.',
-            'quote_6': 'Восемь негритят отправились в Девон,<br>Один не возвратился – остались всемером.',
+            'quote_6': 'Последний негритенок, вздыхая тяжело,<br>Пошел, повесился – и вот не стало никого.',
             'line_first': 'В вагоне первого класса для курящих судья Уоргрейв – недавно в отставке – сидел в уютном уголке и, попыхивая сигарой, с интересом просматривал политические новости в «Таймс».',
             'line_last': 'Когда море успокоится, с берега придут лодки. Прибывшие на них люди найдут на Негритянском острове десять мертвецов – и неразрешимую загадку.',
             'classificatory': {

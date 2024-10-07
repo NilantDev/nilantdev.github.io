@@ -28,7 +28,7 @@
                 <div class="info-wrapper">
                     <div v-for="(item, code) in headerData" :class="code">
                         <span class="attribute" v-text="item.label"></span>
-                        <span class="value" v-text="task[code]" :title="task[code]" v-show="item.canShow"></span>
+                        <span class="value" v-text="code == 'isbn' ? isbn : task[code]" :title="task[code]" v-show="item.canShow"></span>
                     </div>
                 </div>
                 <div class="title-wrapper">
@@ -72,13 +72,17 @@
                 </div>
                 <div class='search-wrapper'>
                     <input type="text" id="myInput" v-model="searchLine"
-                        placeholder="Начните вводить автора или книгу..." data-book-id="">
+                        placeholder="Начните вводить автора или книгу..." data-book-id="" style="font-size: 16px;">
                     <button type="button" @click="checkBook()">Выбрать</button>
                     <ul id="myUL">
                         <li v-for="data in list" :value="data.id" v-show="showSearchOption(data)"
                             v-text="getSearchOptionLabel(data)" @click="fillSearchInput(data)"></li>
                     </ul>
                 </div>
+            </div>
+
+            <div class="share-wrapper" style="text-align: center;">
+                <button @click="copyResult()">Скопировать результат</button>
             </div>
         </div>
 
@@ -127,7 +131,7 @@
                     this.status = STATUS_PLAYING; 
                     saveInLocalStorage('status', this.status); // TODO move to watcher
                 }
-                
+
                 if ([STATUS_FAILED, STATUS_WON].includes(getValueFromLocalStorage('status'))) {
                     this.unblockAllCards();
                     this.canInput = false;
@@ -141,11 +145,11 @@
                 }
             },
 
-            // computed: {
-            //     isbn() {
-            //         return this.task.id;
-            //     }
-            // },
+            computed: {
+                isbn() {
+                    return this.task.weekNumber + '-' + this.task.id;
+                }
+            },
             methods: {
                 addAttemptToList() {
                     for (const [index, element] of this.attempts.entries()) {
@@ -216,6 +220,25 @@
                 fillSearchInput(data) {
                     this.searchLine = this.getSearchOptionLabel(data);
                     this.attemptId = data.id;
+                },
+                copyResult() {
+                    let result = '';
+                    result = result + '——————————————————————————————\n';
+                    result = result + 'ISBN-' + this.isbn + '\n';
+
+                    for (const [index, element] of this.attempts.entries()) {
+                        if (element) {
+                            result = result + '📕';
+                        } else {
+                            result = result + '📖';
+                            break;
+                        }
+                    }
+
+                    result = result + '\n\nhttps://nilantdev.github.io/\n';
+                    result = result + '————Вавиленская библиотека————';
+                    navigator.clipboard.writeText(result);
+                    
                 },
 
                 checkBook() {
@@ -293,7 +316,6 @@
                         }
                     }
                 },
-
                 showAnswer() {
                     this.headerData.author.canShow = true;
                     this.headerData.title.canShow = true;

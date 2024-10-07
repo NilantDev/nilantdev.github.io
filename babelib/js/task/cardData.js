@@ -56,7 +56,7 @@ function getCardData() {
         },
         {
             'code': 'similars_films',
-            'title': 'Похожие произведения',
+            'title': 'Похожое и кино',
             'colontitle': 'ПП&Э',
             'zIndex': 3,
             'blocked': true

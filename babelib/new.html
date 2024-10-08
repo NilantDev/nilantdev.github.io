@@ -81,7 +81,7 @@
                 </div>
             </div>
 
-            <div class="share-wrapper" style="text-align: center;">
+            <div class="share-wrapper" style="text-align: center;" v-show="!canInput">
                 <button @click="copyResult()">Скопировать результат</button>
             </div>
         </div>
@@ -223,9 +223,9 @@
                 },
                 copyResult() {
                     let result = '';
-                    result = result + '——————————————————————————————\n';
+                    result = result + '————Вавиленская библиотека————\n';
                     result = result + 'ISBN-' + this.isbn + '\n';
-
+                    
                     for (const [index, element] of this.attempts.entries()) {
                         if (element) {
                             result = result + '📕';
@@ -234,9 +234,9 @@
                             break;
                         }
                     }
-
+                    
                     result = result + '\n\nhttps://nilantdev.github.io/\n';
-                    result = result + '————Вавиленская библиотека————';
+                    result = result + '——————————————————————————————';
                     navigator.clipboard.writeText(result);
                     
                 },

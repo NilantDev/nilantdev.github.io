@@ -13,6 +13,14 @@ function getTask() {
     let data = {};
     let played = getValueFromLocalStorage('played');
 
+    if (getValueFromLocalStorage('last_won') == getToday() && getValueFromLocalStorage('status') == 'won' ) {
+        let lastWonId = played[played.length - 1];
+        data = allData[lastWonId];
+        data['weekNumber'] = lastWonId;
+
+        return data;
+    }
+
     if (!played || (played && !played.includes(weekNumber)) || (getValueFromLocalStorage('last_won') == getToday())) {
         data = allData[weekNumber];
         data['weekNumber'] = weekNumber;

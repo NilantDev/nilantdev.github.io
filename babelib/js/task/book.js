@@ -39,8 +39,6 @@ function getTask() {
         }
         return data;
     }
-    
-    
 }
 
 function getBookData() {

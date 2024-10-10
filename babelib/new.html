@@ -266,6 +266,8 @@
                             saveInLocalStorage('status', this.status);
                             this.showAnswer();
                             this.canInput = false;
+                            played.push(this.task.weekNumber);
+                            saveInLocalStorage('played', played);
                         }
 
                         let nextCardIndex = 0;

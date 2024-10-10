@@ -37,10 +37,10 @@
                                 @input="saveToLocalStorage('lastName', lastName)" />
                         </div>
                         <div class="stamps">
-                            <div v-for="(stamp, code) in stamps" v-show="showStamp(code)">
-                                <span class="date stamp" v-text="getStampDate(code)"></span>
-                                <span class="stamp achive" v-text="stamp.title"
-                                    :style="{'color': stamp.color, 'transform': stamp.transform, 'border-color': stamp.color}"></span>
+                            <div v-for="(achieve, code) in achieves" v-show="showStamp(code)">
+                                <span class="date stamp" v-text="achieve.date"></span>
+                                <span class="stamp achive" v-text="stamps[code].title"
+                                    :style="{'color': stamps[code].color, 'transform': stamps[code].transform, 'border-color': stamps[code].color}"></span>
                             </div>
                         </div>
                         <div class="sup">*Нажмите на Имя/Фамилия и начните ввод</div>

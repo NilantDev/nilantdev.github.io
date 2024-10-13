@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="js/custom/localStorage.js"></script>
     <script src="js/custom/date.js"></script>
+    <script src="js/custom/const.js"></script>
     <link rel="stylesheet" href="css/card.css">
 </head>
 
@@ -19,7 +20,7 @@
             <a class="header-link" href="info.html">Правила</a>
         </header>
         <div class="page-wrapper formular">
-            
+
             <div id="reader-card" class="card reader active">
                 <div class="title-wrapper">
                     <h2 class="card-title">Формуляр</h2>
@@ -50,7 +51,6 @@
         </div>
     </div>
     <script>
-        const MAX_ACHIEVE_COUNT = 4;
         const { createApp } = Vue;
 
         createApp({
@@ -59,26 +59,36 @@
                     firstName: '',
                     lastName: '',
                     stamps: {
-                        'new': { title: 'добро пожаловать', transform: 'rotate(3deg)'},
-                        'loyal1': { title: 'постояный читатель', transform: 'rotate(3deg)'},
-                        'loyal3': { title: 'квартал', transform: 'rotate(2deg)'},
-                        'loyal6': { title: 'вместе полгода', transform: 'rotate(-2deg)'},
-                        'loyal12': { title: 'годовщина', transform: 'rotate(1deg)'},
-                        'scifi': { title: 'фантастика!', color: 'blue', transform: 'rotate(2deg)'},
-                        'detective': { title: 'нюх как у собаки', transform: 'rotate(-3deg)'},
-                        'horror': { title: 'мастер ужасов', color: 'black', transform: 'rotate(-3deg)'},
-                        'distop': { title: 'антиутопляемый', transform: 'rotate(0deg)', color: 'orange'},
-                        'classic': { title: 'знaток классики', transform: 'rotate(-1deg)'},
-                        'fantasy': { title: 'эльф 80-го уровня', transform: 'rotate(0deg)'},
-                        'child': { title: 'чайлд-король', transform: 'rotate(0deg)'},
-                        'drama': { title: 'Drama Queen', transform: 'rotate(0deg)'},
+                        'new': { title: 'добро пожаловать', transform: 'rotate(3deg)' },
+                        'loyal1': { title: 'постояный читатель', transform: 'rotate(3deg)' },
+                        'loyal3': { title: 'квартал', transform: 'rotate(2deg)' },
+                        'loyal6': { title: 'вместе полгода', transform: 'rotate(-2deg)' },
+                        'loyal12': { title: 'годовщина', transform: 'rotate(1deg)' },
+                        'scifi': { title: 'фантастика!', color: 'blue', transform: 'rotate(2deg)' },
+                        'detective': { title: 'нюх как у собаки', transform: 'rotate(-3deg)' },
+                        'horror': { title: 'мастер ужасов', color: 'black', transform: 'rotate(-3deg)' },
+                        'distop': { title: 'антиутопляемый', transform: 'rotate(0deg)', color: 'orange' },
+                        'classic': { title: 'знaток классики', transform: 'rotate(-1deg)' },
+                        'fantasy': { title: 'эльф 80-го уровня', transform: 'rotate(0deg)' },
+                        'child': { title: 'чайлд-король', transform: 'rotate(0deg)' },
+                        'drama': { title: 'Drama Queen', transform: 'rotate(0deg)' },
                     },
-                    achieves:  getValueFromLocalStorage('achieves')
+                    achieves: getValueFromLocalStorage('achieves')
                 };
             },
             mounted() {
                 this.firstName = getValueFromLocalStorage('firstName') || '';
                 this.lastName = getValueFromLocalStorage('lastName') || '';
+                if (!this.achieves) {
+                    console.log('dsdsad');
+                    this.achieves = {
+                        'new': {
+                            'count': MAX_ACHIEVE_COUNT,
+                            'date': getToday()
+                        }
+                    };
+                    saveInLocalStorage('achieves', this.achieves);
+                }
             },
 
             methods: {
@@ -93,17 +103,7 @@
                     saveInLocalStorage(key, value);
                 },
                 showStamp(code) {
-                    if (!this.achieves) {
-                        this.achieves = {
-                            'new' : {
-                                'count': MAX_ACHIEVE_COUNT,
-                                'date': getToday()
-                            }
-                        };
-                        saveInLocalStorage('achieves', this.achieves);
-                    }
-
-                    return this.achieves[code] && this.achieves[code]['count'] >= 1;
+                    return this.achieves[code] && this.achieves[code]['count'] >= MAX_ACHIEVE_COUNT;
                 },
                 getStampDate(code) {
                     return (this.achieves[code]) ? this.achieves[code]['date'] : '';

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=480">
     <title>Вавиленская библиотеки</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="js/task/book.js"></script>
@@ -11,6 +11,7 @@
     <script src="js/task/cardData.js"></script>
     <link rel="stylesheet" href="css/card.css">
     <script src="js/custom/date.js"></script>
+    <script src="js/custom/const.js"></script>
     <script src="js/custom/localStorage.js"></script>
 </head>
 
@@ -24,11 +25,13 @@
         <div class="page-wrapper quotes">
             <div v-for="(data, index) in cards" class="card quote" :id="data.code"
                 :class="{active : data.zIndex == 10, blocked: data.blocked}"
-                :style="{'margin-left': getCardMarginLeft(index), 'z-index': data.zIndex}" @click="selectCard(index)">
+                :style="{'margin-left': getCardMarginLeft(index), 'z-index': data.zIndex}"
+                @click="selectCard(index, $event)">
                 <div class="info-wrapper">
                     <div v-for="(item, code) in headerData" :class="code">
                         <span class="attribute" v-text="item.label"></span>
-                        <span class="value" v-text="code == 'isbn' ? isbn : task[code]" :title="task[code]" v-show="item.canShow"></span>
+                        <span class="value" v-text="code == 'isbn' ? isbn : task[code]" :title="task[code]"
+                            v-show="item.canShow"></span>
                     </div>
                 </div>
                 <div class="title-wrapper">
@@ -39,9 +42,10 @@
 
                 <div v-if="data.code == 'classifier'">
                     <table class="class-table">
-                        <tr v-for="item in classifierData" :id="item.code">
-                            <td class="class-title" v-text="item.label"></td>
-                            <td class="class-value" v-text="task['classificatory'][item.code]"></td>
+                        <!-- <tr v-for="item in classifierData" :id="item.code"> -->
+                        <tr v-for="(class_value, class_code) in task.classificatory" :id="class_code" v-show="class_code !== 'genre_code'">
+                            <td class="class-title" v-text="classifierData[class_code]"></td>
+                            <td class="class-value" v-text="class_value"></td>
                         </tr>
                     </table>
                 </div>
@@ -91,14 +95,11 @@
     </div>
     <script>
         const { createApp } = Vue;
-        const STATUS_PLAYING = 'playing';
-        const STATUS_WON = 'won';
-        const STATUS_FAILED = 'failed';
-        const MAX_ACHIEVE_COUNT = 4;
+        
         createApp({
             data() {
                 return {
-                    task: getTask(),
+                    task: {},
                     list: getBookList(),
                     cards: getCardData(),
                     headerData: {
@@ -108,15 +109,15 @@
                         'year': { 'label': 'Год', canShow: false },
                         'translator': { 'label': 'Переводчик', canShow: false },
                     },
-                    classifierData: [
-                        { 'code': 'genre', 'label': 'Жанры / поджанры:' },
-                        { 'code': 'general', 'label': 'Общие хар-ки:' },
-                        { 'code': 'place', 'label': 'Место действия:' },
-                        { 'code': 'time', 'label': 'Время действия:' },
-                        { 'code': 'plot', 'label': 'Сюжетные ходы:' },
-                        { 'code': 'line', 'label': 'Линей ность:' },
-                        { 'code': 'age', 'label': 'Возраст читателя:' },
-                    ],
+                    classifierData: {
+                        'genre': 'Жанры / поджанры:',
+                        'general': 'Общие хар-ки:',
+                        'place': 'Место действия:',
+                        'time': 'Время действия:',
+                        'plot': 'Сюжетные ходы:',
+                        'line': 'Линей ность:',
+                        'age': 'Возраст читателя:',
+                    },
                     attempts: ['', '', '', '', '', '',],
                     searchLine: '',
                     attemptId: 0,
@@ -126,9 +127,18 @@
                     status: STATUS_PLAYING,
                 }
             },
-            mounted() {
+            // async setup() {
+
+            // },
+            async mounted() {
+                try {
+                    this.task = await getTask();
+                } catch (error) {
+                    console.error('Ошибка при загрузке данных:', error);
+                }
+
                 if (getValueFromLocalStorage('last_won') !== getToday()) {
-                    this.status = STATUS_PLAYING; 
+                    this.status = STATUS_PLAYING;
                     saveInLocalStorage('status', this.status); // TODO move to watcher
                 }
 
@@ -141,13 +151,12 @@
                 }
 
                 if (!getValueFromLocalStorage(this.task.weekNumber)) {
-                    saveInLocalStorage('attemps', [], this.task.weekNumber);
-                }
+                    saveInLocalStorage('attempts', [], this.task.weekNumber);
+                };
             },
-
             computed: {
                 isbn() {
-                    return this.task.weekNumber + '-' + this.task.id;
+                    return this.task.weekNumber + '-' + this.task.fantlab_id;
                 }
             },
             methods: {
@@ -174,7 +183,38 @@
                 isQuote(code) {
                     return !['classifier', 'similars_films'].includes(code);
                 },
-                selectCard(i) {
+                swipeCard(index, event) {
+                    let newIndex = index;
+
+                    const rect = event.currentTarget.getBoundingClientRect();
+                    if (event.clientX - rect.left < 145) {
+                        if (index == 0) return false;
+                        while (newIndex > 0) {
+                            newIndex--;
+                            if (this.cards[newIndex].blocked == false) {
+                                break;
+                            }
+                        }
+                    } else {
+                        if (index == 9) return false;
+                        while (newIndex < 9) {
+                            newIndex++;
+                            if (this.cards[newIndex].blocked == false) {
+                                break;
+                            }
+                        }
+                    }
+
+                    return newIndex;
+
+                },
+                selectCard(i, event) {
+                    if (this.cards[i].zIndex == 10) {
+                        i = this.swipeCard(i, event);
+
+                        if (i === false) return;
+                    }
+
                     let currentCard = this.cards[i];
 
                     if (currentCard.alternative) {
@@ -225,7 +265,7 @@
                     let result = '';
                     result = result + '————Вавиленская библиотека————\n';
                     result = result + 'ISBN-' + this.isbn + '\n';
-                    
+
                     for (const [index, element] of this.attempts.entries()) {
                         if (element) {
                             result = result + '📕';
@@ -234,11 +274,11 @@
                             break;
                         }
                     }
-                    
+
                     result = result + '\n\nhttps://nilantdev.github.io/\n';
                     result = result + '——————————————————————————————';
                     navigator.clipboard.writeText(result);
-                    
+
                 },
 
                 checkBook() {
@@ -246,7 +286,8 @@
                         return;
                     }
 
-                    if (this.attemptId == this.task.id) {
+                    // if (this.attemptId == this.task.id) {
+                    if (this.attemptId == this.task.fantlab_id) {
                         this.unblockAllCards();
                         this.addAttemptToList();
                         this.canInput = false;

@@ -7,39 +7,45 @@ function getCurrentWeekNumber() {
     return weekNumber;
 }
 
-function getTask() {
+function getTaskId() {
     const weekNumber = getCurrentWeekNumber();
-    let allData = getBookData()
-    let data = {};
+    let allData = getBookData();
     let played = getValueFromLocalStorage('played');
 
-    if (getValueFromLocalStorage('last_won') == getToday() && getValueFromLocalStorage('status') == 'won' ) {
+    if (getValueFromLocalStorage('last_won') == getToday() && getValueFromLocalStorage('status') == 'won') {
         let lastWonId = played[played.length - 1];
-        data = allData[lastWonId];
-        data['weekNumber'] = lastWonId;
 
-        return data;
+        return lastWonId;
     }
 
     if (!played || (played && !played.includes(weekNumber)) || (getValueFromLocalStorage('last_won') == getToday())) {
-        data = allData[weekNumber];
-        data['weekNumber'] = weekNumber;
-
-        return data;
+        return weekNumber;
     }
 
     if (played && played.includes(weekNumber)) {
         for (const [key, value] of Object.entries(allData)) {
             if (!played.includes(key)) {
                 saveInLocalStorage('status', 'playing');
-                data = allData[key];
-                data['weekNumber'] = key;
-                break;
+
+                return key;
             }
         }
-        return data;
     }
 }
+
+async function getTask() {
+    const taskId = getTaskId();
+    const resp = await fetch('https://1caa2d06632f5615.mokky.dev/tasks?id=' + taskId);
+    const data = await resp.json();
+    let newData = data[0]
+    newData['weekNumber'] = taskId;
+
+    if (!resp.ok) {
+        throw new Error(data.message || 'Something went wrong');
+    }
+    return newData;
+}
+
 
 function getBookData() {
     return {

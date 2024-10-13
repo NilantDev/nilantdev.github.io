@@ -68,7 +68,7 @@
                         'detective': { title: 'нюх как у собаки', transform: 'rotate(-3deg)' },
                         'horror': { title: 'мастер ужасов', color: 'black', transform: 'rotate(-3deg)' },
                         'distop': { title: 'антиутопляемый', transform: 'rotate(0deg)', color: 'orange' },
-                        'class': { title: 'знaток классики', transform: 'rotate(-1deg)' },
+                        'classic': { title: 'знaток классики', transform: 'rotate(-1deg)' },
                         'fantasy': { title: 'эльф 80-го уровня', transform: 'rotate(0deg)' },
                         'child': { title: 'чайлд-король', transform: 'rotate(0deg)' },
                         'drama': { title: 'Drama Queen', transform: 'rotate(0deg)' },
@@ -80,7 +80,6 @@
                 this.firstName = getValueFromLocalStorage('firstName') || '';
                 this.lastName = getValueFromLocalStorage('lastName') || '';
                 if (!this.achieves) {
-                    console.log('dsdsad');
                     this.achieves = {
                         'new': {
                             'count': MAX_ACHIEVE_COUNT,
@@ -103,6 +102,11 @@
                     saveInLocalStorage(key, value);
                 },
                 showStamp(code) {
+                    // TODO TMP delete 
+                    if (this.achieves['class']) {
+                        delete this.achieves['class'];
+                    }
+
                     return this.achieves[code] && this.achieves[code]['count'] >= MAX_ACHIEVE_COUNT;
                 },
                 getStampDate(code) {

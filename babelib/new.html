@@ -13,15 +13,13 @@
     <script src="js/custom/date.js"></script>
     <script src="js/custom/const.js"></script>
     <script src="js/custom/localStorage.js"></script>
+    <!-- <script src="component/similar.js"></script> -->
+    <script src="component/header.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <header class="quote-header">
-            <a class="header-link" href="formular.html">Формуляр</a>
-            <a class="header-link" href="new.html">Играть</a>
-            <a class="header-link" href="info.html">Правила</a>
-        </header>
+        <header-component></header-component>
         <div class="page-wrapper quotes">
             <div v-for="(data, index) in cards" class="card quote" :id="data.code"
                 :class="{active : data.zIndex == 10, blocked: data.blocked}"
@@ -43,7 +41,8 @@
                 <div v-if="data.code == 'classifier'">
                     <table class="class-table">
                         <!-- <tr v-for="item in classifierData" :id="item.code"> -->
-                        <tr v-for="(class_value, class_code) in task.classificatory" :id="class_code" v-show="class_code !== 'genre_code'">
+                        <tr v-for="(class_value, class_code) in task.classificatory" :id="class_code"
+                            v-show="class_code !== 'genre_code'">
                             <td class="class-title" v-text="classifierData[class_code]"></td>
                             <td class="class-value" v-text="class_value"></td>
                         </tr>
@@ -95,8 +94,11 @@
     </div>
     <script>
         const { createApp } = Vue;
-        
+
         createApp({
+            components: {
+                'header-component': Header
+            },
             data() {
                 return {
                     task: {},
@@ -263,7 +265,7 @@
                 },
                 copyResult() {
                     let result = '';
-                    result = result + '————Вавиленская библиотека————\n';
+                    result = result + '—Вавиленская библиотека—\n';
                     result = result + 'ISBN-' + this.isbn + '\n';
 
                     for (const [index, element] of this.attempts.entries()) {
@@ -276,7 +278,7 @@
                     }
 
                     result = result + '\n\nhttps://nilantdev.github.io/\n';
-                    result = result + '——————————————————————————————';
+                    result = result + '——————————————————';
                     navigator.clipboard.writeText(result);
 
                 },

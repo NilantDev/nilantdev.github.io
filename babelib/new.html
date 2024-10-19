@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="css/card.css">
     <script src="js/custom/date.js"></script>
     <script src="js/custom/const.js"></script>
+    <script src="js/custom/stat.js"></script>
     <script src="js/custom/localStorage.js"></script>
     <!-- <script src="component/similar.js"></script> -->
     <script src="component/header.js"></script>
+    <script src="component/chart.js"></script>
 </head>
 
 <body>
@@ -86,6 +88,7 @@
 
             <div class="share-wrapper" style="text-align: center;" v-show="!canInput">
                 <button @click="copyResult()">Скопировать результат</button>
+                <chart-component :charts="charts"> </chart-component>
             </div>
         </div>
 
@@ -97,7 +100,8 @@
 
         createApp({
             components: {
-                'header-component': Header
+                'header-component': Header,
+                'chart-component': Chart
             },
             data() {
                 return {
@@ -127,24 +131,29 @@
                     stampText: '',
                     stampClass: '',
                     status: STATUS_PLAYING,
+                    played: getValueFromLocalStorage('played'),
+                    charts: {}
                 }
             },
-            // async setup() {
+            computed: {
+                isbn() {
+                    return this.task.weekNumber + '-' + this.task.fantlab_id;
+                },
+                taskId() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    let taskId = urlParams.get('taskId');
 
-            // },
+                    return taskId ? taskId : getDayOfYear();
+                }
+            },
             async mounted() {
                 try {
-                    this.task = await getTask();
+                    this.task = await getTask(this.taskId);
                 } catch (error) {
                     console.error('Ошибка при загрузке данных:', error);
                 }
 
-                if (getValueFromLocalStorage('last_won') !== getToday()) {
-                    this.status = STATUS_PLAYING;
-                    saveInLocalStorage('status', this.status); // TODO move to watcher
-                }
-
-                if ([STATUS_FAILED, STATUS_WON].includes(getValueFromLocalStorage('status'))) {
+                if (this.played.includes(parseInt(this.taskId))) {
                     this.unblockAllCards();
                     this.canInput = false;
                     this.showAnswer();
@@ -152,14 +161,9 @@
                     this.unblockAlreadyOpenCards();
                 }
 
-                if (!getValueFromLocalStorage(this.task.weekNumber)) {
-                    saveInLocalStorage('attempts', [], this.task.weekNumber);
+                if (!getLocalStorageItem(this.taskId)) {
+                    saveInLocalStorage('attempts', this.attempts, this.taskId);
                 };
-            },
-            computed: {
-                isbn() {
-                    return this.task.weekNumber + '-' + this.task.fantlab_id;
-                }
             },
             methods: {
                 addAttemptToList() {
@@ -292,24 +296,17 @@
                     if (this.attemptId == this.task.fantlab_id) {
                         this.unblockAllCards();
                         this.addAttemptToList();
-                        this.canInput = false;
-                        this.showAnswer();
                         this.addStamp(true);
-                        this.status = STATUS_WON; // TODO Remvoe this line if it needn't
-                        saveInLocalStorage('status', this.status);
-                        saveInLocalStorage('last_won', getToday());
-                        this.addIdToPlayed();
+                        this.status = STATUS_WON;
+
+                        this.finishGame(true);
                     } else {
                         if (this.attemptId == 0) {
                             return false;
                         }
                         this.addAttemptToList();
                         if (this.attempts[5] != '') {
-                            this.status = STATUS_FAILED;
-                            saveInLocalStorage('status', this.status);
-                            this.showAnswer();
-                            this.canInput = false;
-                            this.addIdToPlayed();
+                            this.finishGame(false)
                         }
 
                         let nextCardIndex = 0;
@@ -328,6 +325,26 @@
 
                     saveInLocalStorage('attempts', this.attempts, this.task.weekNumber);
                 },
+
+                async finishGame(isWon) {
+                    this.showAnswer();
+                    this.canInput = false;
+                    this.addIdToPlayed();
+
+                    let step = 0;
+                    if (isWon) {
+                        for (const [index, element] of this.attempts.entries()) {
+                            if (element !== '') {
+                                step++;
+                            }
+                        };
+                    }
+
+                    this.charts = await updateStat(this.taskId, isWon, step);
+
+                    console.log(this.charts);
+                },
+
                 setAlternativeCards(isAlternative) {
                     ['line_first', 'line_last'].forEach(value => {
                         const altCardIndex = this.getCardIndex('code', value);
@@ -370,14 +387,13 @@
                     this.headerData.translator.canShow = true;
                 },
                 addIdToPlayed() {
-                    let played = getValueFromLocalStorage('played');
-                    if (!played) {
-                        played = [];
+                    if (!this.played) {
+                        this.played = [];
                     }
 
-                    played.push(this.task.weekNumber);
+                    this.played.push(parseInt(this.task.weekNumber));
 
-                    saveInLocalStorage('played', played);
+                    saveInLocalStorage('played', this.played);
                 },
                 copyToClipboard() {
                     let result = '';

@@ -10,15 +10,12 @@
     <script src="js/custom/date.js"></script>
     <script src="js/custom/const.js"></script>
     <link rel="stylesheet" href="css/card.css">
+    <script src="component/header.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <header>
-            <a class="header-link" href="formular.html">Формуляр</a>
-            <a class="header-link" href="new.html">Играть</a>
-            <a class="header-link" href="info.html">Правила</a>
-        </header>
+        <header-component></header-component>
         <div class="page-wrapper formular">
 
             <div id="reader-card" class="card reader active">
@@ -54,6 +51,9 @@
         const { createApp } = Vue;
 
         createApp({
+            components: {
+                'header-component': Header
+            },
             data() {
                 return {
                     firstName: '',

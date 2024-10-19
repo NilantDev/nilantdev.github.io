@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вавиленская библиотеки</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/custom/localStorage.js"></script>
+    <script src="js/custom/date.js"></script>
+    <script src="js/custom/const.js"></script>
+    <script src="js/task/book.js"></script>
+    <link rel="stylesheet" href="css/card.css">
+    <script src="component/header.js"></script>
+</head>
+
+<body>
+    <style>
+        page-wrapper {
+            display: flex;
+            justify-content: center;
+            /* Центрируем содержимое по горизонтали */
+        }
+
+        .covers-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            /* Позволяем оборачивать элементы на новую строку */
+            justify-content: space-between;
+            /* Пробелы между элементами */
+            max-width: 1200px;
+            /* Задайте максимальную ширину по вашему желанию */
+        }
+
+        .cover-wrapper {
+            display: flex;
+            flex-direction: column;
+            /* Вертикальное размещение элементов внутри cover-wrapper */
+            align-items: center;
+            /* Центрируем по горизонтали */
+            width: calc(50% - 10px);
+            /* Делаем ширину каждого cover-wrapper 50% с учетом пробела */
+            margin-bottom: 20px;
+            /* Отступ снизу между строками */
+        }
+
+        .imagee {   
+            height: 260px;
+            /* Сохраняем пропорции изображения */
+        }
+
+        .info-wrapper {
+            text-align: center;
+            /* Центрируем текст внутри info-wrapper */
+        }
+
+        .blured {
+            filter: blur(30px);
+        }
+    </style>
+    <div id="app">
+        <header-component></header-component>
+        <div class="page-wrapper archive">
+            <div class="covers-wrapper">
+                <div class="cover-wrapper" v-for="task in tasks">
+                    <a :href="getTaskLink(task.id)">
+                        <img :src="getCover(task.id)" class="imagee">
+                    </a>
+                    <div class="info-wrapper">
+                        <span v-text="task.author" v-show="isPlayed(task.id)" class="task-author"></span>
+                        <span v-text="task.title" v-show="isPlayed(task.id)" class="task-title"></span>
+                        <a :href="getTaskLink(task.id)" v-show="!isPlayed(task.id)">Прочитать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            components: {
+                'header-component': Header
+            },
+            data() {
+                return {
+                    firstTask: 35,
+                    tasks: [],
+                    played: getValueFromLocalStorage('played')
+                };
+            },
+            async mounted() {
+                try {
+                    this.tasks = await getTaskByIdRange(this.firstTask, getDayOfYear());
+                } catch (error) {
+                    console.error('Ошибка при загрузке данных:', error);
+                }
+            },
+            methods: {
+                isPlayed(taskId) {
+                    return this.played.includes(parseInt(taskId));
+                },
+                getCover(taskId) {
+                    return this.isPlayed(taskId) ? this.tasks[taskId - this.firstTask].cover : 'img/empty-cover.jpg';
+                },
+                getTaskLink(taskId) {
+                    return 'new.html?taskId=' + taskId;
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

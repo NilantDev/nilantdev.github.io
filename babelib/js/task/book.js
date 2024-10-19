@@ -33,8 +33,20 @@ function getTaskId() {
     }
 }
 
-async function getTask() {
-    const taskId = getTaskId();
+function getDayOfYear(date = new Date()) {
+    const start = new Date(date.getFullYear(), 0, 0);
+    const diff = date - start;
+    const oneDay = 1000 * 60 * 60 * 24;
+    const dayOfYear = Math.floor(diff / oneDay);
+
+    return dayOfYear - 251;
+}
+
+async function getTask(taskId) {
+    if (!taskId) {
+        taskId = getDayOfYear();
+    }
+
     const resp = await fetch('https://1caa2d06632f5615.mokky.dev/tasks?id=' + taskId);
     const data = await resp.json();
     let newData = data[0]
@@ -44,6 +56,46 @@ async function getTask() {
         throw new Error(data.message || 'Something went wrong');
     }
     return newData;
+}
+
+
+async function getTaskByIdRange(fromId, toId) {
+    const range = 'id[from]=' + fromId + '&id[to]=' + toId;
+    const resp = await fetch('https://1caa2d06632f5615.mokky.dev/tasks?' + range);
+    const data = await resp.json();
+
+    if (!resp.ok) {
+        throw new Error(data.message || 'Something went wrong');
+    }
+
+    return data;
+}
+
+
+function patchStat(taskId, attemptId, value) {
+    const url = 'https://1caa2d06632f5615.mokky.dev/stat/' + parseInt(taskId);
+    let data = {};
+    data[attemptId] = parseInt(value);
+
+    fetch(url, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
 

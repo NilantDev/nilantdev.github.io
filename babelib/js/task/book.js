@@ -39,7 +39,7 @@ function getDayOfYear(date = new Date()) {
     const oneDay = 1000 * 60 * 60 * 24;
     const dayOfYear = Math.floor(diff / oneDay);
 
-    return dayOfYear - 251;
+    return dayOfYear - 252;
 }
 
 async function getTask(taskId) {

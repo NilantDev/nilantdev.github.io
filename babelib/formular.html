@@ -45,6 +45,7 @@
                     </div>
                 </div>
             </div>
+            <button @click="cleanAll">Почистить кеш</button>
         </div>
     </div>
     <script>
@@ -111,6 +112,12 @@
                 },
                 getStampDate(code) {
                     return (this.achieves[code]) ? this.achieves[code]['date'] : '';
+                },
+                cleanAll() {
+                    cleanLocalStorage('');
+                    for (i = 35; i < 44; i++) {
+                        cleanLocalStorage(i);
+                    }
                 }
             }
         }).mount('#app')

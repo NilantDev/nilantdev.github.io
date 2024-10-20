@@ -37,7 +37,8 @@ async function updateStat(taskId, isWon, step) {
     const key = isWon ? 'attempt_' + step : 'lost';
     let value = data[0][key];
     value++;
+    data[0][key] = value;
     await patchStat(taskId, key, value);
-
+    delete data[0].id;
     return data[0];
 }

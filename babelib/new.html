@@ -157,6 +157,7 @@
                     this.unblockAllCards();
                     this.canInput = false;
                     this.showAnswer();
+                    this.charts = await getStatById(this.taskId);                    
                 } else {
                     this.unblockAlreadyOpenCards();
                 }

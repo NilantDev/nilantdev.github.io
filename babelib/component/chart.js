@@ -1,6 +1,7 @@
 const Chart = {
     template: `
         <div class="chart" id="chart">
+            <hr>
             <div class="bar" v-for="(value, key) in charts">
                 <span class="label" v-text="getChartLabel(key)"></span>
                 <span class="label" v-text="getChartBar(key)"></span>

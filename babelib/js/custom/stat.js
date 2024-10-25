@@ -6,7 +6,9 @@ async function getStatById(taskId) {
         throw new Error(data.message || 'Something went wrong');
     }
 
-    return data;
+    delete data[0].id;
+
+    return data[0];
 }
 
 async function patchStat(taskId, key, value) {
@@ -35,10 +37,10 @@ async function patchStat(taskId, key, value) {
 async function updateStat(taskId, isWon, step) {
     let data = await getStatById(taskId);
     const key = isWon ? 'attempt_' + step : 'lost';
-    let value = data[0][key];
+    let value = data[key];
     value++;
-    data[0][key] = value;
+    data[key] = value;
     await patchStat(taskId, key, value);
-    delete data[0].id;
-    return data[0];
+
+    return data;
 }

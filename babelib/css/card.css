@@ -252,3 +252,28 @@ ol li.strike {
         line-height: inherit;
     }
 }
+
+.chart {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: fit-content;
+
+    hr {
+        width: 100%;
+    }
+
+    .bar {
+        display: flex;
+        align-items: center;
+        margin: 5px 0;
+        font-size: 16px;
+
+        .label {
+            width: fit-content;
+            text-align: right;
+            margin-right: 10px;
+        }
+    }
+
+}

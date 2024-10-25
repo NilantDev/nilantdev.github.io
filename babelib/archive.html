@@ -69,7 +69,7 @@
                     <div class="info-wrapper">
                         <span v-text="task.author" v-show="isPlayed(task.id)" class="task-author"></span>
                         <span v-text="task.title" v-show="isPlayed(task.id)" class="task-title"></span>
-                        <a :href="getTaskLink(task.id)" v-show="!isPlayed(task.id)">Прочитать</a>
+                        <a :href="getTaskLink(task.id)" v-show="!isPlayed(task.id)">Играть</a>
                     </div>
                 </div>
             </div>

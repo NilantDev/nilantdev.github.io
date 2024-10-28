@@ -274,6 +274,9 @@
                     result = result + 'ISBN-' + this.isbn + '\n';
 
                     for (const [index, element] of this.attempts.entries()) {
+                        if (index === 0)  {
+                            continue;
+                        }
                         if (element) {
                             result = result + '📕';
                         } else {

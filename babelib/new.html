@@ -276,7 +276,9 @@
                     for (const [index, element] of this.attempts.entries()) {
                         if (element && index !== 0) {
                             result = result + '📕';
-                        } else {
+                        } 
+                        
+                        if (!element) {
                             result = result + '📖';
                             break;
                         }

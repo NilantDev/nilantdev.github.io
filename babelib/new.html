@@ -274,10 +274,7 @@
                     result = result + 'ISBN-' + this.isbn + '\n';
 
                     for (const [index, element] of this.attempts.entries()) {
-                        if (index === 0)  {
-                            continue;
-                        }
-                        if (element) {
+                        if (element && index !== 0) {
                             result = result + '📕';
                         } else {
                             result = result + '📖';

@@ -78,7 +78,7 @@
                 <div class='search-wrapper'>
                     <input type="text" id="myInput" v-model="searchLine"
                         placeholder="Начните вводить автора или книгу..." data-book-id="" style="font-size: 16px;">
-                    <button type="button" @click="checkBook()">Выбрать</button>
+                    <button type="button" @click="checkBook()" v-text="getInputText()"></button>
                     <ul id="myUL">
                         <li v-for="data in list" :value="data.id" v-show="showSearchOption(data)"
                             v-text="getSearchOptionLabel(data)" @click="fillSearchInput(data)"></li>
@@ -167,9 +167,13 @@
                 };
             },
             methods: {
+                getInputText() {
+                    return this.attemptId ? 'Выбрать' : 'Пропустить';
+                },
                 addAttemptToList() {
                     for (const [index, element] of this.attempts.entries()) {
                         if (element == '') {
+                            this.searchLine = this.searchLine ? this.searchLine : '[ПРОПУСК]';
                             this.attempts[index] = this.searchLine;
                             break;
                         };
@@ -270,30 +274,39 @@
                 },
                 copyResult() {
                     let result = '';
-                    result = result + '—Вавиленская библиотека—\n';
+                    result = result + '—— Вавиленская библиотека ——\n';
                     result = result + 'ISBN-' + this.isbn + '\n';
 
                     for (const [index, element] of this.attempts.entries()) {
+                        console.log(index);
+                        console.log(this.status);
+                        console.log(!element || (index == 5 && this.status == STATUS_WON));
                         if (element && index !== 0) {
                             result = result + '📕';
-                        } 
-                        
+                        }
+
                         if (!element) {
+                            result = result + '📖';
+                            break;
+                        }
+
+                        if ((index == 5 && this.status == STATUS_WON)) {
                             result = result + '📖';
                             break;
                         }
                     }
 
-                    result = result + '\n\nhttps://nilantdev.github.io/\n';
-                    result = result + '——————————————————';
+                    result = result + '\n\nhttps://nilantdev.github.io/';
                     navigator.clipboard.writeText(result);
 
                 },
 
                 checkBook() {
-                    if (this.attempts.includes(this.searchLine)) {
-                        return;
-                    }
+                    // if (this.attempts.includes(this.searchLine)) {
+                    //     return;
+                    // }
+
+                    // console.log(this.attemptId);
 
                     // if (this.attemptId == this.task.id) {
                     if (this.attemptId == this.task.fantlab_id) {
@@ -304,9 +317,9 @@
 
                         this.finishGame(true);
                     } else {
-                        if (this.attemptId == 0) {
-                            return false;
-                        }
+                        // if (this.attemptId == 0) {
+                        //     return false;
+                        // }
                         this.addAttemptToList();
                         if (this.attempts[5] != '') {
                             this.finishGame(false)
@@ -324,6 +337,7 @@
 
                         this.selectCard(nextCardIndex);
                         this.searchLine = '';
+                        this.attemptId = '';
                     }
 
                     saveInLocalStorage('attempts', this.attempts, this.task.weekNumber);
@@ -395,24 +409,6 @@
                     this.played.push(parseInt(this.task.weekNumber));
 
                     saveInLocalStorage('played', this.played);
-                },
-                copyToClipboard() {
-                    let result = '';
-                    for (const [index, element] of this.attempts.entries()) {
-                        if (element == '') {
-                            result = result + '📖';
-                            break;
-                        } else {
-                            result = result + '📙';
-                        };
-                    }
-                    navigator.clipboard.writeText(result)
-                        .then(() => {
-                            alert("Text copied to clipboard!");
-                        })
-                        .catch(err => {
-                            console.error("Failed to copy: ", err);
-                        });
                 },
             },
             watch: {

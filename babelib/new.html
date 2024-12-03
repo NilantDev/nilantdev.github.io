@@ -106,7 +106,7 @@
             data() {
                 return {
                     task: {},
-                    list: getBookList(),
+                    list: [],//getBookList(),
                     cards: getCardData(),
                     headerData: {
                         'isbn': { 'label': 'ISBN', canShow: true },
@@ -149,6 +149,12 @@
             async mounted() {
                 try {
                     this.task = await getTask(this.taskId);
+                } catch (error) {
+                    console.error('Ошибка при загрузке данных:', error);
+                }
+
+                try {
+                    this.list = await getList(this.taskId);
                 } catch (error) {
                     console.error('Ошибка при загрузке данных:', error);
                 }

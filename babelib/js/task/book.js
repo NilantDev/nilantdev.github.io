@@ -71,6 +71,18 @@ async function getTaskByIdRange(fromId, toId) {
     return data;
 }
 
+async function getList() {
+    const resp = await fetch('https://1caa2d06632f5615.mokky.dev/list');
+    const data = await resp.json();
+    // let newData = data[0]
+    // newData['weekNumber'] = taskId;
+
+    if (!resp.ok) {
+        throw new Error(data.message || 'Something went wrong');
+    }
+    return data;
+}
+
 
 function patchStat(taskId, attemptId, value) {
     const url = 'https://1caa2d06632f5615.mokky.dev/stat/' + parseInt(taskId);

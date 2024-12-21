@@ -3,20 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=480">
     <title>Вавиленская библиотеки</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="js/task/info.js"></script>
     <link rel="stylesheet" href="css/card.css">
+    <script src="component/header.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <header>
-            <a class="header-link" href="formular.html">Формуляр</a>
-            <a class="header-link" href="new.html">Играть</a>
-            <a class="header-link" href="info.html">Правила</a>
-        </header>
+        <header-component></header-component>
         <div class="page-wrapper faq">
             <div v-for="(item, index) in infoData" class="card instruction" :class="getPositionClass(index)"
                 :style="{'z-index': item.zIndex, 'top': item.top}">
@@ -39,6 +36,9 @@
         const { createApp } = Vue;
 
         createApp({
+            components: {
+                'header-component': Header
+            },
             data() {
                 return {
                     infoData: getInfoData()
@@ -56,9 +56,11 @@
             margin: 5px;
             font-weight: 700;
         }
+
         .instruction.right {
             right: 10px;
         }
+
         .instruction.left {
             left: 10px;
         }

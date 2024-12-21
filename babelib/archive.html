@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=480">
     <title>Вавиленская библиотеки</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="js/custom/localStorage.js"></script>
@@ -19,39 +19,29 @@
         page-wrapper {
             display: flex;
             justify-content: center;
-            /* Центрируем содержимое по горизонтали */
         }
 
         .covers-wrapper {
             display: flex;
             flex-wrap: wrap;
-            /* Позволяем оборачивать элементы на новую строку */
             justify-content: space-between;
-            /* Пробелы между элементами */
             max-width: 1200px;
-            /* Задайте максимальную ширину по вашему желанию */
         }
 
         .cover-wrapper {
+            align-items: center;
             display: flex;
             flex-direction: column;
-            /* Вертикальное размещение элементов внутри cover-wrapper */
-            align-items: center;
-            /* Центрируем по горизонтали */
-            width: calc(50% - 10px);
-            /* Делаем ширину каждого cover-wrapper 50% с учетом пробела */
             margin-bottom: 20px;
-            /* Отступ снизу между строками */
+            width: calc(30% - 10px);
         }
 
         .imagee {   
-            height: 260px;
-            /* Сохраняем пропорции изображения */
+            height: 180px;
         }
 
         .info-wrapper {
             text-align: center;
-            /* Центрируем текст внутри info-wrapper */
         }
 
         .blured {
@@ -101,7 +91,7 @@
                     return this.played.includes(parseInt(taskId));
                 },
                 getCover(taskId) {
-                    return this.isPlayed(taskId) ? this.tasks[taskId - this.firstTask].cover : 'img/empty-cover.jpg';
+                    return this.isPlayed(taskId) ? this.tasks[taskId - this.firstTask]?.cover : 'img/empty-cover.jpg';
                 },
                 getTaskLink(taskId) {
                     return 'new.html?taskId=' + taskId;

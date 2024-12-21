@@ -58,6 +58,16 @@ async function getTask(taskId) {
     return newData;
 }
 
+async function getListItem(taskId) {
+    const resp = await fetch('https://1caa2d06632f5615.mokky.dev/list?id=' + taskId);
+    const data = await resp.json();
+
+    if (!resp.ok) {
+        throw new Error(data.message || 'Something went wrong');
+    }
+    return data[0];
+}
+
 
 async function getTaskByIdRange(fromId, toId) {
     const range = 'id[from]=' + fromId + '&id[to]=' + toId;

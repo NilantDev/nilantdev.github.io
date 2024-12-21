@@ -7,16 +7,18 @@
     <title>Вавиленская библиотеки</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="js/task/book.js"></script>
-    <script src="js/task/list.js"></script>
     <script src="js/task/cardData.js"></script>
     <link rel="stylesheet" href="css/card.css">
     <script src="js/custom/date.js"></script>
     <script src="js/custom/const.js"></script>
     <script src="js/custom/stat.js"></script>
     <script src="js/custom/localStorage.js"></script>
-    <!-- <script src="component/similar.js"></script> -->
+
     <script src="component/header.js"></script>
     <script src="component/chart.js"></script>
+    <script src="component/copy-result.js"></script>
+
+    <script src="js/custom/update.js"></script>
 </head>
 
 <body>
@@ -24,7 +26,7 @@
         <header-component></header-component>
         <div class="page-wrapper quotes">
             <div v-for="(data, index) in cards" class="card quote" :id="data.code"
-                :class="{active : data.zIndex == 10, blocked: data.blocked}"
+                :class="{active : data.zIndex == 10, blocked: data.blocked, alternative: data.alternative}"
                 :style="{'margin-left': getCardMarginLeft(index), 'z-index': data.zIndex}"
                 @click="selectCard(index, $event)">
                 <div class="info-wrapper">
@@ -68,7 +70,6 @@
                 <div class="colontitile-wrapper"><span class="left" v-text="data.colontitle"></span><span class="right"
                         v-text="data.colontitle"></span></div>
             </div>
-            <!-- ///////////////////////////////////// -->
             <div class="attempt-wrapper" v-show="canInput">
                 <div class="attempt-list">
                     <ol>
@@ -86,27 +87,21 @@
                 </div>
             </div>
 
-            <div class="share-wrapper" style="text-align: center;" v-show="!canInput">
-                <button @click="copyResult()">Скопировать результат</button>
-                <chart-component :charts="charts"> </chart-component>
-            </div>
+            <copy-result-component :can-input="canInput" :isbn="isbn" :task-id="this.task.weekNumber" :charts="charts">
+            </copy-result-component>
         </div>
-
-        <!-- //////////////////////////////// -->
-
     </div>
     <script>
         const { createApp } = Vue;
-
         createApp({
             components: {
                 'header-component': Header,
-                'chart-component': Chart
+                'copy-result-component': CopyResult
             },
             data() {
                 return {
                     task: {},
-                    list: [],//getBookList(),
+                    list: [],
                     cards: getCardData(),
                     headerData: {
                         'isbn': { 'label': 'ISBN', canShow: true },
@@ -147,6 +142,12 @@
                 }
             },
             async mounted() {
+                await update();
+
+                if (!getValueFromLocalStorage('achieves')) {
+                    saveInLocalStorage('achieves', { 'new': { 'count': MAX_ACHIEVE_COUNT, 'date': getToday() } });
+                }
+
                 try {
                     this.task = await getTask(this.taskId);
                 } catch (error) {
@@ -163,7 +164,7 @@
                     this.unblockAllCards();
                     this.canInput = false;
                     this.showAnswer();
-                    this.charts = await getStatById(this.taskId);                    
+                    this.charts = await getStatById(this.taskId);
                 } else {
                     this.unblockAlreadyOpenCards();
                 }
@@ -176,11 +177,11 @@
                 getInputText() {
                     return this.attemptId ? 'Выбрать' : 'Пропустить';
                 },
-                addAttemptToList() {
+                addAttemptToList(message = '') {
                     for (const [index, element] of this.attempts.entries()) {
                         if (element == '') {
                             this.searchLine = this.searchLine ? this.searchLine : '[ПРОПУСК]';
-                            this.attempts[index] = this.searchLine;
+                            this.attempts[index] = message ? message : this.searchLine;
                             break;
                         };
                     }
@@ -278,34 +279,6 @@
                     this.searchLine = this.getSearchOptionLabel(data);
                     this.attemptId = data.id;
                 },
-                copyResult() {
-                    let result = '';
-                    result = result + '—— Вавиленская библиотека ——\n';
-                    result = result + 'ISBN-' + this.isbn + '\n';
-
-                    for (const [index, element] of this.attempts.entries()) {
-                        console.log(index);
-                        console.log(this.status);
-                        console.log(!element || (index == 5 && this.status == STATUS_WON));
-                        if (element && index !== 0) {
-                            result = result + '📕';
-                        }
-
-                        if (!element) {
-                            result = result + '📖';
-                            break;
-                        }
-
-                        if ((index == 5 && this.status == STATUS_WON)) {
-                            result = result + '📖';
-                            break;
-                        }
-                    }
-
-                    result = result + '\n\nhttps://nilantdev.github.io/';
-                    navigator.clipboard.writeText(result);
-
-                },
 
                 checkBook() {
                     // if (this.attempts.includes(this.searchLine)) {
@@ -317,7 +290,7 @@
                     // if (this.attemptId == this.task.id) {
                     if (this.attemptId == this.task.fantlab_id) {
                         this.unblockAllCards();
-                        this.addAttemptToList();
+                        this.addAttemptToList('won');
                         this.addStamp(true);
                         this.status = STATUS_WON;
 

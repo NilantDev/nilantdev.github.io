@@ -61,6 +61,9 @@ body {
     &.blocked {
         filter: blur(2px);
     }
+    &.blocked.alternative {
+        filter: none;
+    }
 
     & .text {
         line-height: 27px;
@@ -214,17 +217,13 @@ body {
 
 #myUL {
     height: 200px;
-    /* Set the desired height for the ul */
-    overflow: hidden;
-    /* Hide the overflowing content */
-    width: 448px;
-
+    height: 304px;
     list-style-type: none;
     margin: 0;
+    overflow: hidden;
     padding: 0;
-    border: 1px solid black;
     width: 345px;
-    height: 304px;
+    width: 448px;
 }
 
 #myUL li {
@@ -275,5 +274,4 @@ ol li.strike {
             margin-right: 10px;
         }
     }
-
 }

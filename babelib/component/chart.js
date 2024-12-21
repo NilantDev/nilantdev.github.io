@@ -4,7 +4,6 @@ const Chart = {
             <hr>
             <div class="bar" v-for="(value, key) in charts">
                 <span class="label" v-text="getChartLabel(key)"></span>
-                
             </div>
         </div>
     `,
@@ -36,7 +35,6 @@ const Chart = {
             return this.chartLabels[key] + ' (' + value + ')';
         },
         getChartBar(key) {
-            // <span class="label" v-text="getChartBar(key)"></span>    
             const maxEmojis = 10;
             const value = this.charts[key];
 

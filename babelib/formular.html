@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=480">
     <title>Вавиленская библиотеки</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="js/custom/localStorage.js"></script>
@@ -11,6 +11,7 @@
     <script src="js/custom/const.js"></script>
     <link rel="stylesheet" href="css/card.css">
     <script src="component/header.js"></script>
+    <script src="js/task/book.js"></script>
 </head>
 
 <body>
@@ -45,7 +46,6 @@
                     </div>
                 </div>
             </div>
-            <button @click="cleanAll">Почистить кеш</button>
         </div>
     </div>
     <script>
@@ -77,6 +77,7 @@
                         'magrealism': { title: 'квартал', transform: 'rotate(2deg)' },
                         'mistic': { title: 'Мистер и я ', transform: 'rotate(2deg)' },
                         'new': { title: 'добро пожаловать', transform: 'rotate(3deg)' },
+                        'other': { title: 'Нечто иное', transform: 'rotate(-1deg)' },
                         'poetry': { title: 'Поэт в душе', transform: 'rotate(0deg)' },
                         'postmoderm': { title: 'Ирония и метапроза', transform: 'rotate(-1deg)' },
                         'scifi': { title: 'фантастика!', color: 'blue', transform: 'rotate(2deg)' },
@@ -119,12 +120,6 @@
                 },
                 getStampDate(code) {
                     return (this.achieves[code]) ? this.achieves[code]['date'] : '';
-                },
-                cleanAll() {
-                    cleanLocalStorage('');
-                    for (i = 35; i < 44; i++) {
-                        cleanLocalStorage(i);
-                    }
                 }
             }
         }).mount('#app')

@@ -23,6 +23,7 @@
 
 <body>
     <div id="app">
+        <div style="margin: auto;"><span id="update-message"></span></div>
         <header-component></header-component>
         <div class="page-wrapper quotes">
             <div v-for="(data, index) in cards" class="card quote" :id="data.code"
@@ -44,7 +45,6 @@
 
                 <div v-if="data.code == 'classifier'">
                     <table class="class-table">
-                        <!-- <tr v-for="item in classifierData" :id="item.code"> -->
                         <tr v-for="(class_value, class_code) in task.classificatory" :id="class_code"
                             v-show="class_code !== 'genre_code'">
                             <td class="class-title" v-text="classifierData[class_code]"></td>

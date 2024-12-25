@@ -2,7 +2,7 @@ async function update() {
     const lastVersion = 1;
     let version = getValueFromLocalStorage('version');
     let messageElement = document.getElementById('update-message');
-    // if (!version) version = 0;
+    if (!version) version = 0;
 
     // if (version < 1) {
     //     messageElement.innerHTML = `Обновление ${version} / ${lastVersion}`;
@@ -20,7 +20,7 @@ async function updateV1(version, lastVersion) {
         let messageElement = document.getElementById('update-message');
         messageElement.innerHTML = `Обновление ${version} / ${lastVersion} - ${i} / 116`;
         let item = getLocalStorageItem(i);
-        if (Object.keys(item).length !== 0 && !Object.values(item).includes('won')) {
+        if (Object.keys(item).length !== 0 && !item.attempts.includes('won')) {
             let task = await getTask(i);
             let listItem = await getListItem(task.fantlab_id);
             let title = listItem.author + ' - ' + listItem.title;

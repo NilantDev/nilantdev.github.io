@@ -47,6 +47,7 @@
                 </div>
             </div>
         </div>
+        <button @click="copyStorageLocal">Нажми меня</button>
     </div>
     <script>
         const { createApp } = Vue;
@@ -120,6 +121,16 @@
                 },
                 getStampDate(code) {
                     return (this.achieves[code]) ? this.achieves[code]['date'] : '';
+                },
+                copyStorageLocal() {
+                    let result = JSON.stringify(getLocalStorageItem(''));
+                    for (i = 35; i < 116; i++) {
+                        let item = getLocalStorageItem(i);
+                        if (Object.keys(item).length !== 0) {
+                            result = result + ''+  JSON.stringify(item);
+                            navigator.clipboard.writeText(result);
+                        }
+                    }
                 }
             }
         }).mount('#app')

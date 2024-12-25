@@ -2,15 +2,15 @@ async function update() {
     const lastVersion = 1;
     let version = getValueFromLocalStorage('version');
     let messageElement = document.getElementById('update-message');
-    if (!version) version = 0;
+    // if (!version) version = 0;
 
-    if (version < 1) {
-        messageElement.innerHTML = `Обновление ${version} / ${lastVersion}`;
-        await updateV1(version, lastVersion);
-        version++;
-        saveInLocalStorage('version', lastVersion);
-        messageElement.innerHTML = `Обновление ${version} / ${lastVersion}`;
-    }
+    // if (version < 1) {
+    //     messageElement.innerHTML = `Обновление ${version} / ${lastVersion}`;
+    //     await updateV1(version, lastVersion);
+    //     version++;
+    //     saveInLocalStorage('version', lastVersion);
+    //     messageElement.innerHTML = `Обновление ${version} / ${lastVersion}`;
+    // }
 
     messageElement.innerHTML = ``;
 }
